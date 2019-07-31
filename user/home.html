@@ -1,37 +1,106 @@
+
 <!DOCTYPE html>
 <html>
+
 <head>
-<title> User home page </title>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title> User home page </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
+
 <body>
-        <nav class="navbar navbar-dark bg-primary">
-                <a class="navbar-brand" href="#">Lawyer Management</a>
-                <a href="login.php">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Signout</button>
-                </a>
-            </nav>
-            <div class="container-fluid">
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Lawyer Management</a>
+        <a href="login.php">
+            <button class="btn btn-warning" type="submit">Signout</button>
+        </a>
+    </nav>
+    <div class="container-fluid">
 
-        <ul class="nav nav-pills nav-fill">
-                <li class="nav-item">
-                    <a class="nav-link active" href="about.php">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="lawyers.php"> Lawyers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="courts.php">Courts</a>
-                </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="rule.php">Rules</a>
-                    </li>
-    
-            </ul>
-            <h2 class=" col-md-4 mx-auto text-center">Hello user!!</h2>
-
-</div>
+        <ul class="nav nav-tabs nav-fill">
+            <li class="nav-item">
+                <a class="nav-link active">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="lawyers.html"> Lawyers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="courts.html">Courts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="details.html">Comments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="hsdetails.html">History</a>
+            </li>
+        </ul>
+        <h2 class=" col-md-4 mx-auto text-center">Hello user!!</h2>
+        <p class="col-10 mx-auto text-center">
+            Roulston Urquhart Criminal Defence is a team of skilled criminal lawyers dedicated to smart, aggressive and
+            strategic advocacy. Our practice areas include all criminal offences including drug offences, sexual
+            offences, driving offences, violent offences and white collar crime. Recognized for defending some of
+            Alberta's most notorious high-profile criminal cases, the lawyers at Roulston Criminal Defence are committed
+            to providing their clients with a high-calibre, dynamic defence aimed at achieving successful results. Our
+            lawyers have a combined background of impressive achievements and qualifications as well as a commitment to
+            professional excellence, client services and expert legal advice.
+        </p>
+        <form action="" method="POST" class="mt-5 m-md-2 py-2 border border-primary rounded">
+                <h4 class=" col-md-5 mx-auto text-center">NEW CASE REGISTRATION</h4>
+            <div class="row">
+                <div class="col-md-6 border border-primary rounded">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="first_name" class="form-control" id="exampleInputPassword1"
+                            placeholder="Firstname">
+                    </div>
+                    <div class="form-group">
+                        <label>Case</label>
+                        <input type="text" name="case" class="form-control" id="exampleInputPassword1"
+                            placeholder="Case">
+                    </div>
+                    <div class="form-group">
+                            <label>Court</label>
+                            <input type="text" name="court" class="form-control" id="exampleInputPassword1"
+                                placeholder="Court">
+                        </div>
+                </div>
+                <div class="col-md-6 border border-primary rounded">
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="last_name" class="form-control" id="exampleInputPassword1"
+                            placeholder="Lastname">
+                    </div>
+                    <div class="form-group">
+                        <label>Lawyer</label>
+                        <input type="text" name="lawyer" class="form-control" id="exampleInputPassword1"
+                            placeholder="Lawyer">
+                    </div>
+                    <div class="form-group">
+                            <label>Date</label>
+                            <input type="datetime" name="date" class="form-control" id="exampleInputPassword1"
+                                placeholder="Date">
+                        </div>
+                </div>
+                <div class="col-md-3 mt-2 text-center mx-auto">
+                        <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                <label class="form-check-label" for="invalidCheck">
+                                  I agree to terms and conditions
+                                </label>
+                                <div class="invalid-feedback">
+                                  You must agree before submitting.
+                                </div>
+                    <a href="newcase.html">
+                        <button class="btn btn-success " type="submit">Submit</button>
+                    </a>
+                </div>
+        </form>
+    </div>
+    </div>
 </body>
+
 </html>

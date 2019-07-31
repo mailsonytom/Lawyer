@@ -1,5 +1,6 @@
 <?php include 'connect.php' ?>
 <?php
+<<<<<<< HEAD
     session_start();
     $username = $password = "";
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -59,3 +60,12 @@
     </div>
     </body>
 </html>
+=======
+$email=$_POST['email'];
+$password=$_POST['password'];
+echo $email."<br>";
+echo $password;
+$sql = "INSERT INTO user_details (first_name, last_name, email_id, password, phone, address) VALUES ('$firstname', '$lastname', '$username', '$password', '$phone', '$address')";
+$conn->query($sql)
+?>
+>>>>>>> cdc38375574ff869219774eaa9f4112f9c4ba735

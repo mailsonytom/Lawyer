@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php include 'connect.php' ?>
 <?php
     $firstname = $lastname = $username = $password = $spec = $exp = $fees = $contact = $birthdate = "";
@@ -114,3 +115,24 @@
 </body>
 
 </html>
+=======
+<?php
+$firstname=$_POST['firstname'];
+$lastname=$_POST['lastname'];
+$email=$_POST['email'];
+$password=$_POST['password'];
+$speciality=$_POST['specs'];
+$experience=$_POST['experience'];
+$fees=$_POST['fees'];
+$contact=$_POST['contact'];
+
+echo $firstname;
+echo $lastname;
+echo $email;
+echo $password;
+echo $speciality;
+echo $experience;
+echo $fees;
+echo $contact;
+?>
+>>>>>>> cdc38375574ff869219774eaa9f4112f9c4ba735
