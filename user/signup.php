@@ -1,6 +1,6 @@
 <?php include 'connect.php' ?>
 <?php
-<<<<<<< HEAD
+
     $firstname = $lastname = $username = $password = $address = $phone = "";
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $flag = 0;
