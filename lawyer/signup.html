@@ -5,74 +5,68 @@
     <title>
         sign-up list
     </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Lawyer Management Module</a>
-        <a href="signin.php">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign In</button>
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Lawyer Management</a>
+        <a href="login.php">
+            <button class="btn btn-warning" type="submit">Signout</button>
         </a>
     </nav>
-    <div class="container">
-        <h2 class= " col-md-4 text-center mx-auto"> Sign-up as lawyer</h2>
-        <form action="signup.php" method="POST" class="col-md-8 mx-auto mt-5 px-2 py-2 border border-primary rounded" >
-            <div class="form-group">
-                <label for="Inputfirstname">First name</label>
-                <input type="text" class="form-control" name="firstname" id="Inputfirstname" aria-describedby="nameHelp" placeholder="Enter first name">
+    <div class="container-fluid">
+        <div class="row mx-1">
+            <h2 class=" col-md-5 text-center mx-auto"> Sign-up as lawyer</h2>
+            <div class="col-md-8 mx-auto mt-5 px-2 py-2 border border-primary rounded">
+                <form action="signup.php" method="POST">
+                    <div class="form-group">
+                        <label>First name</label>
+                        <input type="text" class="form-control" name="firstname" id="Inputfirstname">
+                    </div>
+                    <div class="form-group">
+                        <label>Last name</label>
+                        <input type="text" class="form-control" name="lastname" id="Inputlastname">
+                    </div>
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input type="email" class="form-control" name="email" id="exampleInputEmail1">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+                    </div>
+                    <div class="form-group">
+                        <label>Speciality</label>
+                        <input type="text" class="form-control" name="specs" id="specs">
+                    </div>
+                    <div class="form-group">
+                        <label>Experience</label>
+                        <input type="text" class="form-control" name="experience" id="experience">
+                    </div>
+                    <div class="form-group">
+                        <label> Fees</label>
+                        <input type="text" class="form-control" name="fees" id="fees">
+
+                    </div>
+                    <div class="form-group">
+                        <label>Contact</label>
+                        <input type="text" class="form-control" name="contact" id="contact">
+                    </div>
+                    <div class="form-group">
+                        <label>Gender:</label>
+                        male<input type="radio" name="gender id=" gender">
+                        female<input type="radio" name="gender id=" gender">
+                    </div>
+                    <div class="form-group">
+                        <label>Date of birth</label>
+                        <input type="text" class="form-control" name="dob" id="dob">
+                    </div>
+                    <input type="submit" name="submit" class="btn btn-primary">
+                </form>
             </div>
-            <div class="form-group">
-                <label for="Inputlastname">Last name</label>
-                <input type="text" class="form-control" name="lastname" id="Inputlastname" aria-describedby="nameHelp" placeholder="Enter last name">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email.</small>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <div class="form-group">
-                <label>Speciality</label>
-                <input type="text" class="form-control" name="specs" id="specs"
-                    placeholder="Enter Speciality">
-            </div>
-            <div class="form-group">
-                <label>Experience</label>
-                <input type="text" class="form-control" name="experience" id="experience" 
-                    placeholder="Enter experience">
-            </div>
-             <div class="form-group">
-                <label> Fees</label>
-                <input type="text" class="form-control" name="fees" id="fees"
-                    placeholder="Enter fees">
-                
-            </div>
-            <div class="form-group">
-                <label>Contact</label>
-                <input type="text" class="form-control" name="contact" id="contact" 
-                    placeholder="Enter contact number">
-            </div>
-            <div class="form-group">
-                <label>Gender:</label><br>
-                male<input type="radio" name="gender id="gender" >
-                    female<input type="radio" name="gender id="gender" >
-            </div>
-            <div class="form-group">
-                <label>Date of birth</label>
-                <input type="text" class="form-control" name="dob" id="dob" 
-                    placeholder="Enter date of birth">
-            </div>
-            <input type="submit" name="submit" class="btn btn-primary">
-        </form>
-        <br>
+        </div>
     </div>
 </body>
 
