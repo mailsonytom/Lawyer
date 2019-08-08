@@ -1,6 +1,5 @@
 <?php include 'connect.php' ?>
 <?php
-<<<<<<< HEAD
     session_start();
     $username = $password = "";
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -16,56 +15,11 @@
                  </script>';
             }
             else{
-                    echo "Wrong password. <a href='login.php'>Click here to try again.</a>";  
+                    echo "Wrong password. <a href='login.html'>Click here to try again.</a>";  
             }
         }
         else{
-                echo "Wrong username. <a href='login.php'>Click here to try again.</a>";
+                echo "Wrong username. <a href='login.html'>Click here to try again.</a>";
             }
         }
 ?>
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>
-        sign-in list
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
-</head>
-
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Lawyer Management</a>
-        <a href="signup.php">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign up</button>
-        </a>
-    </nav>
-    <div class="container">
-        <h2 class=" col-md-4 mx-auto text-center">Sign-in to your account</h2>
-        <form action="" method="POST" class="col-md-8 mx-auto mt-5 px-2 py-2 border border-primary rounded">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
-            <input type="submit" value="Submit" class="btn btn-primary">
-        </form>
-    </div>
-    </body>
-</html>
-=======
-$email=$_POST['email'];
-$password=$_POST['password'];
-echo $email."<br>";
-echo $password;
-$sql = "INSERT INTO user_details (first_name, last_name, email_id, password, phone, address) VALUES ('$firstname', '$lastname', '$username', '$password', '$phone', '$address')";
-$conn->query($sql)
-?>
->>>>>>> cdc38375574ff869219774eaa9f4112f9c4ba735
