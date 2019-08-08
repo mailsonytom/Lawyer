@@ -35,10 +35,10 @@
                 <a class="nav-link" href="hsdetails.html">History</a>
             </li>
         </ul>
-            <h3 class="mx-auto text-center">Enter your details to access comments!</h3>
-            <div class="row mx-1">
-            <div class="col-md-6 mx-auto mt-5 mb-2 py-2 text-center border border-primary rounded">
-                <form action="" method="POST">
+        <h3 class="mx-auto mt-4 mb-2 text-center">Enter your details to access comments!</h3>
+        <div class="row mx-1">
+            <div class="col-md-6 mx-auto mt-5 mb-5 py-2 text-center border border-primary rounded">
+                <form action="" method="POST" class="mt-3 mb-3">
                     <div class="form-group">
                         <label>Username</label>
                         <input type="text" name="usrname" class="form-control" id="exampleInputPassword1"
@@ -54,20 +54,27 @@
                         <input type="text" name="case_id" class="form-control" id="exampleInputPassword1"
                             placeholder="Case ID">
                     </div>
-                    <div>
-                        <a href="view.html">
-                            <button class="btn btn-success px-4" type="submit">View Comment</button>
-                        </a>
-                    </div>
-                    <div>
-                        <a href="comments.html">
-                            <button class="btn btn-success px-4" type="submit">Add Comment</button>
-                        </a>
+                    <div class="row">
+                        <div class="mx-auto">
+                            <a href="view.html">
+                                <button class="btn btn-success px-5" type="submit">View Comment</button>
+                            </a>
+                        </div>
+                        <div class="mx-auto">
+                            <a href="comments.html">
+                                <button class="btn btn-success px-5" type="submit">Add Comment</button>
+                            </a>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <footer id="sticky-footer" class="py-4 bg-primary">
+            <div class="container text-center">
+                <small>@ 2019 Copyright - Lawyer Management</small>
+            </div>
+        </footer>
 </body>
 
 </html>
