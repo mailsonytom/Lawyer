@@ -3,7 +3,6 @@
 
 <head>
     <title> Lawyer-history page </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
@@ -16,9 +15,23 @@
         </a>
     </nav>
     <div class="container-fluid">
-        <div class="row mt-4 ">
+            <ul class="nav nav-tabs nav-fill">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="courts.html">Courts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="details.html">Comments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="hsdetails.html">History</a>
+                    </li>
+                </ul>
+        <div class="row mt-4">
             <div class="col-md-10 mx-auto">
-                <h6 class="text-primary">Add Case History</h6>
+                <h4>Add Case History</h4>
                 <div class="list-group mt-2">
                     <form action="" method="post">
                         <div class="form-group">
@@ -26,7 +39,7 @@
                                         </textarea>
                             <div class="col-md-3 mt-2 text-center mx-auto">
                                 <a href="">
-                                    <button class="btn btn-success " type="submit">Upload</button>
+                                    <button class="btn btn-success " type="submit">Update History</button>
                                 </a>
                             </div>
                     </form>
@@ -34,6 +47,11 @@
             </div>
         </div>
     </div>
+    <footer id="sticky-footer" class="py-4 bg-primary">
+            <div class="container text-center">
+                <small>@ 2019 Copyright - Lawyer Management</small>
+            </div>
+        </footer>
 </body>
 
 </html>
