@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title> User home page </title>
+    <title> Admin-courts page </title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <ul class="nav nav-tabs nav-fill">
             <li class="nav-item">
-                <a class="nav-link active" href="home.html" >Home</a>
+                <a class="nav-link" href="home.html">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="lawyer.html">Lawyer Requests</a>
@@ -26,16 +26,16 @@
                 <a class="nav-link" href="user.html"> User Requests</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="courts.html">Courts</a>
+                <a class="nav-link active" href="courts.html">Courts</a>
             </li>
         </ul>
-        <h3 class="text-center mt-5 mb-5">Hello Admin!!</h3>
+
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
-           <div class="row">
+            <div class="row">
                 <h4 class=" col-md-4 mx-auto text-center">
-                        Recents
-                    </h4>
-           </div>
+                    Courts
+                </h4>
+            </div>
             <div class="row mx-1">
                 <div class="col-md-6">
                     <ul class="list-group">
@@ -57,12 +57,17 @@
                 </div>
             </div>
         </div>
-    </div>
-    <footer id="sticky-footer" class="py-4 bg-primary">
-        <div class="container text-center">
-            <small>@ 2019 Copyright - Lawyer Management</small>
+        <div class="row mx-1">
+            <div class="col-md-8 mx-auto mt-5 mb-5 px-2 py-2 text-center border border-primary rounded">
+                <h3>Add Courts</h3>
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <label>Court</label>
+                        <input type="text" name="court" class="form-control" id="exampleInputEmail1"
+                            placeholder="Add court">
+                    </div>
+                    <input type="submit" value="Update" class="btn btn-primary text-center">
+                </form>
+            </div>
         </div>
-    </footer>
-</body>
-
-</html>
+    </div>
