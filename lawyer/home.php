@@ -1,3 +1,6 @@
+<?php include 'connect.php' ?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -36,23 +39,26 @@
                 New Case Requests
             </h4>
             <div class="row mx-1">
-                <div class="col-md-6">
-                        <ul class="list-group">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                </div>
-                <div class="col-md-6">
-                        <ul class="list-group">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
+                <div class="col-md-12">
+                        <div class="list-group">
+                           <?php
+                            $sql = "SELECT * FROM cases";
+                            $result = mysqli_query($conn, $sql);
+                            while($row=mysqli_fetch_assoc($result)){
+                                if($row['active_status'] == 0){
+                                    $casetype_query = "SELECT casetype FROM casetype WHERE id=".$row['casetype_id'];
+                                    $casetype_result =  mysqli_query($conn, $casetype_query);
+                                    $casetype_row = mysqli_fetch_assoc($casetype_result);
+                                    echo '<div class="col-md-3"> <span class="badge badge-success">' .$casetype_row['casetype']. '</span></div>';
+                                    $user_query = "SELECT first_name FROM user_details WHERE Id=".$row['user_id'];
+                                    $user_result = mysqli_query($conn, $user_query);
+                                    $user_row = mysqli_fetch_assoc($user_result);
+                                    echo '<div class="col-md-5"> <span class="badge badge-danger">' .$user_row['first_name']. '</span></div>';
+                                    echo '<p>' .$row['description'].'</p>';
+                                }
+                            }
+                            ?>
+                        </div>
                 </div>
             </div>
         </div>

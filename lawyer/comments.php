@@ -1,3 +1,20 @@
+<?php include 'connect.php'?>
+<?php
+$comment = $date = $user_id = "";
+$user_id = "SELECT Id FROM user_details";
+$comment = $_POST['comment'];
+$date = date('d-m-Y H:i');
+$sql = "INSERT INTO comments (user_id,comment,date) VALUES ('user_id','$comment','$date')";
+if ($conn->query($sql) === TRUE) {
+    echo '<script type="text/javascript">
+            window.location = ""
+            </script>';
+} 
+else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

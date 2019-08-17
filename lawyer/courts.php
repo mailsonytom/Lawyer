@@ -1,3 +1,4 @@
+<?php include 'connect.php' ?>
 <!DOCTYPE html>
 <html>
 
@@ -37,22 +38,19 @@
             </div>
             <div class="row mx-1 mt-3 mb-3">
                 <div class="col-md-6">
-                    <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
+                    <div class="list-group">
+                    <?php
+                            $sql = "SELECT * FROM courts";
+                            $result = mysqli_query($conn, $sql);
+                            while($row=mysqli_fetch_assoc($result)){
+                                if($row['active_status'] == 1){
+                                    echo '<p>' .$row['court_name']. '</p>';
+                                    echo '<p>' .$row['location']. '</p>';
+
+                                }
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,3 +1,4 @@
+<?php include 'connect.php' ?>
 <!DOCTYPE html>
 <html>
 
@@ -32,22 +33,22 @@
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
             <div class="row mx-1 mt-2 mb-2">
                 <div class="col-md-6">
-                    <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
-                </div>
-                <div class="col-md-6">
-                    <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
-                    </ul>
+                    <div class="list-group">
+                    <?php
+                            $sql = "SELECT * FROM comments";
+                            $result = mysqli_query($conn, $sql);
+                            while($row=mysqli_fetch_assoc($result)){
+                                if($row['status'] == 0){
+                                    $user_query = "SELECT first_name FROM user_details WHERE Id=".$row['user_id'];
+                                    $user_result = mysqli_query($conn, $user_query);
+                                    $user_row = mysqli_fetch_assoc($user_result);
+                                    echo '<p>' .$user_row['first_name']. ' commented</p>';
+                                    echo '<p>' .$row['comment']. '</p>';
+                                    echo '<p>' .$row['date']. '</p>';
+                                }
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
