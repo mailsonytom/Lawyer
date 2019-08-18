@@ -1,8 +1,24 @@
-.navbar-bg {
-    background-color: rgb(12, 12, 12);
+.content{
+    background-color: #7cf2d9;
 }
-footer {
+.navbar-bg{
+    background-color:#7ecfd1a6;
+}
+.footer{
     position: relative;
     bottom: 0px;
     width: 100%;
+    background-color: #8f8d91;
+}
+.datesize{
+    font-size: 1vw;
+}
+.heading{
+    margin-top: 50px;
+}
+.img{
+    background-color: #8f8d91;
+}
+.align{
+    align-content: center;
 }
