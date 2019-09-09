@@ -26,40 +26,36 @@
 <html>
 
 <head>
-    <title> User home page </title>
+    <title>Choose</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Lawyer Management</a>
-        <a href="login.php">
-            <button class="btn btn-warning" type="submit">Signout</button>
-        </a>
-    </nav>
-    <div class="container-fluid">
-
-        <ul class="nav nav-tabs nav-fill">
-            <li class="nav-item">
-                <a class="nav-link active" href="home.html">Home</a>
+    <nav class="navbar navbar-expand-lg navbar-bg">
+        <a class="navbar-brand" href="#">Find your LAWYER</a>
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+                <a class="nav-link active">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="lawyers.html"> Lawyers</a>
+        <li class="nav-item">
+                <a class="nav-link" href="lawyer.html">Lawyers</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="courts.html">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="details.html">Comments</a>
+                <a class="nav-link" href="comments.html">Comments</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="hsdetails.html">History</a>
+                <a class="nav-link" href="history.html">History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html">SIGNOUT</a>
             </li>
         </ul>
+    </nav>
+    <div class="container-fluid">
         <div class="row">
             <h2 class=" col-md-4 mx-auto text-center mt-5 mb-5 ">Hello user!!</h2>
             <p class="col-md-10 mx-auto text-center mt-5 mb-5">
@@ -84,8 +80,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>First Name</label>
-                            <input type="text" name="first_name" class="form-control" id="exampleInputPassword1"
-                                placeholder="Firstname">
+                            <input type="text" name="first_name" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Type of Case</label>
@@ -109,8 +104,7 @@
                     <div class="col-md-6 ">
                         <div class="form-group">
                             <label>Last Name</label>
-                            <input type="text" name="last_name" class="form-control" id="exampleInputPassword1"
-                                placeholder="Lastname">
+                            <input type="text" name="last_name" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Court</label>
@@ -145,11 +139,18 @@
     </div>
     </form>
     </div>
-    <footer id="sticky-footer" class="py-3 bg-primary">
-        <div class="container text-center">
-            <small>@ 2019 Copyright - Lawyer Management</small>
-        </div>
-    </footer>
+    <footer class="footer px-5 py-5 ">
+            <p class="float-right">
+                <a href="">
+                    Back to top
+                </a>
+            </p>
+            <p>
+                2018-2019 Company, Inc.
+                <a href="">Privacy</a>
+                <a href="">Terms</a>
+            </p>
+        </footer>
 </body>
 
 </html>

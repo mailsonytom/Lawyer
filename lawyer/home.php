@@ -5,34 +5,36 @@
 <html>
 
 <head>
-    <title> Lawyer home page </title>
+    <title>Choose</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Lawyer Management</a>
-        <a href="login.php">
-            <button class="btn btn-warning" type="submit">Signout</button>
-        </a>
-    </nav>
-    <div class="container-fluid">
-
-        <ul class="nav nav-tabs nav-fill">
-            <li class="nav-item">
-                <a class="nav-link active" href="home.html">Home</a>
+    <nav class="navbar navbar-expand-lg navbar-bg">
+        <a class="navbar-brand" href="#">Find your LAWYER</a>
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+                <a class="nav-link active">Home</a>
+            </li>
+        <li class="nav-item">
+                <a class="nav-link" href="cases.php">Cases</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="courts.html">Courts</a>
+                <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="details.html">Comments</a>
+                <a class="nav-link" href="comments.php">Comments</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="hsdetails.html">History</a>
+                <a class="nav-link" href="history.php">History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html">SIGNOUT</a>
             </li>
         </ul>
+    </nav>
+    <div class="container">
         <h2 class=" col-md-4 mx-auto mt-5 text-center">Hello Lawyer!!</h2>
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
             <h4 class=" col-md-4 mt-2  mx-auto text-center">
@@ -64,10 +66,17 @@
         </div>
     </div>
     </div>
-    <footer id="sticky-footer" class="py-4 bg-primary">
-        <div class="container text-center">
-            <small>@ 2019 Copyright - Lawyer Management</small>
-        </div>
+    <footer class="footer px-5 py-5 ">
+        <p class="float-right">
+            <a href="">
+                Back to top
+            </a>
+        </p>
+        <p>
+            2018-2019 Company, Inc.
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+        </p>
     </footer>
 </body>
 

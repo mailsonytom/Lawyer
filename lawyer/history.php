@@ -12,17 +12,23 @@
     <nav class="navbar navbar-expand-lg navbar-bg">
         <a class="navbar-brand" href="#">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="">Lawyers</a>
+        <li class="nav-item">
+                <a class="nav-link" href="home.php">Home</a>
+            </li>
+        <li class="nav-item">
+                <a class="nav-link" href="cases.php">Cases</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Courts</a>
+                <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">History</a>
+                <a class="nav-link" href="comments.php">Comments</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Signout</a>
+                <a class="nav-link active">History</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../index.html">SIGNOUT</a>
             </li>
 
         </ul>
@@ -63,6 +69,18 @@
             </div>
         </div>
     </div>
+    <footer class="footer px-5 py-5 ">
+        <p class="float-right">
+            <a href="">
+                Back to top
+            </a>
+        </p>
+        <p>
+            2018-2019 Company, Inc.
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+        </p>
+    </footer>
 </body>
 
 </html>

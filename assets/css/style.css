@@ -1,14 +1,10 @@
-.content{
-    background-color: #7cf2d9;
-}
 .navbar-bg{
-    background-color:#7ecfd1a6;
+    background-color:#74f5efc4;
 }
 .footer{
     position: relative;
     bottom: 0px;
     width: 100%;
-    background-color: #8f8d91;
 }
 .datesize{
     font-size: 1vw;
