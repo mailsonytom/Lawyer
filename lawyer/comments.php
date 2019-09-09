@@ -22,12 +22,6 @@
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active">Comments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="history.php">History</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="../index.html">SIGNOUT</a>
             </li>
 
@@ -49,9 +43,9 @@
                                     $user_query = "SELECT first_name FROM user_details WHERE Id=".$row['user_id'];
                                     $user_result = mysqli_query($conn, $user_query);
                                     $user_row = mysqli_fetch_assoc($user_result);
-                                    echo '<div class="col-md-3"> <span class="badge badge-success">' .$user_row['first_name']. ' commented</span></div>';
-                                    echo '<p class="mx-3 datesize">' .$row['date'].'</p>';
-                                    echo '<p class="mx-3">' .$row['comment'].'</p>';
+                                    echo '<li class="list-group-item list-group-item-success">' .$user_row['first_name']. ' commented<br>';
+                                    echo $row['date'].'<br>';
+                                    echo $row['comment'].'<br>';
                                 }
                             }
                         ?>

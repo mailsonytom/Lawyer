@@ -22,12 +22,6 @@
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="comments.php">Comments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="history.php">History</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="../index.html">SIGNOUT</a>
             </li>
 

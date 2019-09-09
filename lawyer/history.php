@@ -22,12 +22,6 @@
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="comments.php">Comments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active">History</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="../index.html">SIGNOUT</a>
             </li>
 
@@ -45,8 +39,8 @@
                                     $lawyer_query = "SELECT first_name FROM lawyer_details WHERE Id = (SELECT lawyer_id FROM cases WHERE id=".$row['id'].")";
                                     $lawyer_result = mysqli_query($conn, $lawyer_query);
                                     $lawyer_row = mysqli_fetch_assoc($lawyer_result);
-                                    echo '<div class="col-md-3"> <span class="badge badge-success">' .$lawyer_row['first_name']. '</span></div>';
-                                    echo '<p class="mx-3">' .$row['history'].'</p>';
+                                    echo '<li class="list-group-item list-group-item-success">' .$lawyer_row['first_name']. '<br>';
+                                    echo $row['history'].'<br>';
                             }
                         ?>
                     </div>

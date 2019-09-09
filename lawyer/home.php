@@ -24,17 +24,11 @@
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="comments.php">Comments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="history.php">History</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="../index.html">SIGNOUT</a>
             </li>
         </ul>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
         <h2 class=" col-md-4 mx-auto mt-5 text-center">Hello Lawyer!!</h2>
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
             <h4 class=" col-md-4 mt-2  mx-auto text-center">
@@ -51,12 +45,12 @@
                                     $casetype_query = "SELECT casetype FROM casetype WHERE id=".$row['casetype_id'];
                                     $casetype_result =  mysqli_query($conn, $casetype_query);
                                     $casetype_row = mysqli_fetch_assoc($casetype_result);
-                                    echo '<div class="col-md-3"> <span class="badge badge-success">' .$casetype_row['casetype']. '</span></div>';
+                                    echo '<li class="list-group-item list-group-item-success">' .$casetype_row['casetype']. '<br>';
                                     $user_query = "SELECT first_name FROM user_details WHERE Id=".$row['user_id'];
                                     $user_result = mysqli_query($conn, $user_query);
                                     $user_row = mysqli_fetch_assoc($user_result);
-                                    echo '<div class="col-md-5"> <span class="badge badge-danger">' .$user_row['first_name']. '</span></div>';
-                                    echo '<p>' .$row['description'].'</p>';
+                                    echo $user_row['first_name']. '<br>';
+                                    echo $row['description'].'</li>';
                                 }
                             }
                             ?>
