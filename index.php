@@ -1,3 +1,28 @@
+<?php include 'connect.php' ?>
+<?php
+    session_start();
+    $username = $password = "";
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $username = $_POST['email'];
+        $password = $_POST['password'];
+        $sql = "SELECT * FROM user_details WHERE email_id = '$username'";
+        $result = mysqli_query($conn, $sql);
+        if($row=mysqli_fetch_assoc($result)){
+            if(password_verify($password, $row['password'])){
+                $_SESSION['user_id'] = $row['id'];
+                echo '<script type="text/javascript">
+                window.location = ""
+                 </script>';
+            }
+            else{
+                    echo "Wrong password. <a href='login.html'>Click here to try again.</a>";  
+            }
+        }
+        else{
+                echo "Wrong username. <a href='login.html'>Click here to try again.</a>";
+            }
+        }
+?> 
 <!DOCTYPE html>
 <html>
 
@@ -57,16 +82,12 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
-                                            name="check" required>
-                                        <label class="form-check-label mb-2" for="invalidCheck">
-                                            I am a Lawyer
-                                        </label>
                                         <a href="">
                                             <button class="btn btn-success " type="submit">SUBMIT</button>
                                         </a>
-                                    </div>
+                                        <a href="">
+                                            <button class="btn btn-success " type="submit">SIGNIN AS LAWYER</button>
+                                        </a>
                                 </div>
                             </div>
                     </div>

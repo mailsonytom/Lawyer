@@ -34,64 +34,84 @@
 }
 
 ?>
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <title>
-        sign-up list
-    </title>
+    <title>Choose</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Lawyer Management</a>
-        <a href="login.html">
-            <button class="btn btn-warning" type="submit">Signout</button>
-        </a>
+    <nav class="navbar navbar-expand-lg navbar-bg">
+        <a class="navbar-brand" href="#">Find your LAWYER</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link mt-1" href="../lawyers.html">Lawyers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mt-1" href="../court.html">Courts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mt-1" href="../index.html">LOGIN</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="lawyerregister.html">
+                    <button class="btn btn-success" type="submit">I am a LAWYER</button>
+                </a>
+            </li>
+        </ul>
     </nav>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <h2 class=" col-md-5 text-center mt-3 mx-auto"> Sign-up as user</h2>
-            <div class="col-md-8 mx-auto mt-5 px-2 py-2 border border-primary rounded">
+            <div class="col-md-6 mx-auto mt-5 mb-5 border border-primary rounded">
                 <form action="" method="POST">
-                    <div class="form-group">
-                        <label>First name</label>
-                        <input type="text" class="form-control" name="firstname" id="Inputfirstname"
-                            placeholder="Firstname">
+                    <div class="row">
+                        <h4 class=" col-md-5 mt-2 mx-auto text-center">REGISTER</h4>
+
                     </div>
-                    <div class="form-group">
-                        <label>Last name</label>
-                        <input type="text" class="form-control" name="lastname" id="Inputlastname"
-                            placeholder="Lastname">
+                    <div class="row mx-1 mb-3">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <input type="text" name="phone" class="form-control">
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Email address</label>
-                        <input type="email" class="form-control" name="email" id="exampleInputEmail1"
-                            placeholder="Email Id">
+                    <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
+                        <a href="">
+                            <button class="btn btn-success mt-2" type="submit">SIGNUP</button>
+                        </a>
                     </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" name="password" id="exampleInputPassword1"
-                            placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" name="ph_no" id="ph_no" placeholder="Phone">
-                    </div>
-                    <div class="form-group">
-                        <label>Address</label>
-                        <input type="text" class="form-control" name="address" id="exampleInputEmail1"
-                            placeholder="Address">
-                    </div>
-                    <input type="submit" name="submit" class="btn btn-primary">
                 </form>
             </div>
-            <br>
         </div>
     </div>
+    <footer class="footer px-5 py-5 ">
+            <p class="float-right">
+                <a href="">
+                    Back to top
+                </a>
+            </p>
+            <p>
+                2018-2019 Company, Inc.
+                <a href="">Privacy</a>
+                <a href="">Terms</a>
+            </p>
+        </footer>
 </body>
 
 </html>
