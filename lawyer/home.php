@@ -24,7 +24,7 @@
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.html">SIGNOUT</a>
+                <a class="nav-link" href="../index.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>

@@ -15,11 +15,11 @@
                  </script>';
             }
             else{
-                    echo "Wrong password. <a href='login.html'>Click here to try again.</a>";  
+                    echo "Wrong password. <a href='login.php'>Click here to try again.</a>";  
             }
         }
         else{
-                echo "Wrong username. <a href='login.html'>Click here to try again.</a>";
+                echo "Wrong username. <a href='login.php'>Click here to try again.</a>";
             }
         }
 ?>
@@ -37,13 +37,13 @@
         <a class="navbar-brand" href="#">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="../lawyers.html">Lawyers</a>
+                <a class="nav-link" href="../lawyers.php">Lawyers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../court.html">Courts</a>
+                <a class="nav-link" href="../court.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../register.html">REGISTER</a>
+                <a class="nav-link" href="../user/signup.php">REGISTER</a>
             </li>
 
         </ul>
@@ -86,7 +86,10 @@
                                             <button class="btn btn-success" type="submit">SUBMIT</button>
                                         </a>
                                         <a href="">
-                                            <button class="btn btn-success" type="submit">SIGNIN AS USER</button>
+                                            <button class="btn btn-success" type="submit">ADMIN</button>
+                                        </a>
+                                        <a href="">
+                                            <button class="btn btn-success" type="submit">USER</button>
                                         </a>
                                 </div>
                             </div>

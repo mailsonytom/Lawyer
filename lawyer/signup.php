@@ -1,16 +1,16 @@
 <?php include 'connect.php' ?>
 <?php
-    $firstname = $lastname = $username = $password = $spec = $exp = $fees = $contact = $birthdate = "";
+    $name = $username = $password = $spec = $exp = $fees = $contact = $gender = $birthdate = "";
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $flag = 0;
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
+        $name = $_POST['name'];
         $username = $_POST['email'];
         $password = $_POST['password'];
-        $spec = $_POST['specs'];
-        $exp = $_POST['experience'];
+        $speciality = $_POST['specs'];
+        $experience = $_POST['exp'];
         $fees = $_POST['fees'];
-        $contact = $_POST['contact'];
+        $contact = $_POST['phone'];
+        $gender = $_POST['gender'];
         $birthdate = $_POST['dob'];
         $select_query = "SELECT * FROM lawyer_details";
     $result = mysqli_query($conn, $select_query);
@@ -23,10 +23,10 @@
         }
     }
     if($flag == 0){
-        $sql = "INSERT INTO lawyer_details (first_name, last_name, email_id, password, speciality, experience, fees, contact, dob) VALUES ('$firstname', '$lastname', '$username', '$password', '$spec', '$exp', '$fees', '$contact', '$birthdate')";
+        $sql = "INSERT INTO lawyer_details (name,email_id, password, speciality, experience, fees, contact, gender, dob) VALUES ('$firstname', '$lastname', '$username', '$password', '$spec', '$exp', '$fees', '$contact', '$gender', '$birthdate')";
         if ($conn->query($sql) === TRUE) {
             echo '<script type="text/javascript">
-                    window.location = "login.html"
+                    window.location = "login.php"
                     </script>';
         } 
         else {
@@ -59,7 +59,7 @@
                 <a class="nav-link mt-1" href="../index.html">LOGIN</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="register.html">
+                <a class="nav-link" href="../user/signup.php">
                     <button class="btn btn-success" type="submit">I am a USER</button>
                 </a>
             </li>
@@ -93,7 +93,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Experience</label>
-                                <input type="text" class="form-control" name="experience">
+                                <input type="text" class="form-control" name="exp">
                             </div>
                             <div class="form-group">
                                 <label> Fees</label>

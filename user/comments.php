@@ -1,3 +1,4 @@
+<?php include 'connect.php' ?>
 <!DOCTYPE html>
 <html>
 
@@ -32,19 +33,42 @@
         </ul>
     </nav>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-10 mt-3 mb-3 mx-auto">
+        <div class="mt-5 mb-5 py-2 border border-primary rounded">
+            <div class="row mx-1 mt-2 mb-2">
+                <div class="col-md-6">
+                    <div class="list-group">
+                    <?php
+                            if(isset($_GET)){
+                                $case_id = $_GET['id']; 
+                            }
+                            $sql = "SELECT * FROM comments WHERE case_id=".$case_id;
+                            $result = mysqli_query($conn, $sql);
+                            while($row=mysqli_fetch_assoc($result)){
+                                if($row['status'] == 0){
+                                    $user_query = "SELECT first_name FROM user_details WHERE Id=".$row['user_id'];
+                                    $user_result = mysqli_query($conn, $user_query);
+                                    $user_row = mysqli_fetch_assoc($user_result);
+                                    echo '<li class="list-group-item list-group-item-success">' .$user_row['first_name']. ' commented<br>';
+                                    echo $row['date'].'<br>';
+                                    echo $row['comment'].'<br>';
+                                }
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="col-md-6">
                 <h4>Add Comment</h4>
                 <div class="list-group mt-2">
                     <form action="" method="post">
                         <div class="form-group">
-                            <textarea class="form-control" rows="10" id="comment" name="comment">
+                            <textarea class="form-control" rows="5" id="comment" name="comment">
                                 </textarea>
                             <div class="col-md-3 mt-2 text-center mx-auto">
                                 <a href="">
-                                    <button class="btn btn-success " type="submit">Upload Comment</button>
+                                    <button class="btn btn-success " type="submit">Submit</button>
                                 </a>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>

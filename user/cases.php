@@ -19,10 +19,10 @@
                 <a class="nav-link" href="lawyer.html">Lawyers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active">Courts</a>
+                <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="cases.php">Cases</a>
+                <a class="nav-link active">Cases</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="comments.html">Comments</a>
@@ -31,34 +31,34 @@
                 <a class="nav-link" href="history.html">History</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">SIGNOUT</a>
+                <a class="nav-link" href="../index.html">SIGNOUT</a>
             </li>
         </ul>
     </nav>
-    <div class="container-fluid">
-           <div class="row">
-                <h4 class=" col-md-4 mx-auto text-center">
-                        Courts Available
-                    </h4>
-           </div>
-            <div class="row mx-1">
-                <div class="col-md-6">
-                    <div class="list-group">
+    <div class="container">
+        <div class="row">
+                <div class="col-md-12">
+                    <h3>Cases</h3>
+                        <div class="list-group">
                         <?php
-                        $sql = "SELECT * FROM courts";
-                        $result = mysqli_query($conn, $sql);
-                        while($row=mysqli_fetch_assoc($result)){
-                            if($row['active_status'] == 1){
-                                echo '<p>' .$row['court_name']. '</p>';
-                                echo '<p>' .$row['location']. '</p>';
-
+                            $sql = "SELECT * FROM cases";
+                            $result = mysqli_query($conn, $sql);
+                            while($row=mysqli_fetch_assoc($result)){
+                                    $case_query = "SELECT casetype FROM casetype WHERE id=".$row['casetype_id'];
+                                    $case_result = mysqli_query($conn, $case_query);
+                                    $case_row = mysqli_fetch_assoc($case_result);
+                                    echo '<li class="list-group-item list-group-item-success">' .$row['id'].'<br>';
+                                    echo $case_row['casetype'].'<br>' ;
+                                    echo $row['description'].' 
+                                    <a href="comments.php?id='.$row['id'].'"<button class="btn btn-primary" role="button">View/Add Comment</button></a>
+                                    <a href="history.php?id='.$row['id'].'"<button class="btn btn-primary" role="button">View/Add History</button></a>
+                                     </a></li>';
                             }
-                        }
-                    ?>
-                    </div>
+                        ?>
+                        </div>
                 </div>
-            </div>
         </div>
+    </div>
     </div>
     <footer class="footer px-5 py-5 ">
             <p class="float-right">
