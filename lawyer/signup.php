@@ -50,13 +50,13 @@
         <a class="navbar-brand" href="#">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link mt-1" href="../lawyers.html">Lawyers</a>
+                <a class="nav-link mt-1" href="../lawyers.php">Lawyers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link mt-1" href="../court.html">Courts</a>
+                <a class="nav-link mt-1" href="../court.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link mt-1" href="../index.html">LOGIN</a>
+                <a class="nav-link mt-1" href="../index.php">LOGIN</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../user/signup.php">

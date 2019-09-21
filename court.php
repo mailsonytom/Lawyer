@@ -13,13 +13,13 @@
         <a class="navbar-brand" href="#">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="lawyers.html">Lawyers</a>
+                <a class="nav-link" href="lawyers.php">Lawyers</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active" >Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.html">LOGIN</a>
+                <a class="nav-link" href="index.php">LOGIN</a>
             </li>
         </ul>
     </nav>

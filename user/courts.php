@@ -16,7 +16,7 @@
                         <a class="nav-link" href="home.php">Home</a>
                     </li>
         <li class="nav-item">
-                <a class="nav-link" href="lawyer.html">Lawyers</a>
+                <a class="nav-link" href="lawyer.php">Lawyers</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link active">Courts</a>
@@ -25,32 +25,27 @@
                 <a class="nav-link" href="cases.php">Cases</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="comments.html">Comments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="history.html">History</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="../index.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>
     <div class="container-fluid">
+    <div class="mt-5 mb-5 py-2 border border-primary rounded">
            <div class="row">
                 <h4 class=" col-md-4 mx-auto text-center">
                         Courts Available
                     </h4>
            </div>
             <div class="row mx-1">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="list-group">
                         <?php
                         $sql = "SELECT * FROM courts";
                         $result = mysqli_query($conn, $sql);
                         while($row=mysqli_fetch_assoc($result)){
-                            if($row['active_status'] == 1){
-                                echo '<p>' .$row['court_name']. '</p>';
-                                echo '<p>' .$row['location']. '</p>';
+                            if($row['activestatus'] == 1){
+                                echo '<li class="list-group-item list-group-item-success">' .$row['court_name']. '</br>';
+                                echo $row['place']. '</li>';
 
                             }
                         }
@@ -58,6 +53,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
     <footer class="footer px-5 py-5 ">

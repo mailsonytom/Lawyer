@@ -34,7 +34,7 @@
                 </h4>
             </div>
             <div class="row mx-1 mt-3 mb-3">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="list-group">
                     <?php
                             $sql = "SELECT * FROM courts";

@@ -24,7 +24,7 @@
         $sql = "INSERT INTO user_details (first_name, last_name, email_id, password, phone, address) VALUES ('$firstname', '$lastname', '$username', '$password', '$phone', '$address')";
         if ($conn->query($sql) === TRUE) {
             echo '<script type="text/javascript">
-                    window.location = "login.php"
+                    window.location = "../index.php"
                     </script>';
         } 
         else {
@@ -57,7 +57,7 @@
                 <a class="nav-link mt-1" href="../index.php">LOGIN</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../lawter/signup.php">
+                <a class="nav-link" href="../lawyer/signup.php">
                     <button class="btn btn-success" type="submit">I am a LAWYER</button>
                 </a>
             </li>

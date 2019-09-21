@@ -16,10 +16,10 @@
                 <a class="nav-link active" >Lawyers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="court.html">Courts</a>
+                <a class="nav-link" href="court.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.html">LOGIN</a>
+                <a class="nav-link" href="index.php">LOGIN</a>
             </li>
         </ul>
     </nav>

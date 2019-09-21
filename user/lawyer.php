@@ -19,16 +19,10 @@
                         <a class="nav-link active">Lawyers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="courts.html">Courts</a>
+                        <a class="nav-link" href="courts.php">Courts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="comments.html">Comments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="history.html">History</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html">SIGNOUT</a>
+                        <a class="nav-link" href="../index.php">SIGNOUT</a>
                     </li>
         </ul>
     </nav>
@@ -40,17 +34,14 @@
                 </h4>
             </div>
             <div class="row mx-1">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="list-group">
                         <?php
-                        $sql = "SELECT * FROM courts";
+                        $sql = "SELECT * FROM lawyer_details";
                         $result = mysqli_query($conn, $sql);
                         while($row=mysqli_fetch_assoc($result)){
-                            if($row['active_status'] == 1){
-                                echo '<p>' .$row['court_name']. '</p>';
-                                echo '<p>' .$row['location']. '</p>';
-
-                            }
+                                echo '<li class="list-group-item list-group-item-success">' .$row['name']. '</br>';
+                                echo $row['speciality']. '</li>';
                         }
                     ?>
                     </div>

@@ -16,19 +16,13 @@
                         <a class="nav-link" href="home.php">Home</a>
                     </li>
         <li class="nav-item">
-                <a class="nav-link" href="lawyer.html">Lawyers</a>
+                <a class="nav-link" href="lawyer.php">Lawyers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="courts.html">Courts</a>
+                <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="comments.html">Comments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active">History</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../index.html">SIGNOUT</a>
+                <a class="nav-link" href="../index.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>
@@ -41,10 +35,10 @@
                                 $sql = "SELECT * FROM history";
                                 $result = mysqli_query($conn, $sql);
                                 while($row=mysqli_fetch_assoc($result)){
-                                        $lawyer_query = "SELECT first_name FROM lawyer_details WHERE Id = (SELECT lawyer_id FROM cases WHERE id=".$row['id'].")";
+                                        $lawyer_query = "SELECT name FROM lawyer_details WHERE lid = (SELECT lid FROM cases WHERE case_id=".$row['case_id'].")";
                                         $lawyer_result = mysqli_query($conn, $lawyer_query);
                                         $lawyer_row = mysqli_fetch_assoc($lawyer_result);
-                                        echo '<li class="list-group-item list-group-item-success">' .$lawyer_row['first_name']. '<br>';
+                                        echo '<li class="list-group-item list-group-item-success">' .$lawyer_row['name']. '<br>';
                                         echo $row['history'].'<br>';
                                 }
                             ?>

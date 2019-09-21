@@ -16,19 +16,13 @@
                         <a class="nav-link" href="home.php">Home</a>
                     </li>
         <li class="nav-item">
-                <a class="nav-link" href="lawyer.html">Lawyers</a>
+                <a class="nav-link" href="lawyer.php">Lawyers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="courts.html">Courts</a>
+                <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active">Comments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="history.html">History</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../index.html">SIGNOUT</a>
+                <a class="nav-link" href="../index.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>
@@ -44,14 +38,12 @@
                             $sql = "SELECT * FROM comments WHERE case_id=".$case_id;
                             $result = mysqli_query($conn, $sql);
                             while($row=mysqli_fetch_assoc($result)){
-                                if($row['status'] == 0){
-                                    $user_query = "SELECT first_name FROM user_details WHERE Id=".$row['user_id'];
+                                    $user_query = "SELECT name FROM user_details WHERE uid=".$row['uid'];
                                     $user_result = mysqli_query($conn, $user_query);
                                     $user_row = mysqli_fetch_assoc($user_result);
-                                    echo '<li class="list-group-item list-group-item-success">' .$user_row['first_name']. ' commented<br>';
+                                    echo '<li class="list-group-item list-group-item-success">' .$user_row['name']. ' commented<br>';
                                     echo $row['date'].'<br>';
-                                    echo $row['comment'].'<br>';
-                                }
+                                    echo $row['comment'].'</li>';
                             }
                         ?>
                     </div>

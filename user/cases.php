@@ -16,7 +16,7 @@
                         <a class="nav-link" href="home.php">Home</a>
                     </li>
         <li class="nav-item">
-                <a class="nav-link" href="lawyer.html">Lawyers</a>
+                <a class="nav-link" href="lawyer.php">Lawyers</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="courts.php">Courts</a>
@@ -25,13 +25,7 @@
                 <a class="nav-link active">Cases</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="comments.html">Comments</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="history.html">History</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../index.html">SIGNOUT</a>
+                <a class="nav-link" href="../index.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>
@@ -44,14 +38,14 @@
                             $sql = "SELECT * FROM cases";
                             $result = mysqli_query($conn, $sql);
                             while($row=mysqli_fetch_assoc($result)){
-                                    $case_query = "SELECT casetype FROM casetype WHERE id=".$row['casetype_id'];
+                                    $case_query = "SELECT casetype FROM casetype WHERE casetype_id=".$row['casetype_id'];
                                     $case_result = mysqli_query($conn, $case_query);
                                     $case_row = mysqli_fetch_assoc($case_result);
-                                    echo '<li class="list-group-item list-group-item-success">' .$row['id'].'<br>';
+                                    echo '<li class="list-group-item list-group-item-success">' .$row['casetype_id'].'<br>';
                                     echo $case_row['casetype'].'<br>' ;
                                     echo $row['description'].' 
-                                    <a href="comments.php?id='.$row['id'].'"<button class="btn btn-primary" role="button">View/Add Comment</button></a>
-                                    <a href="history.php?id='.$row['id'].'"<button class="btn btn-primary" role="button">View/Add History</button></a>
+                                    <a href="comments.php?id='.$row['case_id'].'"<button class="btn btn-primary" role="button">View/Add Comment</button></a>
+                                    <a href="history.php?id='.$row['case_id'].'"<button class="btn btn-primary" role="button">View/Add History</button></a>
                                      </a></li>';
                             }
                         ?>
