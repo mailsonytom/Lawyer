@@ -34,20 +34,17 @@
                     <div class="list-group">
                     <?php
                             if(isset($_GET)){
-                                $case_id = $_GET['id']; 
+                                $case_id = $_GET['case_id']; 
                             }
                             $sql = "SELECT * FROM comments WHERE case_id=".$case_id;
                             $result = mysqli_query($conn, $sql);
                             while($row=mysqli_fetch_assoc($result)){
-                                if($row['status'] == 0){
-                                    $user_query = "SELECT first_name FROM user_details WHERE Id=".$row['user_id'];
+                                    $user_query = "SELECT name FROM user_details WHERE uid=".$row['uid'];
                                     $user_result = mysqli_query($conn, $user_query);
                                     $user_row = mysqli_fetch_assoc($user_result);
-                                    echo '<li class="list-group-item list-group-item-success">' .$user_row['first_name']. ' commented<br>';
-                                    echo $row['date'].'<br>';
+                                    echo '<li class="list-group-item list-group-item-success">' .$user_row['name']. ' commented<br>';
                                     echo $row['comment'].'<br>';
                                 }
-                            }
                         ?>
                     </div>
                 </div>

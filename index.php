@@ -82,11 +82,15 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
-                                        <a href="">
-                                            <button class="btn btn-success " type="submit">SUBMIT</button>
+                                        
+                                        <a href="lawyer/login.php">
+                                            <button class="btn btn-success " type="submit">LAWYER</button>
                                         </a>
-                                        <a href="">
-                                            <button class="btn btn-success " type="submit">SIGNIN AS LAWYER</button>
+                                        <a href="admin/login.html">
+                                            <button class="btn btn-success " type="submit">ADMIN</button>
+                                        </a>
+                                        <a href="user/home.php">
+                                            <button class="btn btn-success " type="submit">SUBMIT</button>
                                         </a>
                                 </div>
                             </div>

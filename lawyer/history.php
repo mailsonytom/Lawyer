@@ -36,10 +36,10 @@
                             $sql = "SELECT * FROM history";
                             $result = mysqli_query($conn, $sql);
                             while($row=mysqli_fetch_assoc($result)){
-                                    $lawyer_query = "SELECT first_name FROM lawyer_details WHERE Id = (SELECT lawyer_id FROM cases WHERE id=".$row['id'].")";
-                                    $lawyer_result = mysqli_query($conn, $lawyer_query);
-                                    $lawyer_row = mysqli_fetch_assoc($lawyer_result);
-                                    echo '<li class="list-group-item list-group-item-success">' .$lawyer_row['first_name']. '<br>';
+                                    $user_query = "SELECT name FROM user_details WHERE uid = (SELECT uid FROM cases WHERE case_id=".$row['case_id'].")";
+                                    $user_result = mysqli_query($conn, $user_query);
+                                    $user_row = mysqli_fetch_assoc($user_result);
+                                    echo '<li class="list-group-item list-group-item-success">' .$user_row['name']. '<br>';
                                     echo $row['history'].'<br>';
                             }
                         ?>

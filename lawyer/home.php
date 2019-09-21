@@ -1,6 +1,4 @@
 <?php include 'connect.php' ?>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -42,14 +40,14 @@
                             $result = mysqli_query($conn, $sql);
                             while($row=mysqli_fetch_assoc($result)){
                                 if($row['active_status'] == 0){
-                                    $casetype_query = "SELECT casetype FROM casetype WHERE id=".$row['casetype_id'];
+                                    $casetype_query = "SELECT casetype FROM casetype WHERE case_id=".$row['casetype_id'];
                                     $casetype_result =  mysqli_query($conn, $casetype_query);
                                     $casetype_row = mysqli_fetch_assoc($casetype_result);
                                     echo '<li class="list-group-item list-group-item-success">' .$casetype_row['casetype']. '<br>';
-                                    $user_query = "SELECT first_name FROM user_details WHERE Id=".$row['user_id'];
+                                    $user_query = "SELECT name FROM user_details WHERE uid=".$row['uid'];
                                     $user_result = mysqli_query($conn, $user_query);
                                     $user_row = mysqli_fetch_assoc($user_result);
-                                    echo $user_row['first_name']. '<br>';
+                                    echo $user_row['name']. '<br>';
                                     echo $row['description'].'</li>';
                                 }
                             }

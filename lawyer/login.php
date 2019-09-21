@@ -11,7 +11,7 @@
             if(password_verify($password, $row['password'])){
                 $_SESSION['user_id'] = $row['id'];
                 echo '<script type="text/javascript">
-                window.location = ""
+                window.location = "home.php"
                  </script>';
             }
             else{

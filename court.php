@@ -31,15 +31,15 @@
                 </h4>
             </div>
             <div class="row mx-1">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="list-group">
                         <?php
                         $sql = "SELECT * FROM courts";
                         $result = mysqli_query($conn, $sql);
                         while($row=mysqli_fetch_assoc($result)){
-                            if($row['active_status'] == 1){
-                                echo '<p>' .$row['court_name']. '</p>';
-                                echo '<p>' .$row['location']. '</p>';
+                            if($row['activestatus'] == 1){
+                                echo '<li class="list-group-item list-group-item-success">' .$row['court_name']. '</br>';
+                                echo $row['place']. '</li>';
 
                             }
                         }
