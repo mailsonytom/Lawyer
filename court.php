@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Choose</title>
+    <title>Courts</title>
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
@@ -23,7 +23,7 @@
             </li>
         </ul>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
             <div class="row">
                 <h4 class=" col-md-4 mx-auto text-center">

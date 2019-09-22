@@ -1,9 +1,20 @@
 <?php include 'connect.php' ?>
+<?php
+session_start();
+if(isset($_SESSION['lawyer_id']) && !empty($_SESSION['lawyer_id'])){
+    $lawyer_id = $_SESSION['lawyer_id'];
+}
+else{
+    echo '<script type="text/javascript">
+                window.location = "../index.php"
+                 </script>';
+}
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Choose</title>
+    <title>Comments</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
@@ -22,7 +33,7 @@
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.html">SIGNOUT</a>
+                <a class="nav-link" href="../index.php">SIGNOUT</a>
             </li>
 
         </ul>
@@ -59,6 +70,19 @@
                                 <a href="">
                                     <button class="btn btn-success " type="submit">Submit</button>
                                 </a>
+                                ####### add comment#######
+                                <?php
+                                    $comment = $_POST['comment'];
+                                    $sql="INSERT INTO comments(comment) VALUES ('$comment')";
+                                    if ($conn->query($sql) === TRUE) {
+                                        echo '<script type="text/javascript">
+                                                window.location = "comments.php"
+                                                </script>';
+                                    } 
+                                    else {
+                                        echo "Error: " . $sql . "<br>" . $conn->error;
+                                        }
+                                ?>
                             </div>
                         </div>
                     </form>
@@ -73,9 +97,8 @@
             </a>
         </p>
         <p>
-            2018-2019 Company, Inc.
-            <a href="">Privacy</a>
-            <a href="">Terms</a>
+            2019-2020 Company.<br>
+            copyright @<i>findyourlawyer</i>
         </p>
     </footer>
 </body>

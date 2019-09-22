@@ -9,7 +9,7 @@
         $result = mysqli_query($conn, $sql);
         if($row=mysqli_fetch_assoc($result)){
             if(password_verify($password, $row['password'])){
-                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['lawyer_id'] = $row['lid'];
                 echo '<script type="text/javascript">
                 window.location = "home.php"
                  </script>';
@@ -27,7 +27,7 @@
 <html>
 
 <head>
-    <title>Choose</title>
+    <title>Lawyer Login</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
@@ -83,13 +83,13 @@
                                 </div>
                                 <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
                                         <a href="">
-                                            <button class="btn btn-success" type="submit">SUBMIT</button>
+                                            <button class="btn btn-success" type="submit">USER</button>
                                         </a>
                                         <a href="">
                                             <button class="btn btn-success" type="submit">ADMIN</button>
                                         </a>
                                         <a href="">
-                                            <button class="btn btn-success" type="submit">USER</button>
+                                            <button class="btn btn-success" type="submit">SUBMIT</button>
                                         </a>
                                 </div>
                             </div>

@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Choose</title>
+    <title>Lawyers</title>
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>

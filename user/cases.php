@@ -1,9 +1,20 @@
 <?php include 'connect.php' ?>
+<?php
+session_start();
+if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
+    $user_id = $_SESSION['user_id'];
+}
+else{
+    echo '<script type="text/javascript">
+                window.location = "../index.php"
+                 </script>';
+}
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Choose</title>
+    <title>Cases</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
@@ -29,7 +40,7 @@
             </li>
         </ul>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
                 <div class="col-md-12">
                     <h3>Cases</h3>

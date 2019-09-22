@@ -1,9 +1,20 @@
 <?php include 'connect.php' ?>
+<?php
+session_start();
+if(isset($_SESSION['lawyer_id']) && !empty($_SESSION['lawyer_id'])){
+    $lawyer_id = $_SESSION['lawyer_id'];
+}
+else{
+    echo '<script type="text/javascript">
+                window.location = "../index.php"
+                 </script>';
+}
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Choose</title>
+    <title>Cases</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
@@ -22,7 +33,7 @@
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.html">SIGNOUT</a>
+                <a class="nav-link" href="../index.php">SIGNOUT</a>
             </li>
 
         </ul>

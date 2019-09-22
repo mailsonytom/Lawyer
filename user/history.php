@@ -1,9 +1,20 @@
 <?php include 'connect.php' ?>
+<?php
+session_start();
+if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
+    $user_id = $_SESSION['user_id'];
+}
+else{
+    echo '<script type="text/javascript">
+                window.location = "../index.php"
+                 </script>';
+}
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Choose</title>
+    <title>History</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
@@ -49,12 +60,26 @@
                     <div class="list-group mt-2">
                         <form action="" method="post">
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" id="comment" name="comment">
+                                <textarea class="form-control" rows="5" id="history" name="history">
                                     </textarea>
                                 <div class="col-md-3 mt-2 text-center mx-auto">
                                     <a href="">
                                         <button class="btn btn-success " type="submit">Submit</button>
                                     </a>
+                                    ######add history######
+                                <?php
+                                $history = "";
+                                $history = $_POST['history'];
+                                $sql="INSERT INTO history(history) VALUES ('$history')";
+                                if ($conn->query($sql) === TRUE) {
+                                    echo '<script type="text/javascript">
+                                            window.location = "history.php"
+                                            </script>';
+                                } 
+                                else {
+                                    echo "Error: " . $sql . "<br>" . $conn->error;
+                                    }
+                                ?>
                                 </div>
                             </div>
                         </form>

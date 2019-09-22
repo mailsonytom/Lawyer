@@ -1,9 +1,20 @@
 <?php include 'connect.php' ?>
+<?php
+session_start();
+if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
+    $user_id = $_SESSION['user_id'];
+}
+else{
+    echo '<script type="text/javascript">
+                window.location = "../index.php"
+                 </script>';
+}
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Choose</title>
+    <title>Comments</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
@@ -49,6 +60,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+                    ######comment######
                 <h4>Add Comment</h4>
                 <div class="list-group mt-2">
                     <form action="" method="post">

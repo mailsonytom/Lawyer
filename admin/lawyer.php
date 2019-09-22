@@ -1,8 +1,8 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
-    $user_id = $_SESSION['user_id'];
+if(isset($_SESSION['admin_id']) && !empty($_SESSION['admin_id'])){
+    $admin_id = $_SESSION['admin_id'];
 }
 else{
     echo '<script type="text/javascript">
@@ -30,23 +30,27 @@ else{
                         <a class="nav-link active">Lawyers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="courts.php">Courts</a>
+                        <a class="nav-link" href="user.php">Users</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.php">SIGNOUT</a>
-                    </li>
+            <li class="nav-item">
+                <a class="nav-link" href="courts.php">Courts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../index.php">SIGNOUT</a>
+            </li>
         </ul>
     </nav>
     <div class="container-fluid">
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
             <div class="row">
                 <h4 class=" col-md-4 mx-auto text-center">
-                    Lawyers & their Specialities
+                    Lawyers Requests
                 </h4>
             </div>
             <div class="row mx-1">
                 <div class="col-md-12">
                     <div class="list-group">
+                        #########lawyer request######
                         <?php
                         $sql = "SELECT * FROM lawyer_details";
                         $result = mysqli_query($conn, $sql);
@@ -61,17 +65,17 @@ else{
         </div>
     </div>
     <footer class="footer px-5 py-5 ">
-            <p class="float-right">
-                <a href="">
-                    Back to top
-                </a>
-            </p>
-            <p>
-                2018-2019 Company, Inc.
-                <a href="">Privacy</a>
-                <a href="">Terms</a>
-            </p>
-        </footer>
+        <p class="float-right">
+            <a href="">
+                Back to top
+            </a>
+        </p>
+        <p>
+            2018-2019 Company, Inc.
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+        </p>
+    </footer>
 </body>
 
 </html>

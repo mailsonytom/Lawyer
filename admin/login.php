@@ -1,51 +1,49 @@
 <?php include 'connect.php' ?>
+###login####
 <?php
     session_start();
     $username = $password = "";
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $username = $_POST['email'];
         $password = $_POST['password'];
-        $sql = "SELECT * FROM user_details WHERE email_id = '$username'";
+        $sql = "SELECT * FROM ###### WHERE email = '$username'";
         $result = mysqli_query($conn, $sql);
         if($row=mysqli_fetch_assoc($result)){
             if(password_verify($password, $row['password'])){
-                $_SESSION['user_id'] = $row['uid'];
+                $_SESSION['admin_id'] = $row['id'];
                 echo '<script type="text/javascript">
-                window.location = "user/home.php"
+                window.location = "home.php"
                  </script>';
             }
             else{
-                    echo "Wrong password. <a href='index.php'>Click here to try again.</a>";  
+                    echo "Wrong password. <a href='login.php'>Click here to try again.</a>";  
             }
         }
         else{
-                echo "Wrong username. <a href='index.php'>Click here to try again.</a>";
+                echo "Wrong username. <a href='login.php'>Click here to try again.</a>";
             }
         }
-?> 
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Index</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title>Admin Login</title>
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
+
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-bg">
         <a class="navbar-brand" href="#">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="lawyers.php">Lawyers</a>
+                <a class="nav-link" href="../lawyers.php">Lawyers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="court.php">Courts</a>
+                <a class="nav-link" href="../court.php">Courts</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="user/signup.php">REGISTER</a>
-            </li>
-
         </ul>
     </nav>
     <div class="container-fluid content">
@@ -82,15 +80,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
-                                        
-                                        <a href="lawyer/login.php">
-                                            <button class="btn btn-success " type="submit">LAWYER</button>
+                                        <a href="">
+                                            <button class="btn btn-success" type="submit">SUBMIT</button>
                                         </a>
-                                        <a href="admin/login.html">
-                                            <button class="btn btn-success " type="submit">ADMIN</button>
+                                        <a href="">
+                                            <button class="btn btn-success" type="submit">LAWYER</button>
                                         </a>
-                                        <a href="user/home.php">
-                                            <button class="btn btn-success " type="submit">SUBMIT</button>
+                                        <a href="">
+                                            <button class="btn btn-success" type="submit">USER</button>
                                         </a>
                                 </div>
                             </div>

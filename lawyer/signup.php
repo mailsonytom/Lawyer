@@ -23,7 +23,7 @@
         }
     }
     if($flag == 0){
-        $sql = "INSERT INTO lawyer_details (name,email_id, password, speciality, experience, fees, contact, gender, dob) VALUES ('$firstname', '$lastname', '$username', '$password', '$spec', '$exp', '$fees', '$contact', '$gender', '$birthdate')";
+        $sql = "INSERT INTO lawyer_details (name,email, password, speciality, experience, fees, phone, gender, dob) VALUES ('$firstname', '$lastname', '$username', '$password', '$spec', '$exp', '$fees', '$contact', '$gender', '$birthdate')";
         if ($conn->query($sql) === TRUE) {
             echo '<script type="text/javascript">
                     window.location = "login.php"
@@ -40,7 +40,7 @@
 <html>
 
 <head>
-    <title>Choose</title>
+    <title>Lawyer Register</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
