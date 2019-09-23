@@ -9,7 +9,7 @@
         $result = mysqli_query($conn, $sql);
         if($row=mysqli_fetch_assoc($result)){
             if(password_verify($password, $row['password'])){
-                $_SESSION['lawyer_id'] = $row['lid'];
+                $_SESSION['lid'] = $row['lid'];
                 echo '<script type="text/javascript">
                 window.location = "home.php"
                  </script>';

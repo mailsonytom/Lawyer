@@ -1,12 +1,12 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if(isset($_SESSION['lawyer_id']) && !empty($_SESSION['lawyer_id'])){
-    $lawyer_id = $_SESSION['lawyer_id'];
+if(isset($_SESSION['lid']) && !empty($_SESSION['lid'])){
+    $lid = $_SESSION['lid'];
 }
 else{
     echo '<script type="text/javascript">
-                window.location = "../index.php"
+                window.location = "login.php"
                  </script>';
 }
 ?>

@@ -1,8 +1,8 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if(isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])){
-    $user_id = $_SESSION['user_id'];
+if(isset($_SESSION['uid']) && !empty($_SESSION['uid'])){
+    $uid = $_SESSION['uid'];
 }
 else{
     echo '<script type="text/javascript">

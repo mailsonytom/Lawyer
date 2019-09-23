@@ -5,11 +5,11 @@
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $username = $_POST['email'];
         $password = $_POST['password'];
-        $sql = "SELECT * FROM user_details WHERE email_id = '$username'";
+        $sql = "SELECT * FROM user_details WHERE email = '$username'";
         $result = mysqli_query($conn, $sql);
         if($row=mysqli_fetch_assoc($result)){
             if(password_verify($password, $row['password'])){
-                $_SESSION['user_id'] = $row['uid'];
+                $_SESSION['uid'] = $row['uid'];
                 echo '<script type="text/javascript">
                 window.location = "user/home.php"
                  </script>';
@@ -86,7 +86,7 @@
                                         <a href="lawyer/login.php">
                                             <button class="btn btn-success " type="submit">LAWYER</button>
                                         </a>
-                                        <a href="admin/login.html">
+                                        <a href="admin/login.php">
                                             <button class="btn btn-success " type="submit">ADMIN</button>
                                         </a>
                                         <a href="user/home.php">
