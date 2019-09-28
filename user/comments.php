@@ -23,10 +23,10 @@ else{
     <nav class="navbar navbar-expand-lg navbar-bg">
         <a class="navbar-brand" href="#">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                        <a class="nav-link" href="home.php">Home</a>
-                    </li>
-        <li class="nav-item">
+            <li class="nav-item">
+                <a class="nav-link" href="home.php">Home</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="lawyer.php">Lawyers</a>
             </li>
             <li class="nav-item">

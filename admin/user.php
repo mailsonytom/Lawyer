@@ -47,7 +47,7 @@ else{
                 </h4>
             </div>
             <div class="row mx-1">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="list-group">
                         <?php
                         $sql = "SELECT * FROM user_details";

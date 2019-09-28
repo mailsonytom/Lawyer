@@ -59,7 +59,8 @@ else{
                                     $user_result = mysqli_query($conn, $user_query);
                                     $user_row = mysqli_fetch_assoc($user_result);
                                     echo $user_row['name']. '<br>';
-                                    echo $row['description'].'</li>';
+                                    echo $row['description'].
+                                    '<a href="accept.php?uid='.$row['uid'].'"><button class="btn btn-primary" role="button">ACCEPT CASE</button></a></li>';
                                 }
                             }
                             ?>

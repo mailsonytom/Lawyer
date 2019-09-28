@@ -61,23 +61,23 @@
                         professional excellence, client services and expert legal advice.
                     </p>
                     <div class="row mx-auto">
-                    <input type="submit" value="SIGNIN as Admin" class="btn btn-success mx-2 px-4">
-                    <input type="submit" value="SIGNIN as Lawyer" class="btn btn-success mx-2 px-4">
+                    <a href="admin/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as  Admin</button></a>
+                    <a href="lawyer/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as Lawyer</button></a>
                    </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="row mx-4">
-                    <div class="mt-5 mb-5 border border-primary rounded">
+                <div class="row mx-5">
+                    <div class="col-md-12 mt-5 mb-5 border border-primary rounded">
                         <form action="" method="POST">
                             <div class="row">
-                                <h4 class="col-md-5 mt-2 mx-auto text-center">SIGNIN</h4>
+                                <h4 class="col-md-8 mt-2 mx-auto text-center">SIGNIN AS USER</h4>
 
                             </div>
                             <div class="row mx-1 mb-3">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Email</label>
+                                        <label>Username</label>
                                         <input type="email" name="email" class="form-control">
                                     </div>
                                     <div class="form-group">

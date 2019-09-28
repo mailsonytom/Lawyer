@@ -56,6 +56,9 @@ else{
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="cases.php">Cases</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="../index.php">SIGNOUT</a>
             </li>
         </ul>
