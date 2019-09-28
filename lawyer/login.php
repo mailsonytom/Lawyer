@@ -5,7 +5,7 @@
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $username = $_POST['email'];
         $password = $_POST['password'];
-        $sql = "SELECT * FROM lawyer_details WHERE email_id = '$username'";
+        $sql = "SELECT * FROM lawyer_details WHERE email = '$username'";
         $result = mysqli_query($conn, $sql);
         if($row=mysqli_fetch_assoc($result)){
             if(password_verify($password, $row['password'])){
@@ -60,6 +60,10 @@
                         to
                         professional excellence, client services and expert legal advice.
                     </p>
+                    <div class="row mx-auto">
+                    <input type="submit" value="SIGNIN as Admin" class="btn btn-success mx-2 px-4">
+                    <input type="submit" value="SIGNIN as User" class="btn btn-success mx-2 px-4">
+                   </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -67,7 +71,7 @@
                     <div class="mt-5 mb-5 border border-primary rounded">
                         <form action="" method="POST">
                             <div class="row">
-                                <h4 class="col-md-5 mt-2 mx-auto text-center">SIGNIN</h4>
+                                <h4 class="col-md-8 mt-2 mx-auto text-center">SIGNIN AS LAWYER</h4>
 
                             </div>
                             <div class="row mx-1 mb-3">
@@ -82,16 +86,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
-                                        <a href="">
-                                            <button class="btn btn-success" type="submit">USER</button>
-                                        </a>
-                                        <a href="">
-                                            <button class="btn btn-success" type="submit">ADMIN</button>
-                                        </a>
-                                        <a href="">
-                                            <button class="btn btn-success" type="submit">SUBMIT</button>
-                                        </a>
-                                </div>
+                                     
+                                            <input class="btn btn-success" type="submit" value="SUBMIT">                                </div>
                             </div>
                     </div>
                     </form>

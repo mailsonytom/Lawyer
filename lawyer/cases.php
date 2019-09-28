@@ -53,7 +53,7 @@ else{
                                     echo '<li class="list-group-item list-group-item-success">' .$row['casetype_id'].'<br>';
                                     echo $case_row['casetype'].'<br>' ;
                                     echo $row['description'].' 
-                                    <a href="comments.php?case_id='.$row['case_id'].'"<button class="btn btn-primary" role="button">View/Add Comment</button></a>
+                                    <a href="comments.php?case_id='.$row['case_id'].'"><button class="btn btn-primary" role="button">View/Add Comment</button></a>
                                     <a href="history.php?case_id='.$row['case_id'].'"<button class="btn btn-primary" role="button">View/Add History</button></a>
                                      </a></li>';
                             }

@@ -6,7 +6,7 @@ if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
 }
 else{
     echo '<script type="text/javascript">
-                window.location = "../index.php"
+                window.location = "login.php"
                  </script>';
 }
 ?>

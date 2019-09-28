@@ -60,6 +60,10 @@
                         to
                         professional excellence, client services and expert legal advice.
                     </p>
+                    <div class="row mx-auto">
+                    <input type="submit" value="SIGNIN as Admin" class="btn btn-success mx-2 px-4">
+                    <input type="submit" value="SIGNIN as Lawyer" class="btn btn-success mx-2 px-4">
+                   </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -82,16 +86,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
-                                        
-                                        <a href="lawyer/login.php">
-                                            <button class="btn btn-success " type="submit">LAWYER</button>
-                                        </a>
-                                        <a href="admin/login.php">
-                                            <button class="btn btn-success " type="submit">ADMIN</button>
-                                        </a>
-                                        <a href="user/home.php">
-                                            <button class="btn btn-success " type="submit">SUBMIT</button>
-                                        </a>
+                                            <input class="btn btn-success" type="submit" value="SUBMIT">
                                 </div>
                             </div>
                     </div>

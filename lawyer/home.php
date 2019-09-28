@@ -69,7 +69,7 @@ else{
         </div>
     </div>
     </div>
-    <footer class="footer px-5 py-5 ">
+    <footer class="footer px-5 py-5">
         <p class="float-right">
             <a href="">
                 Back to top

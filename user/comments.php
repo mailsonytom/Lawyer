@@ -53,7 +53,6 @@ else{
                                     $user_result = mysqli_query($conn, $user_query);
                                     $user_row = mysqli_fetch_assoc($user_result);
                                     echo '<li class="list-group-item list-group-item-success">' .$user_row['name']. ' commented<br>';
-                                    echo $row['date'].'<br>';
                                     echo $row['comment'].'</li>';
                             }
                         ?>

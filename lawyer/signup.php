@@ -5,7 +5,7 @@
         $flag = 0;
         $name = $_POST['name'];
         $username = $_POST['email'];
-        $password = $_POST['password'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $speciality = $_POST['specs'];
         $experience = $_POST['exp'];
         $fees = $_POST['fees'];

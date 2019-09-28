@@ -1,12 +1,11 @@
 <?php include 'connect.php' ?>
-###login####
 <?php
     session_start();
     $username = $password = "";
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $username = $_POST['email'];
         $password = $_POST['password'];
-        $sql = "SELECT * FROM ###### WHERE email = '$username'";
+        $sql = "SELECT * FROM admin WHERE username = '$username'";
         $result = mysqli_query($conn, $sql);
         if($row=mysqli_fetch_assoc($result)){
             if(password_verify($password, $row['password'])){
@@ -58,11 +57,16 @@
                         to
                         professional excellence, client services and expert legal advice.
                     </p>
+                   <div class="row mx-auto">
+                   <input type="submit" value="SIGNIN as Lawyer" class="btn btn-success mx-2 px-4">
+                    <input type="submit" value="SIGNIN as User" class="btn btn-success mx-2 px-4">
+
+                   </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="row mx-4">
-                    <div class="mt-5 mb-5 border border-primary rounded">
+                    <div class="mx-5 mt-5 mb-5 border border-primary rounded">
                         <form action="" method="POST">
                             <div class="row">
                                 <h4 class="col-md-5 mt-2 mx-auto text-center">SIGNIN</h4>
@@ -71,8 +75,8 @@
                             <div class="row mx-1 mb-3">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" name="email" class="form-control">
+                                        <label>Username</label>
+                                        <input type="text" name="email" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label>Password</label>
@@ -80,15 +84,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
-                                        <a href="">
-                                            <button class="btn btn-success" type="submit">SUBMIT</button>
-                                        </a>
-                                        <a href="">
-                                            <button class="btn btn-success" type="submit">LAWYER</button>
-                                        </a>
-                                        <a href="">
-                                            <button class="btn btn-success" type="submit">USER</button>
-                                        </a>
+                                        <input type="submit" value="Submit" class="btn btn-success">
                                 </div>
                             </div>
                     </div>

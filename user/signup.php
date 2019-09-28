@@ -6,7 +6,7 @@
         $flag = 0;
         $name = $_POST['name'];
         $username = $_POST['email'];
-        $password = $_POST['password'];
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $phone = $_POST['phone'];
         $select_query = "SELECT * FROM user_details";
     $result = mysqli_query($conn, $select_query);
@@ -19,7 +19,7 @@
         }
     }
     if($flag == 0){
-        $sql = "INSERT INTO user_details (name, email, password, phone) VALUES ('$name',  '$username', '$password', '$phone')";
+        $sql = "INSERT INTO user_details (name, email, password, phone, approved) VALUES ('$name',  '$username', '$password', '$phone', '0')";
         if ($conn->query($sql) === TRUE) {
             echo '<script type="text/javascript">
                     window.location = "../index.php"

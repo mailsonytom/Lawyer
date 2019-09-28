@@ -6,7 +6,7 @@ if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
 }
 else{
     echo '<script type="text/javascript">
-                window.location = "../index.php"
+                window.location = "login.php"
                  </script>';
 }
 ?>
@@ -36,7 +36,7 @@ else{
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">SIGNOUT</a>
+                <a class="nav-link" href="login.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>
@@ -44,7 +44,6 @@ else{
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
             <div class="row">
                 <h4 class=" col-md-4 mx-auto text-center">
-                   ###### Users Requests######
                 </h4>
             </div>
             <div class="row mx-1">

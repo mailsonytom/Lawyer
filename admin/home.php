@@ -6,7 +6,7 @@ if(isset($_SESSION['id']) && !empty($_SESSION['id'])){
 }
 else{
     echo '<script type="text/javascript">
-                window.location = "../index.php"
+                window.location = "login.php"
                  </script>';
 }
 ?>
@@ -36,7 +36,7 @@ else{
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">SIGNOUT</a>
+                <a class="nav-link" href="login.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>
@@ -44,14 +44,26 @@ else{
         <h3 class="text-center mt-5 mb-5">Hello Admin!!</h3>
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
            <div class="row">
-                <h4 class=" col-md-4 mx-auto text-center">
-                       ###### Recents#######
-                    </h4>
+           <div class="col-md-12">
+           <div class="list-group">
+                    <?php
+                        $sql = "SELECT * FROM lawyer_details";
+                        $result = mysqli_query($conn, $sql);
+                        while($row=mysqli_fetch_assoc($result)){
+                            if($row['approved'] == 0){
+                                echo '<li class="list-group-item list-group-item-success">' .$row['name']. '<br>';
+                                echo $row['email']. '<br>';
+                                echo $row['phone'].
+                                '<a href="approve.php?lid='.$row['lid'].'"><button class="btn btn-primary" role="button">Approve</button></a></li>';
+                            }
+                        }
+                    ?>
+                    </div>
+                    </div>
            </div>
             <div class="row mx-1">
                 <div class="col-md-12">
                     <div class="list-group">
-                       #####
                     </div>
                 </div>
             </div>

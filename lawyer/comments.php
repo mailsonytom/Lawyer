@@ -66,6 +66,7 @@ else{
                         <div class="form-group">
                             <textarea class="form-control" rows="5" id="comment" name="comment">
                                 </textarea>
+                            <input type="text" hidden value="<?php echo $case_id; ?>" name="id">
                             <div class="col-md-3 mt-2 text-center mx-auto">
                                 <a href="">
                                     <button class="btn btn-success " type="submit">Submit</button>
