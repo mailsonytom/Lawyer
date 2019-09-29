@@ -8,17 +8,35 @@ if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
                 window.location = "../index.php"
                  </script>';
 }
-?>
-<?php
+$casetype_data = [];
+$casetype_sql = "SELECT * FROM casetype";
+$casetype_result = mysqli_query($conn, $casetype_sql);
+while ($row = mysqli_fetch_assoc($casetype_result)) {
+    $casetype_data[] = $row;
+}
 
+$lawyer_data = [];
+$lawyer_sql = "SELECT * FROM lawyer_details WHERE approved =1";
+$lawyer_result = mysqli_query($conn, $lawyer_sql);
+while ($row = mysqli_fetch_assoc($lawyer_result)) {
+    $lawyer_data[] = $row;
+}
+
+$court_data = [];
+$court_sql = "SELECT * FROM courts";
+$court_result = mysqli_query($conn, $court_sql);
+while ($row = mysqli_fetch_assoc($court_result)) {
+    $court_data[] = $row;
+}
 $casetype = $lawyer = $court = $date = $desc = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $uid = $_SESSION['uid'];
     $casetype = $_POST['casetype'];
     $lawyer = $_POST['lawyer'];
     $court = $_POST['court'];
     $date = $_POST['date'];
-    $desc = $_POST['description'];
-    $sql = "INSERT INTO cases (casetype, lawyer, court, date, description) VALUES ('$casetype', '$lawyer', '$court', '$date', '$desc')";
+    $desc = $_POST['desc'];
+    $sql = "INSERT INTO cases (uid, casetype_id, lid, cid, date, description, active_status) VALUES ('$uid', '$casetype', '$lawyer', '$court', '$date', '$desc', '0')";
     if ($conn->query($sql) === TRUE) {
         echo '<script type="text/javascript">
                     window.location = "cases.php"
@@ -55,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a class="nav-link" href="cases.php">Cases</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">SIGNOUT</a>
+                <a class="nav-link" href="logout.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>
@@ -85,19 +103,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="form-group">
                             <label>Type of Case</label>
                             <select class="form-control" name="casetype">
-                                <option></option>
-                                <option>Civil case</option>
-                                <option>Criminal case</option>
-                                <option>Enforcement case</option>
+                                <?php foreach ($casetype_data as $a) { ?>
+                                    <option value="<?php echo $a['casetype_id'];?>">
+                                        <?php echo $a['casetype']; ?>
+                                    </option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Lawyer</label>
                             <select class="form-control" name="lawyer">
-                                <option></option>
-                                <option>Jacob Sacharia</option>
-                                <option>Madhav Raj</option>
-                                <option>Sunny Abraham</option>
+                                <?php foreach ($lawyer_data as $b) { ?>
+                                    <option value="<?php echo $b['lid'];?>">
+                                        <?php echo $b['name']; ?>
+                                    </option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
@@ -105,10 +125,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="form-group">
                             <label>Court</label>
                             <select class="form-control" name="court">
-                                <option></option>
-                                <option>District Court</option>
-                                <option>High Court</option>
-                                <option>Supreme Court</option>
+                                <?php foreach ($court_data as $c) { ?>
+                                    <option value="<?php echo $c['cid'];?>">
+                                        <?php echo $c['court_name']; ?>
+                                    </option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -133,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="invalid-feedback">
                             You must agree before submitting.
                         </div>
-                        <a href="newcase.html">
+                        <a href="">
                             <button class="btn btn-success " type="submit">Submit</button>
                         </a>
                     </div>

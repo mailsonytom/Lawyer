@@ -33,7 +33,7 @@ else{
                 <a class="nav-link active">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">SIGNOUT</a>
+                <a class="nav-link" href="logout.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>

@@ -38,7 +38,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                 <a class="nav-link" href="casetype.php">Casetypes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">SIGNOUT</a>
+                <a class="nav-link" href="logout.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>
@@ -51,35 +51,42 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                         $sql = "SELECT * FROM courts";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
-                            if ($row['activestatus'] == 1) {
                                 echo '<li class="list-group-item list-group-item-success">' . $row['court_name'] . '</br>';
                                 echo $row['place'] . '</li>';
-                            }
                         }
                         ?>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h4>Add Court</h4>
+                    <h4 class="mx-auto text-center">Add Court</h4>
                     <div class="list-group mt-2">
                         <form action="" method="post">
-                            <div class="form-group">
-                                <textarea class="form-control" rows="5" id="court" name="court">
-                                </textarea>
+                            <div class="mx-auto mt-2 mb-2 py-2 border border-secondary rounded">
+                                <div class="form-group mx-2">
+                                    <label>Court name</label>
+                                    <input type="text" class="form-control" name="name">
+                                </div>
+                                <div class="form-group mx-2">
+                                    <label>Location</label>
+                                    <input type="text" class="form-control" name="location">
+                                </div>
                                 <div class="col-md-3 mt-2 text-center mx-auto">
                                     <a href="">
-                                        <button class="btn btn-success " type="submit">Submit</button>
+                                        <button class="btn btn-success " type="submit">SUBMIT</button>
                                     </a>
-                                    ##### add court######
                                     <?php
-                                    $courts = $_POST['court'];
-                                    $sql = "INSERT INTO courts(court) VALUES ('$courts')";
-                                    if ($conn->query($sql) === TRUE) {
-                                        echo '<script type="text/javascript">
+                                    $courtname = $location = "";
+                                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                                        $courtname = $_POST['name'];
+                                        $location = $_POST['location'];
+                                        $sql = "INSERT INTO courts(court_name, place) VALUES ('$courtname', '$location')";
+                                        if ($conn->query($sql) === TRUE) {
+                                            echo '<script type="text/javascript">
                                                 window.location = "courts.php"
                                                 </script>';
-                                    } else {
-                                        echo "Error: " . $sql . "<br>" . $conn->error;
+                                        } else {
+                                            echo "Error: " . $sql . "<br>" . $conn->error;
+                                        }
                                     }
                                     ?>
                                 </div>
@@ -89,6 +96,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <footer class="footer px-5 py-5 ">
         <p class="float-right">

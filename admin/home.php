@@ -38,7 +38,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                 <a class="nav-link" href="casetype.php">Casetypes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="login.php">SIGNOUT</a>
+                <a class="nav-link" href="logout.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>

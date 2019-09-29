@@ -9,11 +9,9 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
 } else {
     $data = [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $uid = $_SESSION['uid'];
         $case_id = $_POST['case_id'];
         $comment = $_POST['comment'];
-        $lid = mysqli_fetch_assoc(mysqli_query($conn, "SELECT lid FROM cases WHERE case_id ='$case_id'"))['lid'];
-        $csql = "INSERT INTO comments (uid, case_id, lid, comment) VALUES ('$uid', '$case_id', '$lid', '$comment')";
+        $csql = "INSERT INTO comments (case_id, user, comment) VALUES ('$case_id', '0', '$comment')";
         mysqli_query($conn, $csql);
         echo '<script type="text/javascript">
         window.location = "comments.php?id=', $case_id, '
@@ -22,7 +20,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     $uid = $_SESSION['uid'];
     if (isset($_GET['id'])) {
         $case_id = $_GET['id'];
-        $sql = "SELECT * FROM comments INNER JOIN user_details ON comments.uid = user_details.uid WHERE case_id=" . $case_id;
+        $sql = "SELECT * FROM comments WHERE case_id=" . $case_id;
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
@@ -60,7 +58,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                 <a class="nav-link" href="cases.php">Cases</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">SIGNOUT</a>
+                <a class="nav-link" href="logout.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>
@@ -71,7 +69,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                     <div class="list-group">
                         <?php foreach ($data as $a) { ?>
                             <li class="list-group-item list-group-item-success">
-                                <?php echo $a['name']; ?> Commented: <br>
+                                <?php if ($a['user'] == 0){ echo "You";}else{ echo "Lawyer";} ?> Commented: <br>
                                 <p><?php echo $a['comment']; ?></p>
 
                             </li>

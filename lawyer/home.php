@@ -32,7 +32,7 @@ if (isset($_SESSION['lid']) && !empty($_SESSION['lid'])) {
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">SIGNOUT</a>
+                <a class="nav-link" href="logout.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>
@@ -46,11 +46,10 @@ if (isset($_SESSION['lid']) && !empty($_SESSION['lid'])) {
                 <div class="col-md-12">
                     <div class="list-group">
                         <?php
-                        $sql = "SELECT * FROM cases";
+                        $sql = "SELECT * FROM cases WHERE active_status = 0";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
-                            if ($row['active_status'] == 0) {
-                                $casetype_query = "SELECT casetype FROM casetype WHERE case_id=" . $row['casetype_id'];
+                                $casetype_query = "SELECT casetype FROM casetype INNER JOIN cases ON cases.casetype_id = casetype.casetype_id WHERE case_id=" . $row['case_id'];
                                 $casetype_result =  mysqli_query($conn, $casetype_query);
                                 $casetype_row = mysqli_fetch_assoc($casetype_result);
                                 echo '<li class="list-group-item list-group-item-success">' . $casetype_row['casetype'] . '<br>';
@@ -60,7 +59,6 @@ if (isset($_SESSION['lid']) && !empty($_SESSION['lid'])) {
                                 echo $user_row['name'] . '<br>';
                                 echo $row['description'] .
                                     '<a href="accept.php?uid=' . $row['uid'] . '"><button class="btn btn-primary" role="button">ACCEPT CASE</button></a></li>';
-                            }
                         }
                         ?>
                     </div>

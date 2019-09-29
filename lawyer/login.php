@@ -8,14 +8,14 @@
         $sql = "SELECT * FROM lawyer_details WHERE email = '$username'";
         $result = mysqli_query($conn, $sql);
         if($row=mysqli_fetch_assoc($result)){
-            if(password_verify($password, $row['password'])){
+            if(password_verify($password, $row['password']) && $row['approved'] == 1){
                 $_SESSION['lid'] = $row['lid'];
                 echo '<script type="text/javascript">
                 window.location = "home.php"
                  </script>';
             }
             else{
-                    echo "Wrong password. <a href='login.php'>Click here to try again.</a>";  
+                    echo "Wrong password or you are not approved. <a href='login.php'>Click here to try again.</a>";  
             }
         }
         else{

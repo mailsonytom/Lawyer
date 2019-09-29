@@ -35,7 +35,7 @@ if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
                 <a class="nav-link" href="cases.php">Cases</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">SIGNOUT</a>
+                <a class="nav-link" href="logout.php">SIGNOUT</a>
             </li>
         </ul>
     </nav>
@@ -50,7 +50,7 @@ if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
                 <div class="col-md-12">
                     <div class="list-group">
                         <?php
-                        $sql = "SELECT * FROM lawyer_details";
+                        $sql = "SELECT * FROM lawyer_details WHERE approved = 1";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo '<li class="list-group-item list-group-item-success">' . $row['name'] . '</br>';

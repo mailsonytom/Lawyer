@@ -1,9 +1,16 @@
 <?php include 'connect.php' ?>
 <?php
-         if(isset($_GET)){
-             $uid = $_GET['uid']; 
-          }
-          $sql = "UPDATE cases SET active_status = 1 WHERE uid= $uid ";
-          $result = mysqli_query($conn, $sql);
-          header("Refresh:0; url=home.php");
+session_start();
+if (!isset($_SESSION['lid']) && empty($_SESSION['lid'])) {
+    echo '<script type="text/javascript">
+                        window.location = "login.php"
+                         </script>';
+} else {
+
+    $lid = $_SESSION['lid'];
+    echo $lid;
+    $sql = "UPDATE cases SET active_status = 1 WHERE lid= $lid ";
+    $result = mysqli_query($conn, $sql);
+    header("Refresh:; url=");
+}
 ?>

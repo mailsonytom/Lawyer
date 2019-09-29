@@ -11,8 +11,8 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
         $lid = $_SESSION['lid'];
         $case_id = $_POST['case_id'];
         $history = $_POST['history'];
-        $uid = mysqli_fetch_assoc(mysqli_query($conn, "SELECT uid FROM cases WHERE case_id ='$case_id'"))['uid'];
-        $csql = "INSERT INTO history (lid, case_id, uid, history) VALUES ('$lid', '$case_id', '$uid', '$history')";
+        $date = $_POST['date'];
+        $csql = "INSERT INTO history (lid, case_id, history, date) VALUES ('$lid', '$case_id', '$history', '$date')";
         mysqli_query($conn, $csql);
         echo '<script type="text/javascript">
             window.location = "history.php?id=', $case_id, '
@@ -21,7 +21,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
     $lid = $_SESSION['lid'];
     if (isset($_GET['case_id'])) {
         $case_id = $_GET['case_id'];
-        $sql = "SELECT * FROM history INNER JOIN lawyer_details ON history.lid = lawyer_details.lid WHERE case_id=" . $case_id;
+        $sql = "SELECT * FROM history WHERE case_id=" . $case_id;
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
@@ -56,7 +56,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">SIGNOUT</a>
+                <a class="nav-link" href="logout.php">SIGNOUT</a>
             </li>
 
         </ul>
@@ -68,20 +68,26 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                     <div class="list-group">
                         <?php foreach ($data as $a) { ?>
                             <li class="list-group-item list-group-item-success">
-                                <?php echo $a['name']; ?> Updated: <br>
+                                <?php echo "You" ?> Updated: <br>
                                 <p><?php echo $a['history']; ?></p>
+                                <p><?php echo $a['date']; ?></p>
 
                             </li>
                         <?php } ?>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h4>Add History</h4>
+                    <h4 class="mx-auto text-center">Add History</h4>
                     <div class="list-group mt-2">
                         <form action="" method="POST">
                             <div class="form-group">
+                                <label>History</label>
                                 <textarea class="form-control" rows="5" id="history" name="history">
                                 </textarea>
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input type="date" class="form-control" name="date">
+                                </div>
                                 <input type="text" hidden name="case_id" value=<?php echo $case_id; ?> />
                                 <div class="col-md-3 mt-2 text-center mx-auto">
                                     <a href="">

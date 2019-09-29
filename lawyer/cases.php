@@ -33,7 +33,7 @@ else{
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../index.php">SIGNOUT</a>
+                <a class="nav-link" href="logout.php">SIGNOUT</a>
             </li>
 
         </ul>
@@ -44,7 +44,8 @@ else{
                     <h3>Cases</h3>
                         <div class="list-group">
                         <?php
-                            $sql = "SELECT * FROM cases";
+                            $sql = "SELECT * FROM cases WHERE lid = $lid AND active_status = 1";
+                            echo $sql;
                             $result = mysqli_query($conn, $sql);
                             while($row=mysqli_fetch_assoc($result)){
                                     $case_query = "SELECT casetype FROM casetype WHERE casetype_id=".$row['casetype_id'];
