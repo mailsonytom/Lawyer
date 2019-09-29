@@ -1,12 +1,17 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
-    $uid = $_SESSION['uid'];
-} else {
+if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     echo '<script type="text/javascript">
-                window.location = "../index.php"
+                window.location = "index.php"
                  </script>';
+} else {
+    $uid = $_SESSION['uid'];
+    $sql = "SELECT * FROM lawyer_details";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -49,14 +54,11 @@ if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
             <div class="row mx-1">
                 <div class="col-md-12">
                     <div class="list-group">
-                        <?php
-                        $sql = "SELECT * FROM lawyer_details WHERE approved = 1";
-                        $result = mysqli_query($conn, $sql);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<li class="list-group-item list-group-item-success">' . $row['name'] . '</br>';
-                            echo $row['speciality'] . '</li>';
-                        }
-                        ?>
+                        <?php foreach ($data as $a) { ?>
+                            <li class="list-group-item list-group-item-info mt-2">
+                                <?php echo $a['name'] . ": " . $a['speciality']; ?>
+                            </li>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

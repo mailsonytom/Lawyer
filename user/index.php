@@ -11,7 +11,7 @@
             if(password_verify($password, $row['password'])){
                 $_SESSION['uid'] = $row['uid'];
                 echo '<script type="text/javascript">
-                window.location = "user/home.php"
+                window.location = "home.php"
                  </script>';
             }
             else{
@@ -28,8 +28,8 @@
 
 <head>
     <title>Index</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
 
 <body>
@@ -43,7 +43,7 @@
                 <a class="nav-link" href="court.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="user/signup.php">REGISTER</a>
+                <a class="nav-link" href="signup.php">REGISTER</a>
             </li>
 
         </ul>
@@ -61,8 +61,8 @@
                         professional excellence, client services and expert legal advice.
                     </p>
                     <div class="row mx-auto">
-                    <a href="admin/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as  Admin</button></a>
-                    <a href="lawyer/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as Lawyer</button></a>
+                    <a href="../admin/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as  Admin</button></a>
+                    <a href="../lawyer/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as Lawyer</button></a>
                    </div>
                 </div>
             </div>

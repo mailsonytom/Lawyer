@@ -1,4 +1,11 @@
 <?php include 'connect.php' ?>
+<?php
+$sql = "SELECT * FROM courts";
+$result = mysqli_query($conn, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $data[] = $row;
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -16,7 +23,7 @@
                 <a class="nav-link" href="lawyers.php">Lawyers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" >Courts</a>
+                <a class="nav-link active">Courts</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php">LOGIN</a>
@@ -33,34 +40,28 @@
             <div class="row mx-1">
                 <div class="col-md-12">
                     <div class="list-group">
-                        <?php
-                        $sql = "SELECT * FROM courts";
-                        $result = mysqli_query($conn, $sql);
-                        while($row=mysqli_fetch_assoc($result)){
-                            if($row['activestatus'] == 1){
-                                echo '<li class="list-group-item list-group-item-success">' .$row['court_name']. '</br>';
-                                echo $row['place']. '</li>';
-
-                            }
-                        }
-                    ?>
+                        <?php foreach ($data as $a) { ?>
+                            <li class="list-group-item list-group-item-info mt-2">
+                                <?php echo "Court Name: ".$a['court_name'].", Location: ".$a['place']; ?>
+                            </li>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <footer class="footer px-5 py-5 ">
-            <p class="float-right">
-                <a href="">
-                    Back to top
-                </a>
-            </p>
-            <p>
-                2018-2019 Company, Inc.
-                <a href="">Privacy</a>
-                <a href="">Terms</a>
-            </p>
-        </footer>
+        <p class="float-right">
+            <a href="">
+                Back to top
+            </a>
+        </p>
+        <p>
+            2018-2019 Company, Inc.
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+        </p>
+    </footer>
 </body>
 
 </html>

@@ -8,7 +8,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
 } else {
     $data = [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $case_id = $_POST['case_id'];
+        $case_id = $_POST['id'];
         $comment = $_POST['comment'];
         $csql = "INSERT INTO comments (case_id, user, comment) VALUES ('$case_id', '1', '$comment')";
         mysqli_query($conn, $csql);
@@ -16,8 +16,8 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
         window.location = "comments.php?id=', $case_id, '
         </script>';
     }
-    if (isset($_GET['case_id'])) {
-        $case_id = $_GET['case_id'];
+    if (isset($_GET['id'])) {
+        $case_id = $_GET['id'];
         $sql = "SELECT * FROM comments WHERE case_id=" . $case_id;
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
@@ -64,7 +64,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                 <div class="col-md-6">
                     <div class="list-group">
                         <?php foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-success">
+                            <li class="list-group-item list-group-item-success mt-2">
                                 <?php if ($a['user'] == 1) {
                                         echo "You";
                                     } else {

@@ -43,7 +43,7 @@
                 <a class="nav-link" href="../court.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../user/signup.php">REGISTER</a>
+                <a class="nav-link" href="signup.php">Lawyer Registration</a>
             </li>
 
         </ul>

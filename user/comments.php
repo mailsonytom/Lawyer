@@ -68,8 +68,12 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                 <div class="col-md-6">
                     <div class="list-group">
                         <?php foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-success">
-                                <?php if ($a['user'] == 0){ echo "You";}else{ echo "Lawyer";} ?> Commented: <br>
+                            <li class="list-group-item list-group-item-info mt-2">
+                                <?php if ($a['user'] == 0) {
+                                        echo "You";
+                                    } else {
+                                        echo "Lawyer";
+                                    } ?> Commented: <br>
                                 <p><?php echo $a['comment']; ?></p>
 
                             </li>

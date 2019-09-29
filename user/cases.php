@@ -1,12 +1,18 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
-    $uid = $_SESSION['uid'];
-} else {
+if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     echo '<script type="text/javascript">
                 window.location = "../index.php"
                  </script>';
+} else {
+    $uid = $_SESSION['uid'];
+    $sql = "SELECT cases.description, casetype, case_id FROM cases 
+    INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id WHERE uid = '$uid'";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -40,25 +46,51 @@ if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
         </ul>
     </nav>
     <div class="container-fluid">
+        <h3>Cases</h3>
         <div class="row">
-            <div class="col-md-12">
-                <h3>Cases</h3>
+            <div class="col-md-6">
                 <div class="list-group">
-                    <?php
-                    $sql = "SELECT * FROM cases WHERE uid = $uid";
-                    $result = mysqli_query($conn, $sql);
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        $case_query = "SELECT casetype FROM casetype WHERE casetype_id=" . $row['casetype_id'];
-                        $case_result = mysqli_query($conn, $case_query);
-                        $case_row = mysqli_fetch_assoc($case_result);
-                        echo '<li class="list-group-item list-group-item-success">' . $row['casetype_id'] . '<br>';
-                        echo $case_row['casetype'] . '<br>';
-                        echo $row['description'] . ' 
-                                    <a href="comments.php?id=' . $row['case_id'] . '"<button class="btn btn-primary" role="button">View/Add Comment</button></a>
-                                    <a href="history.php?id=' . $row['case_id'] . '"<button class="btn btn-primary" role="button">View/Add History</button></a>
-                                     </a></li>';
-                    }
-                    ?>
+                    <h5>Pending</h5>
+                    <?php foreach ($data as $a) {
+                        if ($a['active_status'] == 0) {
+                            ?>
+                            <li class="list-group-item list-group-item-info">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <p><?php echo $a['casetype']; ?></p>
+                                        <p><?php echo $a['description']; ?></p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add Comment</a>
+                                    </div>
+                                    </a>
+                                </div>
+                            </li>
+                    <?php }
+                    } ?>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="list-group">
+                    <h5>Approved</h5>
+                    <?php foreach ($data as $a) {
+                        if ($a['active_status'] == 1) {
+                            ?>
+                            <li class="list-group-item list-group-item-info">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <p><?php echo $a['casetype']; ?></p>
+                                        <p><?php echo $a['description']; ?></p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add Comment</a>
+                                        <a href="history.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add History</a>
+                                    </div>
+                                    </a>
+                                </div>
+                            </li>
+                    <?php }
+                    } ?>
                 </div>
             </div>
         </div>

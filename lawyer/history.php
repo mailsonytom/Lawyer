@@ -9,7 +9,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
     $data = [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $lid = $_SESSION['lid'];
-        $case_id = $_POST['case_id'];
+        $case_id = $_POST['id'];
         $history = $_POST['history'];
         $date = $_POST['date'];
         $csql = "INSERT INTO history (lid, case_id, history, date) VALUES ('$lid', '$case_id', '$history', '$date')";
@@ -19,8 +19,8 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
             </script>';
     }
     $lid = $_SESSION['lid'];
-    if (isset($_GET['case_id'])) {
-        $case_id = $_GET['case_id'];
+    if (isset($_GET['id'])) {
+        $case_id = $_GET['id'];
         $sql = "SELECT * FROM history WHERE case_id=" . $case_id;
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
@@ -67,7 +67,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                 <div class="col-md-6">
                     <div class="list-group">
                         <?php foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-success">
+                            <li class="list-group-item list-group-item-info mt-2">
                                 <?php echo "You" ?> Updated: <br>
                                 <p><?php echo $a['history']; ?></p>
                                 <p><?php echo $a['date']; ?></p>

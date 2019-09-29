@@ -1,33 +1,30 @@
 <?php include 'connect.php' ?>
 <?php
 
-    $firstname = $lastname = $username = $password = $address = $phone = "";
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $flag = 0;
-        $name = $_POST['name'];
-        $username = $_POST['email'];
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $phone = $_POST['phone'];
-        $select_query = "SELECT * FROM user_details";
+$firstname = $lastname = $username = $password = $address = $phone = $error = "";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $flag = 0;
+    $name = $_POST['name'];
+    $username = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $phone = $_POST['phone'];
+    $select_query = "SELECT * FROM user_details";
     $result = mysqli_query($conn, $select_query);
-    while($row=mysqli_fetch_assoc($result)){
-        if($row['email'] == $username){
-        $flag = 1;
-            echo '<script type="text/javascript">
-                    window.location = "user_duplicate_error.php"
-                    </script>';
+    while ($row = mysqli_fetch_assoc($result)) {
+        if ($row['email'] == $username) {
+            $flag = 1;
+            $error = "The user email already exists";
         }
     }
-    if($flag == 0){
-        $sql = "INSERT INTO user_details (name, email, password, phone, approved) VALUES ('$name',  '$username', '$password', '$phone', '0')";
+    if ($flag == 0) {
+        $sql = "INSERT INTO user_details (name, email, password, phone) VALUES ('$name',  '$username', '$password', '$phone')";
         if ($conn->query($sql) === TRUE) {
             echo '<script type="text/javascript">
-                    window.location = "../index.php"
+                    window.location = "index.php"
                     </script>';
-        } 
-        else {
+        } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
-            }
+        }
     }
 }
 
@@ -64,11 +61,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 mx-auto mt-5 mb-5 border border-primary rounded">
+                <h4 class=" col-md-6 mt-2 mx-auto text-center">USER REGISTRATION</h4>
                 <form action="" method="POST">
-                    <div class="row">
-                        <h4 class=" col-md-5 mt-2 mx-auto text-center">REGISTER</h4>
-
-                    </div>
+                    <?php echo $error; ?>
                     <div class="row mx-1 mb-3">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -99,17 +94,17 @@
         </div>
     </div>
     <footer class="footer px-5 py-5 ">
-            <p class="float-right">
-                <a href="">
-                    Back to top
-                </a>
-            </p>
-            <p>
-                2018-2019 Company, Inc.
-                <a href="">Privacy</a>
-                <a href="">Terms</a>
-            </p>
-        </footer>
+        <p class="float-right">
+            <a href="">
+                Back to top
+            </a>
+        </p>
+        <p>
+            2018-2019 Company, Inc.
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+        </p>
+    </footer>
 </body>
 
 </html>

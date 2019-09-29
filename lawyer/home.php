@@ -1,12 +1,18 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if (isset($_SESSION['lid']) && !empty($_SESSION['lid'])) {
-    $lid = $_SESSION['lid'];
-} else {
+if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
     echo '<script type="text/javascript">
                 window.location = "login.php"
                  </script>';
+} else {
+    $lid = $_SESSION['lid'];
+    $sql = "SELECT * FROM cases INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id INNER JOIN user_details 
+    ON cases.uid = user_details.uid WHERE active_status = 0";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -45,27 +51,22 @@ if (isset($_SESSION['lid']) && !empty($_SESSION['lid'])) {
             <div class="row mx-1">
                 <div class="col-md-12">
                     <div class="list-group">
-                        <?php
-                        $sql = "SELECT * FROM cases WHERE active_status = 0";
-                        $result = mysqli_query($conn, $sql);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                                $casetype_query = "SELECT casetype FROM casetype INNER JOIN cases ON cases.casetype_id = casetype.casetype_id WHERE case_id=" . $row['case_id'];
-                                $casetype_result =  mysqli_query($conn, $casetype_query);
-                                $casetype_row = mysqli_fetch_assoc($casetype_result);
-                                echo '<li class="list-group-item list-group-item-success">' . $casetype_row['casetype'] . '<br>';
-                                $user_query = "SELECT name FROM user_details WHERE uid=" . $row['uid'];
-                                $user_result = mysqli_query($conn, $user_query);
-                                $user_row = mysqli_fetch_assoc($user_result);
-                                echo $user_row['name'] . '<br>';
-                                echo $row['description'] .
-                                    '<a href="accept.php?uid=' . $row['uid'] . '"><button class="btn btn-primary" role="button">ACCEPT CASE</button></a></li>';
-                        }
-                        ?>
+                        <?php foreach ($data as $a) { ?>
+                            <li class="list-group-item list-group-item-info"><?php $a['casetype']; ?>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <?php echo $a['name']; ?>
+                                        <?php echo $a['description']; ?>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="accept.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">Accept Case</a>
+                                    </div>
+                                </div>
+                            <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <footer class="footer px-5 py-5">
         <p class="float-right">
