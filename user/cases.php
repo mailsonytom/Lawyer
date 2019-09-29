@@ -1,10 +1,9 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if(isset($_SESSION['uid']) && !empty($_SESSION['uid'])){
+if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
     $uid = $_SESSION['uid'];
-}
-else{
+} else {
     echo '<script type="text/javascript">
                 window.location = "../index.php"
                  </script>';
@@ -42,41 +41,41 @@ else{
     </nav>
     <div class="container-fluid">
         <div class="row">
-                <div class="col-md-12">
-                    <h3>Cases</h3>
-                        <div class="list-group">
-                        <?php
-                            $sql = "SELECT * FROM cases";
-                            $result = mysqli_query($conn, $sql);
-                            while($row=mysqli_fetch_assoc($result)){
-                                    $case_query = "SELECT casetype FROM casetype WHERE casetype_id=".$row['casetype_id'];
-                                    $case_result = mysqli_query($conn, $case_query);
-                                    $case_row = mysqli_fetch_assoc($case_result);
-                                    echo '<li class="list-group-item list-group-item-success">' .$row['casetype_id'].'<br>';
-                                    echo $case_row['casetype'].'<br>' ;
-                                    echo $row['description'].' 
-                                    <a href="comments.php?id='.$row['case_id'].'"<button class="btn btn-primary" role="button">View/Add Comment</button></a>
-                                    <a href="history.php?id='.$row['case_id'].'"<button class="btn btn-primary" role="button">View/Add History</button></a>
+            <div class="col-md-12">
+                <h3>Cases</h3>
+                <div class="list-group">
+                    <?php
+                    $sql = "SELECT * FROM cases";
+                    $result = mysqli_query($conn, $sql);
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $case_query = "SELECT casetype FROM casetype WHERE casetype_id=" . $row['casetype_id'];
+                        $case_result = mysqli_query($conn, $case_query);
+                        $case_row = mysqli_fetch_assoc($case_result);
+                        echo '<li class="list-group-item list-group-item-success">' . $row['casetype_id'] . '<br>';
+                        echo $case_row['casetype'] . '<br>';
+                        echo $row['description'] . ' 
+                                    <a href="comments.php?id=' . $row['case_id'] . '"<button class="btn btn-primary" role="button">View/Add Comment</button></a>
+                                    <a href="history.php?id=' . $row['case_id'] . '"<button class="btn btn-primary" role="button">View/Add History</button></a>
                                      </a></li>';
-                            }
-                        ?>
-                        </div>
+                    }
+                    ?>
                 </div>
+            </div>
         </div>
     </div>
     </div>
     <footer class="footer px-5 py-5 ">
-            <p class="float-right">
-                <a href="">
-                    Back to top
-                </a>
-            </p>
-            <p>
-                2018-2019 Company, Inc.
-                <a href="">Privacy</a>
-                <a href="">Terms</a>
-            </p>
-        </footer>
+        <p class="float-right">
+            <a href="">
+                Back to top
+            </a>
+        </p>
+        <p>
+            2018-2019 Company, Inc.
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+        </p>
+    </footer>
 </body>
 
 </html>

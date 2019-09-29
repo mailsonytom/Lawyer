@@ -1,10 +1,9 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if(isset($_SESSION['uid']) && !empty($_SESSION['uid'])){
+if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
     $uid = $_SESSION['uid'];
-}
-else{
+} else {
     echo '<script type="text/javascript">
                 window.location = "../index.php"
                  </script>';
@@ -23,21 +22,21 @@ else{
     <nav class="navbar navbar-expand-lg navbar-bg">
         <a class="navbar-brand" href="#">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                        <a class="nav-link" href="home.php">Home</a>
-                    </li>
-                <li class="nav-item">
-                        <a class="nav-link active">Lawyers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="courts.php">Courts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cases.php">Cases</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.php">SIGNOUT</a>
-                    </li>
+            <li class="nav-item">
+                <a class="nav-link" href="home.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active">Lawyers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="courts.php">Courts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="cases.php">Cases</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../index.php">SIGNOUT</a>
+            </li>
         </ul>
     </nav>
     <div class="container-fluid">
@@ -53,28 +52,28 @@ else{
                         <?php
                         $sql = "SELECT * FROM lawyer_details";
                         $result = mysqli_query($conn, $sql);
-                        while($row=mysqli_fetch_assoc($result)){
-                                echo '<li class="list-group-item list-group-item-success">' .$row['name']. '</br>';
-                                echo $row['speciality']. '</li>';
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo '<li class="list-group-item list-group-item-success">' . $row['name'] . '</br>';
+                            echo $row['speciality'] . '</li>';
                         }
-                    ?>
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <footer class="footer px-5 py-5 ">
-            <p class="float-right">
-                <a href="">
-                    Back to top
-                </a>
-            </p>
-            <p>
-                2018-2019 Company, Inc.
-                <a href="">Privacy</a>
-                <a href="">Terms</a>
-            </p>
-        </footer>
+        <p class="float-right">
+            <a href="">
+                Back to top
+            </a>
+        </p>
+        <p>
+            2018-2019 Company, Inc.
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+        </p>
+    </footer>
 </body>
 
 </html>

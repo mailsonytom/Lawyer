@@ -1,10 +1,9 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if(isset($_SESSION['lid']) && !empty($_SESSION['lid'])){
+if (isset($_SESSION['lid']) && !empty($_SESSION['lid'])) {
     $lid = $_SESSION['lid'];
-}
-else{
+} else {
     echo '<script type="text/javascript">
                 window.location = "login.php"
                  </script>';
@@ -23,10 +22,10 @@ else{
     <nav class="navbar navbar-expand-lg navbar-bg">
         <a class="navbar-brand" href="#">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link active">Home</a>
             </li>
-        <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="cases.php">Cases</a>
             </li>
             <li class="nav-item">
@@ -45,26 +44,26 @@ else{
             </h4>
             <div class="row mx-1">
                 <div class="col-md-12">
-                        <div class="list-group">
-                           <?php
-                            $sql = "SELECT * FROM cases";
-                            $result = mysqli_query($conn, $sql);
-                            while($row=mysqli_fetch_assoc($result)){
-                                if($row['active_status'] == 0){
-                                    $casetype_query = "SELECT casetype FROM casetype WHERE case_id=".$row['casetype_id'];
-                                    $casetype_result =  mysqli_query($conn, $casetype_query);
-                                    $casetype_row = mysqli_fetch_assoc($casetype_result);
-                                    echo '<li class="list-group-item list-group-item-success">' .$casetype_row['casetype']. '<br>';
-                                    $user_query = "SELECT name FROM user_details WHERE uid=".$row['uid'];
-                                    $user_result = mysqli_query($conn, $user_query);
-                                    $user_row = mysqli_fetch_assoc($user_result);
-                                    echo $user_row['name']. '<br>';
-                                    echo $row['description'].
-                                    '<a href="accept.php?uid='.$row['uid'].'"><button class="btn btn-primary" role="button">ACCEPT CASE</button></a></li>';
-                                }
+                    <div class="list-group">
+                        <?php
+                        $sql = "SELECT * FROM cases";
+                        $result = mysqli_query($conn, $sql);
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            if ($row['active_status'] == 0) {
+                                $casetype_query = "SELECT casetype FROM casetype WHERE case_id=" . $row['casetype_id'];
+                                $casetype_result =  mysqli_query($conn, $casetype_query);
+                                $casetype_row = mysqli_fetch_assoc($casetype_result);
+                                echo '<li class="list-group-item list-group-item-success">' . $casetype_row['casetype'] . '<br>';
+                                $user_query = "SELECT name FROM user_details WHERE uid=" . $row['uid'];
+                                $user_result = mysqli_query($conn, $user_query);
+                                $user_row = mysqli_fetch_assoc($user_result);
+                                echo $user_row['name'] . '<br>';
+                                echo $row['description'] .
+                                    '<a href="accept.php?uid=' . $row['uid'] . '"><button class="btn btn-primary" role="button">ACCEPT CASE</button></a></li>';
                             }
-                            ?>
-                        </div>
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>

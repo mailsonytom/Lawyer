@@ -1,10 +1,9 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if(isset($_SESSION['uid']) && !empty($_SESSION['uid'])){
+if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
     $uid = $_SESSION['uid'];
-}
-else{
+} else {
     echo '<script type="text/javascript">
                 window.location = "../index.php"
                  </script>';
@@ -12,24 +11,21 @@ else{
 ?>
 <?php
 
-    $firstname = $casetype = $lawyer = $lastname = $court = $date = "";
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $firstname = $_POST['first_name'];
-        $casetype = $_POST['casetype'];
-        $lawyer = $_POST['lawyer'];
-        $lastname = $_POST['last_name'];
-        $court = $_POST['court'];
-        $date = $_POST['date'];
-        
-        $sql = "INSERT INTO ##### (firstname, casetype, lawyer, lastname, court, date) VALUES ('$firstname', '$casetype', '$lawyer', '$lastname', '$court', '$date')";
-        if ($conn->query($sql) === TRUE) {
-            echo '<script type="text/javascript">
+$casetype = $lawyer = $court = $date = $desc = "";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $casetype = $_POST['casetype'];
+    $lawyer = $_POST['lawyer'];
+    $court = $_POST['court'];
+    $date = $_POST['date'];
+    $desc = $_POST['description'];
+    $sql = "INSERT INTO cases (casetype, lawyer, court, date, description) VALUES ('$casetype', '$lawyer', '$court', '$date', '$desc')";
+    if ($conn->query($sql) === TRUE) {
+        echo '<script type="text/javascript">
                     window.location = "cases.php"
                     </script>';
-        } 
-        else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-            }
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
 
 ?>
@@ -46,10 +42,10 @@ else{
     <nav class="navbar navbar-expand-lg navbar-bg">
         <a class="navbar-brand" href="#">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link active">Home</a>
             </li>
-        <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="lawyer.php">Lawyers</a>
             </li>
             <li class="nav-item">
@@ -87,10 +83,6 @@ else{
                 <div class="row mx-1">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>First Name</label>
-                            <input type="text" name="first_name" class="form-control">
-                        </div>
-                        <div class="form-group">
                             <label>Type of Case</label>
                             <select class="form-control" name="casetype">
                                 <option></option>
@@ -111,10 +103,6 @@ else{
                     </div>
                     <div class="col-md-6 ">
                         <div class="form-group">
-                            <label>Last Name</label>
-                            <input type="text" name="last_name" class="form-control">
-                        </div>
-                        <div class="form-group">
                             <label>Court</label>
                             <select class="form-control" name="court">
                                 <option></option>
@@ -126,6 +114,13 @@ else{
                         <div class="form-group">
                             <label>Date</label>
                             <input type="date" class="form-control" name="date">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea class="form-control" rows="5" id="desc" name="desc">
+                                </textarea>
                         </div>
                     </div>
                 </div>
@@ -143,22 +138,22 @@ else{
                         </a>
                     </div>
                 </div>
+            </form>
         </div>
-    </div>
-    </form>
+
     </div>
     <footer class="footer px-5 py-5 ">
-            <p class="float-right">
-                <a href="">
-                    Back to top
-                </a>
-            </p>
-            <p>
-                2018-2019 Company, Inc.
-                <a href="">Privacy</a>
-                <a href="">Terms</a>
-            </p>
-        </footer>
+        <p class="float-right">
+            <a href="">
+                Back to top
+            </a>
+        </p>
+        <p>
+            2018-2019 Company, Inc.
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+        </p>
+    </footer>
 </body>
 
 </html>

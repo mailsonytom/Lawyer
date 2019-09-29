@@ -1,13 +1,37 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if(isset($_SESSION['uid']) && !empty($_SESSION['uid'])){
-    $uid = $_SESSION['uid'];
-}
-else{
+if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
+
     echo '<script type="text/javascript">
-                window.location = "../index.php"
-                 </script>';
+    window.location = "../index.php"
+     </script>';
+} else {
+    $data = [];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $uid = $_SESSION['uid'];
+        $case_id = $_POST['case_id'];
+        $comment = $_POST['comment'];
+        $lid = mysqli_fetch_assoc(mysqli_query($conn, "SELECT lid FROM cases WHERE case_id ='$case_id'"))['lid'];
+        $csql = "INSERT INTO comments (uid, case_id, lid, comment) VALUES ('$uid', '$case_id', '$lid', '$comment')";
+        mysqli_query($conn, $csql);
+        echo '<script type="text/javascript">
+        window.location = "comments.php?id=', $case_id, '
+        </script>';
+    }
+    $uid = $_SESSION['uid'];
+    if (isset($_GET['id'])) {
+        $case_id = $_GET['id'];
+        $sql = "SELECT * FROM comments INNER JOIN user_details ON comments.uid = user_details.uid WHERE case_id=" . $case_id;
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+    } else {
+        echo '<script type="text/javascript">
+        window.location = "cases.php"
+        </script>';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -33,6 +57,9 @@ else{
                 <a class="nav-link" href="courts.php">Courts</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="cases.php">Cases</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="../index.php">SIGNOUT</a>
             </li>
         </ul>
@@ -42,42 +69,35 @@ else{
             <div class="row mx-1 mt-2 mb-2">
                 <div class="col-md-6">
                     <div class="list-group">
-                    <?php
-                            if(isset($_GET)){
-                                $case_id = $_GET['id']; 
-                            }
-                            $sql = "SELECT * FROM comments WHERE case_id=".$case_id;
-                            $result = mysqli_query($conn, $sql);
-                            while($row=mysqli_fetch_assoc($result)){
-                                    $user_query = "SELECT name FROM user_details WHERE uid=".$row['uid'];
-                                    $user_result = mysqli_query($conn, $user_query);
-                                    $user_row = mysqli_fetch_assoc($user_result);
-                                    echo '<li class="list-group-item list-group-item-success">' .$user_row['name']. ' commented<br>';
-                                    echo $row['comment'].'</li>';
-                            }
-                        ?>
+                        <?php foreach ($data as $a) { ?>
+                            <li class="list-group-item list-group-item-success">
+                                <?php echo $a['name']; ?> Commented: <br>
+                                <p><?php echo $a['comment']; ?></p>
+
+                            </li>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    ######comment######
-                <h4>Add Comment</h4>
-                <div class="list-group mt-2">
-                    <form action="" method="post">
-                        <div class="form-group">
-                            <textarea class="form-control" rows="5" id="comment" name="comment">
+                    <h4>Add Comment</h4>
+                    <div class="list-group mt-2">
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" id="comment" name="comment">
                                 </textarea>
-                            <div class="col-md-3 mt-2 text-center mx-auto">
-                                <a href="">
-                                    <button class="btn btn-success " type="submit">Submit</button>
-                                </a>
+                                <input type="text" hidden name="case_id" value=<?php echo $case_id; ?> />
+                                <div class="col-md-3 mt-2 text-center mx-auto">
+                                    <a href="">
+                                        <button class="btn btn-success " type="submit">Submit</button>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <footer class="footer px-5 py-5 ">
+        <footer class="footer px-5 py-5 ">
             <p class="float-right">
                 <a href="">
                     Back to top
@@ -90,4 +110,5 @@ else{
             </p>
         </footer>
 </body>
+
 </html>

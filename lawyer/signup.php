@@ -1,37 +1,36 @@
 <?php include 'connect.php' ?>
 <?php
-    $name = $username = $password = $spec = $exp = $fees = $contact = $gender = $birthdate = "";
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $flag = 0;
-        $name = $_POST['name'];
-        $username = $_POST['email'];
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        $speciality = $_POST['specs'];
-        $experience = $_POST['exp'];
-        $fees = $_POST['fees'];
-        $contact = $_POST['phone'];
-        $gender = $_POST['gender'];
-        $birthdate = $_POST['dob'];
-        $select_query = "SELECT * FROM lawyer_details";
+$name = $username = $password = $spec = $exp = $fees = $contact = $gender = $birthdate = "";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $flag = 0;
+    $name = $_POST['name'];
+    $username = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $speciality = $_POST['specs'];
+    $experience = $_POST['exp'];
+    $fees = $_POST['fees'];
+    $contact = $_POST['phone'];
+    $gender = $_POST['gender'];
+    $birthdate = $_POST['dob'];
+    $select_query = "SELECT * FROM lawyer_details";
     $result = mysqli_query($conn, $select_query);
-    while($row=mysqli_fetch_assoc($result)){
-        if($row['email'] == $username){
-        $flag = 1;
+    while ($row = mysqli_fetch_assoc($result)) {
+        if ($row['email'] == $username) {
+            $flag = 1;
             echo '<script type="text/javascript">
                     window.location = "user_duplicate_error.php"
                     </script>';
         }
     }
-    if($flag == 0){
-        $sql = "INSERT INTO lawyer_details (name,email, password, speciality, experience, fees, phone, gender, dob) VALUES ('$firstname', '$lastname', '$username', '$password', '$spec', '$exp', '$fees', '$contact', '$gender', '$birthdate')";
+    if ($flag == 0) {
+        $sql = "INSERT INTO lawyer_details (name,email, password, speciality, experience, fees, phone, gender, dob, approved) VALUES ('$name', '$username', '$password', '$speciality', '$experience ', '$fees', '$contact', '$gender', '$birthdate', '0')";
         if ($conn->query($sql) === TRUE) {
             echo '<script type="text/javascript">
                     window.location = "login.php"
                     </script>';
-        } 
-        else {
+        } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
-            }
+        }
     }
 }
 
@@ -98,7 +97,7 @@
                             <div class="form-group">
                                 <label> Fees</label>
                                 <input type="text" class="form-control" name="fees">
-        
+
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
@@ -106,8 +105,10 @@
                             </div>
                             <div class="form-group">
                                 <label>Gender:</label>
-                                male<input type="radio" name="gender id=" gender">
-                                female<input type="radio" name="gender id=" gender">
+                                <select name="gender" id="gender" class="form-control">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label>Date of birth</label>
@@ -125,17 +126,17 @@
         </div>
     </div>
     <footer class="footer px-5 py-5 ">
-            <p class="float-right">
-                <a href="">
-                    Back to top
-                </a>
-            </p>
-            <p>
-                2018-2019 Company, Inc.
-                <a href="">Privacy</a>
-                <a href="">Terms</a>
-            </p>
-        </footer>
+        <p class="float-right">
+            <a href="">
+                Back to top
+            </a>
+        </p>
+        <p>
+            2018-2019 Company, Inc.
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+        </p>
+    </footer>
 </body>
 
 </html>

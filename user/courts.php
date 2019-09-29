@@ -1,10 +1,9 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if(isset($_SESSION['uid']) && !empty($_SESSION['uid'])){
+if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
     $uid = $_SESSION['uid'];
-}
-else{
+} else {
     echo '<script type="text/javascript">
                 window.location = "../index.php"
                  </script>';
@@ -41,44 +40,43 @@ else{
         </ul>
     </nav>
     <div class="container-fluid">
-    <div class="mt-5 mb-5 py-2 border border-primary rounded">
-           <div class="row">
+        <div class="mt-5 mb-5 py-2 border border-primary rounded">
+            <div class="row">
                 <h4 class=" col-md-4 mx-auto text-center">
-                        Courts Available
-                    </h4>
-           </div>
+                    Courts Available
+                </h4>
+            </div>
             <div class="row mx-1">
                 <div class="col-md-12">
                     <div class="list-group">
                         <?php
                         $sql = "SELECT * FROM courts";
                         $result = mysqli_query($conn, $sql);
-                        while($row=mysqli_fetch_assoc($result)){
-                            if($row['activestatus'] == 1){
-                                echo '<li class="list-group-item list-group-item-success">' .$row['court_name']. '</br>';
-                                echo $row['place']. '</li>';
-
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            if ($row['activestatus'] == 1) {
+                                echo '<li class="list-group-item list-group-item-success">' . $row['court_name'] . '</br>';
+                                echo $row['place'] . '</li>';
                             }
                         }
-                    ?>
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </div>
     <footer class="footer px-5 py-5 ">
-            <p class="float-right">
-                <a href="">
-                    Back to top
-                </a>
-            </p>
-            <p>
-                2018-2019 Company, Inc.
-                <a href="">Privacy</a>
-                <a href="">Terms</a>
-            </p>
-        </footer>
+        <p class="float-right">
+            <a href="">
+                Back to top
+            </a>
+        </p>
+        <p>
+            2018-2019 Company, Inc.
+            <a href="">Privacy</a>
+            <a href="">Terms</a>
+        </p>
+    </footer>
 </body>
 
 </html>
