@@ -7,7 +7,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                  </script>';
 } else {
     $uid = $_SESSION['uid'];
-    $sql = "SELECT cases.description, casetype, case_id FROM cases 
+    $sql = "SELECT cases.active_status, cases.description, casetype, case_id FROM cases 
     INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id WHERE uid = '$uid'";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
@@ -50,10 +50,9 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
         <div class="row">
             <div class="col-md-6">
                 <div class="list-group">
-                    <h5>Pending</h5>
-                    <?php foreach ($data as $a) {
-                        if ($a['active_status'] == 0) {
-                            ?>
+                    <h5>Requested</h5>
+                    <?php foreach ($data as $a) { ?>
+                        <?php if ($a['active_status'] == 0) {?>
                             <li class="list-group-item list-group-item-info">
                                 <div class="row">
                                     <div class="col-md-7">
@@ -66,31 +65,30 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                                     </a>
                                 </div>
                             </li>
-                    <?php }
-                    } ?>
+                    <?php }?>
+                   <?php } ?>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="list-group">
                     <h5>Approved</h5>
-                    <?php foreach ($data as $a) {
-                        if ($a['active_status'] == 1) {
-                            ?>
+                    <?php foreach ($data as $a) {?>
+                        <?php if ($a['active_status'] == 1) { ?>
                             <li class="list-group-item list-group-item-info">
                                 <div class="row">
-                                    <div class="col-md-9">
+                                    <div class="col-md-8">
                                         <p><?php echo $a['casetype']; ?></p>
                                         <p><?php echo $a['description']; ?></p>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add Comment</a>
                                         <a href="history.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add History</a>
                                     </div>
                                     </a>
                                 </div>
                             </li>
-                    <?php }
-                    } ?>
+                    <?php }?>
+                    <?php } ?>
                 </div>
             </div>
         </div>

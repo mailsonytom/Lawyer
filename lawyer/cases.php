@@ -7,16 +7,10 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                  </script>';
 } else {
     $lid = $_SESSION['lid'];
-    $sql = "SELECT casetype, cases.description, case_id FROM cases INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id WHERE lid = '$lid' AND active_status = 1";
+    $sql = "SELECT casetype, cases.active_status, cases.description, case_id FROM cases INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id WHERE lid = '$lid' AND active_status = 1";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
-        // echo '<li class="list-group-item list-group-item-success">' . $row['casetype_id'] . '<br>';
-        // echo $case_row['casetype'] . '<br>';
-        // echo $row['description'] . ' 
-        // <a href="comments.php?case_id=' . $row['case_id'] . '"><button class="btn btn-primary" role="button">View/Add Comment</button></a>
-        // <a href="history.php?case_id=' . $row['case_id'] . '"<button class="btn btn-primary" role="button">View/Add History</button></a>
-        //     </a></li>';
     }
 }
 ?>
@@ -54,7 +48,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                 <h3>Current case list</h3>
                 <div class="list-group">
                     <?php foreach ($data as $a) { ?>
-                        <li class="list-group-item list-group-item-info mt-2">
+                            <li class="list-group-item list-group-item-info mt-2">
                                 <div class="row">
                                     <div class="col-md-9">
                                         <p><?php echo $a['casetype']; ?></p>
