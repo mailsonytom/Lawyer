@@ -14,6 +14,12 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
         $data[] = $row;
     }
 }
+$lawyer_name_data = [];
+$lawyer_name_sql = "SELECT name FROM lawyer_details WHERE lid =$lid";
+$lawyer_name_result = mysqli_query($conn, $lawyer_name_sql);
+while ($row = mysqli_fetch_assoc($lawyer_name_result)) {
+    $lawyer_name_data[] = $row;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,7 +49,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
         </ul>
     </nav>
     <div class="container-fluid">
-        <h2 class=" col-md-4 mx-auto mt-5 text-center">Hello Lawyer!!</h2>
+        <h2 class=" col-md-4 mx-auto mt-5 text-center">Hello <?php foreach ($lawyer_name_data as $l) { echo $l['name'];}?> !!</h2>
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
             <h4 class=" col-md-4 mt-2  mx-auto text-center">
                 New Case Requests

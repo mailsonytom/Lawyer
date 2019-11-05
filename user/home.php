@@ -8,6 +8,13 @@ if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
                 window.location = "index.php"
                  </script>';
 }
+$user_name_data = [];
+$user_name_sql = "SELECT name FROM user_details WHERE uid =$uid";
+$user_name_result = mysqli_query($conn, $user_name_sql);
+while ($row = mysqli_fetch_assoc($user_name_result)) {
+    $user_name_data[] = $row;
+}
+
 $casetype_data = [];
 $casetype_sql = "SELECT * FROM casetype";
 $casetype_result = mysqli_query($conn, $casetype_sql);
@@ -79,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <h2 class=" col-md-4 mx-auto text-center mt-5 mb-5 ">Hello user!!</h2>
+            <h2 class=" col-md-4 mx-auto text-center mt-5 mb-5 ">Hello <?php foreach ($user_name_data as $u) { echo $u['name'];}?> !!</h2>
             <p class="col-md-10 mx-auto text-center mt-5 mb-5">
                 This is a team of skilled lawyers dedicated to smart, aggressive and
                 strategic advocacy. Our practice areas include all criminal offences including drug offences, sexual

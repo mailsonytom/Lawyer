@@ -64,6 +64,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     </nav>
     <div class="container-fluid">
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
+            <h4 class=" col-md-4 mx-auto text-center">Comments</h4>
             <div class="row mx-1 mt-2 mb-2">
                 <div class="col-md-6">
                     <div class="list-group">

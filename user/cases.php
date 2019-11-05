@@ -46,49 +46,51 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
         </ul>
     </nav>
     <div class="container-fluid">
-        <h3>Cases</h3>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="list-group">
-                    <h5>Requested</h5>
-                    <?php foreach ($data as $a) { ?>
-                        <?php if ($a['active_status'] == 0) {?>
-                            <li class="list-group-item list-group-item-info">
-                                <div class="row">
-                                    <div class="col-md-7">
-                                        <p><?php echo $a['casetype']; ?></p>
-                                        <p><?php echo $a['description']; ?></p>
+        <div class="mt-5 mb-5 py-2 border border-primary rounded">
+            <h4 class=" col-md-4 mx-auto text-center">Cases</h4>
+            <div class="row mx-1">
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <h5>Requested</h5>
+                        <?php foreach ($data as $a) { ?>
+                            <?php if ($a['active_status'] == 0) { ?>
+                                <li class="list-group-item list-group-item-info">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <p><?php echo $a['casetype']; ?></p>
+                                            <p><?php echo $a['description']; ?></p>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add Comment</a>
+                                        </div>
+                                        </a>
                                     </div>
-                                    <div class="col-md-5">
-                                        <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add Comment</a>
-                                    </div>
-                                    </a>
-                                </div>
-                            </li>
-                    <?php }?>
-                   <?php } ?>
+                                </li>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="list-group">
-                    <h5>Approved</h5>
-                    <?php foreach ($data as $a) {?>
-                        <?php if ($a['active_status'] == 1) { ?>
-                            <li class="list-group-item list-group-item-info">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <p><?php echo $a['casetype']; ?></p>
-                                        <p><?php echo $a['description']; ?></p>
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <h5>Approved</h5>
+                        <?php foreach ($data as $a) { ?>
+                            <?php if ($a['active_status'] == 1) { ?>
+                                <li class="list-group-item list-group-item-info">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p><?php echo $a['casetype']; ?></p>
+                                            <p><?php echo $a['description']; ?></p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add Comment</a>
+                                            <a href="history.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add History</a>
+                                        </div>
+                                        </a>
                                     </div>
-                                    <div class="col-md-4">
-                                        <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add Comment</a>
-                                        <a href="history.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add History</a>
-                                    </div>
-                                    </a>
-                                </div>
-                            </li>
-                    <?php }?>
-                    <?php } ?>
+                                </li>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
         </div>

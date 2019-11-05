@@ -43,7 +43,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
         </ul>
     </nav>
     <div class="container-fluid">
-        <h3 class="text-center mt-5 mb-5">Hello Admin!!</h3>
+        <h3 class="text-center mt-5 mb-5">Admin Homepage!!</h3>
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
             <div class="row">
                 <div class="col-md-12">
