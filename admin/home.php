@@ -47,15 +47,15 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
         <div class="mt-5 mb-5 py-2 border border-primary rounded">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="list-group">
+                    <div class="list-group mx-1">
                         <?php
                         $sql = "SELECT * FROM lawyer_details";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
                             if ($row['approved'] == 0) {
-                                echo '<li class="list-group-item list-group-item-success">' . $row['name'] . '<br>';
-                                echo $row['email'] . '<br>';
-                                echo $row['phone'] .
+                                echo '<li class="list-group-item list-group-item-info mt-2">' . $row['name'] .
+                                    "," . $row['email'] .
+                                    "," . $row['phone'] .
                                     '<a href="approve.php?lid=' . $row['lid'] . '"><button class="btn btn-primary" role="button">Approve</button></a></li>';
                             }
                         }

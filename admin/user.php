@@ -55,9 +55,9 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                         $sql = "SELECT * FROM user_details";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<li class="list-group-item list-group-item-success">' . $row['name'] . '<br>';
-                            echo $row['email'] . '<br>';
-                            echo $row['phone'] . '</li>';
+                            echo '<li class="list-group-item list-group-item-info mt-2">' . $row['name'] .
+                                "," . $row['email'] .
+                                "," . $row['phone'] . '</li>';
                         }
                         ?>
                     </div>

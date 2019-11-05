@@ -26,7 +26,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <a class="nav-link active">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.php">LOGIN</a>
+                <a class="nav-link" href="user/index.php">LOGIN</a>
             </li>
         </ul>
     </nav>

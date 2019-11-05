@@ -52,7 +52,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                 <div class="col-md-12">
                     <div class="list-group">
                         <?php foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-info"><?php $a['casetype']; ?>
+                            <li class="list-group-item list-group-item-info mt-2"><?php $a['casetype']; ?>
                                 <div class="row">
                                     <div class="col-md-9">
                                         <?php echo $a['name']; ?>

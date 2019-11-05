@@ -58,7 +58,7 @@
                         professional excellence, client services and expert legal advice.
                     </p>
                    <div class="row mx-auto">
-                   <a href="../index.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as User</button></a>
+                   <a href="../user/index.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as User</button></a>
                     <a href="../lawyer/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as Lawyer</button></a>
                    </div>
                 </div>

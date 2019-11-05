@@ -5,7 +5,7 @@ if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
     $uid = $_SESSION['uid'];
 } else {
     echo '<script type="text/javascript">
-                window.location = "../index.php"
+                window.location = "index.php"
                  </script>';
 }
 $casetype_data = [];
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     window.location = "cases.php"
                     </script>';
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: Please enter all case details  <a href='home.php'>Click here to try again.</a>";
     }
 }
 
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label>Type of Case</label>
                             <select class="form-control" name="casetype">
                                 <?php foreach ($casetype_data as $a) { ?>
-                                    <option value="<?php echo $a['casetype_id'];?>">
+                                    <option value="<?php echo $a['casetype_id']; ?>">
                                         <?php echo $a['casetype']; ?>
                                     </option>
                                 <?php } ?>
@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label>Lawyer</label>
                             <select class="form-control" name="lawyer">
                                 <?php foreach ($lawyer_data as $b) { ?>
-                                    <option value="<?php echo $b['lid'];?>">
+                                    <option value="<?php echo $b['lid']; ?>">
                                         <?php echo $b['name']; ?>
                                     </option>
                                 <?php } ?>
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label>Court</label>
                             <select class="form-control" name="court">
                                 <?php foreach ($court_data as $c) { ?>
-                                    <option value="<?php echo $c['cid'];?>">
+                                    <option value="<?php echo $c['cid']; ?>">
                                         <?php echo $c['court_name']; ?>
                                     </option>
                                 <?php } ?>

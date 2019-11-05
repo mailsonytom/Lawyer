@@ -33,6 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+$casetype_data = [];
+$casetype_sql = "SELECT * FROM casetype";
+$casetype_result = mysqli_query($conn, $casetype_sql);
+while ($row = mysqli_fetch_assoc($casetype_result)) {
+    $casetype_data[] = $row;
+}
 
 ?>
 <!DOCTYPE html>
@@ -55,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a class="nav-link mt-1" href="../court.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link mt-1" href="../index.php">LOGIN</a>
+                <a class="nav-link mt-1" href="login.php">LOGIN</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../user/signup.php">
@@ -87,15 +93,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <input type="password" name="password" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label>Speciality</label>
-                                <input type="text" class="form-control" name="specs">
-                            </div>
+                            <label>Speciality</label>
+                            <select class="form-control" name="speciality">
+                                <?php foreach ($casetype_data as $a) { ?>
+                                    <option value="<?php echo $a['casetype_id']; ?>">
+                                        <?php echo $a['casetype']; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
                             <div class="form-group">
-                                <label>Experience</label>
+                                <label>Experience [in yrs]</label>
                                 <input type="text" class="form-control" name="exp">
                             </div>
                             <div class="form-group">
-                                <label> Fees</label>
+                                <label> Fees [per sitting]</label>
                                 <input type="text" class="form-control" name="fees">
 
                             </div>
@@ -112,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             <div class="form-group">
                                 <label>Date of birth</label>
-                                <input type="text" class="form-control" name="dob">
+                                <input type="date" class="form-control" name="dob">
                             </div>
                         </div>
                     </div>

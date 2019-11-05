@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a class="nav-link mt-1" href="../court.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link mt-1" href="../index.php">LOGIN</a>
+                <a class="nav-link mt-1" href="index.php">LOGIN</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../lawyer/signup.php">
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container">
         <div class="row">
             <div class="col-md-6 mx-auto mt-5 mb-5 border border-primary rounded">
-                <h4 class=" col-md-6 mt-2 mx-auto text-center">USER REGISTRATION</h4>
+                <h4 class=" col-md-8 mt-2 mx-auto text-center">USER REGISTRATION</h4>
                 <form action="" method="POST">
                     <?php echo $error; ?>
                     <div class="row mx-1 mb-3">

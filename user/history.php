@@ -3,7 +3,7 @@
 session_start();
 if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     echo '<script type="text/javascript">
-                window.location = "../index.php"
+                window.location = "index.php"
                  </script>';
 } else {
     $data = [];
@@ -60,10 +60,9 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                 <div class="col-md-12">
                     <div class="list-group">
                         <?php foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-success">
-                                <?php echo $a['name']; ?> Updated: <br>
-                                <p><?php echo $a['history']; ?></p>
-                                <p><?php echo $a['date']; ?></p>
+                            <li class="list-group-item list-group-item-info mt-2">
+                                <?php echo $a['name']. "Updated";?><br>
+                                <p><?php echo $a['history']. '<br>' . $a['date']; ?></p>
                             </li>
                         <?php } ?>
                     </div>

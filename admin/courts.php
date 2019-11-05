@@ -51,8 +51,8 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                         $sql = "SELECT * FROM courts";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
-                                echo '<li class="list-group-item list-group-item-success">' . $row['court_name'] . '</br>';
-                                echo $row['place'] . '</li>';
+                                echo '<li class="list-group-item list-group-item-info mt-2">' . $row['court_name'] .
+                                "," .$row['place'] . '</li>';
                         }
                         ?>
                     </div>

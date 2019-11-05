@@ -68,10 +68,8 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                     <div class="list-group">
                         <?php foreach ($data as $a) { ?>
                             <li class="list-group-item list-group-item-info mt-2">
-                                <?php echo "You" ?> Updated: <br>
-                                <p><?php echo $a['history']; ?></p>
-                                <p><?php echo $a['date']; ?></p>
-
+                                <?php echo "You Updated:" ?> <br>
+                                <p><?php echo $a['history'] . "on" . $a['date'];?></p>
                             </li>
                         <?php } ?>
                     </div>

@@ -64,7 +64,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                 <div class="col-md-6">
                     <div class="list-group">
                         <?php foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-success mt-2">
+                            <li class="list-group-item list-group-item-info mt-2">
                                 <?php if ($a['user'] == 1) {
                                         echo "You";
                                     } else {

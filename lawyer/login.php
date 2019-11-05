@@ -43,7 +43,7 @@
                 <a class="nav-link" href="../court.php">Courts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="signup.php">Lawyer Registration</a>
+                <a class="nav-link" href="signup.php">LAWYER-REGISTRATION</a>
             </li>
 
         </ul>
@@ -62,7 +62,7 @@
                     </p>
                     <div class="row mx-auto">
                     <a href="../admin/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as Admin</button></a>
-                    <a href="../index.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as User</button></a>
+                    <a href="../user/index.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as User</button></a>
                    </div>
                 </div>
             </div>

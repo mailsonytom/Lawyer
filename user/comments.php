@@ -4,7 +4,7 @@ session_start();
 if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
 
     echo '<script type="text/javascript">
-    window.location = "../index.php"
+    window.location = "index.php"
      </script>';
 } else {
     $data = [];
