@@ -41,9 +41,11 @@ while ($row = mysqli_fetch_assoc($result)) {
                 <div class="col-md-12">
                     <div class="list-group">
                         <?php foreach ($data as $a) { ?>
+                            <?php if ($a['approved'] == 1) { ?>
                             <li class="list-group-item list-group-item-info mt-2">
                                 <?php echo $a['name'].": ". $a['speciality'];?>
                             </li>
+                            <?php } ?>
                         <?php } ?>
                     </div>
                 </div>

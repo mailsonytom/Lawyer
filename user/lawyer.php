@@ -55,9 +55,11 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                 <div class="col-md-12">
                     <div class="list-group">
                         <?php foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-info mt-2">
-                                <?php echo $a['name'] . ": " . $a['speciality']; ?>
-                            </li>
+                            <?php if ($a['approved'] == 1) { ?>
+                                <li class="list-group-item list-group-item-info mt-2">
+                                    <?php echo $a['name'] . ": " . $a['speciality']; ?>
+                                </li>
+                            <?php } ?>
                         <?php } ?>
                     </div>
                 </div>

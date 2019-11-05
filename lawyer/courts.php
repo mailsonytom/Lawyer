@@ -51,9 +51,7 @@ else{
                             $sql = "SELECT * FROM courts";
                             $result = mysqli_query($conn, $sql);
                             while($row=mysqli_fetch_assoc($result)){
-                                if($row['activestatus'] == 1){
                                     echo '<li class="list-group-item list-group-item-info mt-2">' .$row['court_name']. "," .$row['place']. '</li>';
-                                }
                             }
                         ?>
                     </div>
