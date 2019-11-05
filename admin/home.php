@@ -49,16 +49,19 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                 <div class="col-md-12">
                     <div class="list-group mx-1">
                         <?php
+                        $count = 0;
                         $sql = "SELECT * FROM lawyer_details";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
                             if ($row['approved'] == 0) {
+                                $count = 1;
                                 echo '<li class="list-group-item list-group-item-info mt-2">' . $row['name'] .
                                     "," . $row['email'] .
                                     "," . $row['phone'] .
                                     '<a href="approve.php?lid=' . $row['lid'] . '"><button class="btn btn-primary" role="button">Approve</button></a></li>';
                             }
                         }
+                        if($count == 0) {echo '<span class="badge badge-pill badge-light mt-2 mx-1"> No recent lawyer requests </span>';}
                         ?>
                     </div>
                 </div>

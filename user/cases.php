@@ -6,6 +6,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                 window.location = "index.php"
                  </script>';
 } else {
+    $count = 0;
     $uid = $_SESSION['uid'];
     $sql = "SELECT cases.active_status, cases.description, casetype, case_id FROM cases 
     INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id WHERE uid = '$uid'";
@@ -53,7 +54,8 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                     <div class="list-group">
                         <h5>Requested</h5>
                         <?php foreach ($data as $a) { ?>
-                            <?php if ($a['active_status'] == 0) { ?>
+                            <?php if ($a['active_status'] == 0) {
+                                    $count = 1; ?>
                                 <li class="list-group-item list-group-item-info">
                                     <div class="row">
                                         <div class="col-md-7">
@@ -67,6 +69,10 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                                     </div>
                                 </li>
                             <?php } ?>
+                            <?php if ($count == 0) {
+                                    echo '<span class="badge badge-pill badge-light mt-2 mx-1"> There are no cases currently requested </span>';
+                                }
+                                ?>
                         <?php } ?>
                     </div>
                 </div>
@@ -74,7 +80,8 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                     <div class="list-group">
                         <h5>Approved</h5>
                         <?php foreach ($data as $a) { ?>
-                            <?php if ($a['active_status'] == 1) { ?>
+                            <?php if ($a['active_status'] == 1) {
+                                $count = 0; ?>
                                 <li class="list-group-item list-group-item-info">
                                     <div class="row">
                                         <div class="col-md-8">
@@ -89,6 +96,10 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                                     </div>
                                 </li>
                             <?php } ?>
+                            <?php if ($count == 1) {
+                                    echo '<span class="badge badge-pill badge-light mt-2 mx-1"> There are no cases currently approved </span>';
+                                }
+                                ?>
                         <?php } ?>
                     </div>
                 </div>
