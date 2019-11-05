@@ -8,7 +8,22 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                 window.location = "login.php"
                  </script>';
 }
+
+$courtname = $location = $error = "";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $courtname = $_POST['name'];
+    $location = $_POST['location'];
+    $sql = "INSERT INTO courts(court_name, place) VALUES ('$courtname', '$location')";
+    if ($conn->query($sql) === TRUE) {
+        echo '<script type="text/javascript">
+            window.location = "courts.php"
+               </script>';
+    } else {
+        $error = "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -51,8 +66,8 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                         $sql = "SELECT * FROM courts";
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
-                                echo '<li class="list-group-item list-group-item-info mt-2">' . $row['court_name'] .
-                                "," .$row['place'] . '</li>';
+                            echo '<li class="list-group-item list-group-item-info mt-2">' . $row['court_name'] .
+                                "," . $row['place'] . '</li>';
                         }
                         ?>
                     </div>
@@ -70,25 +85,12 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                                     <label>Location</label>
                                     <input type="text" class="form-control" name="location">
                                 </div>
+                                <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
                                 <div class="col-md-3 mt-2 text-center mx-auto">
                                     <a href="">
                                         <button class="btn btn-success " type="submit">SUBMIT</button>
                                     </a>
-                                    <?php
-                                    $courtname = $location = "";
-                                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                                        $courtname = $_POST['name'];
-                                        $location = $_POST['location'];
-                                        $sql = "INSERT INTO courts(court_name, place) VALUES ('$courtname', '$location')";
-                                        if ($conn->query($sql) === TRUE) {
-                                            echo '<script type="text/javascript">
-                                                window.location = "courts.php"
-                                                </script>';
-                                        } else {
-                                            echo "Error: " . $sql . "<br>" . $conn->error;
-                                        }
-                                    }
-                                    ?>
+
                                 </div>
                             </div>
                         </form>

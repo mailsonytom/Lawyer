@@ -10,8 +10,11 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
     $sql = "SELECT * FROM cases INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id INNER JOIN user_details 
     ON cases.uid = user_details.uid WHERE active_status = 0";
     $result = mysqli_query($conn, $sql);
+    $num_rows = mysqli_num_rows($result);
+    if($num_rows >0){
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
+    }
     }
 }
 $lawyer_name_data = [];
@@ -57,7 +60,11 @@ while ($row = mysqli_fetch_assoc($lawyer_name_result)) {
             <div class="row mx-1">
                 <div class="col-md-12">
                     <div class="list-group">
-                        <?php foreach ($data as $a) { ?>
+                        <?php 
+                        if($num_rows==0){
+                            echo '<span class="badge badge-pill badge-light mt-2 mx-1"> No recent case requests </span>';
+                        }else{
+                        foreach ($data as $a) { ?>
                             <li class="list-group-item list-group-item-info mt-2"><?php $a['casetype']; ?>
                                 <div class="row">
                                     <div class="col-md-9">
@@ -68,7 +75,7 @@ while ($row = mysqli_fetch_assoc($lawyer_name_result)) {
                                         <a href="accept.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">Accept Case</a>
                                     </div>
                                 </div>
-                            <?php } ?>
+                            <?php } }?>
                     </div>
                 </div>
             </div>

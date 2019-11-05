@@ -1,27 +1,25 @@
 <?php include 'connect.php' ?>
 <?php
-    session_start();
-    $username = $password = "";
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $username = $_POST['email'];
-        $password = $_POST['password'];
-        $sql = "SELECT * FROM lawyer_details WHERE email = '$username'";
-        $result = mysqli_query($conn, $sql);
-        if($row=mysqli_fetch_assoc($result)){
-            if(password_verify($password, $row['password']) && $row['approved'] == 1){
-                $_SESSION['lid'] = $row['lid'];
-                echo '<script type="text/javascript">
+session_start();
+$username = $password = $error = "";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['email'];
+    $password = $_POST['password'];
+    $sql = "SELECT * FROM lawyer_details WHERE email = '$username'";
+    $result = mysqli_query($conn, $sql);
+    if ($row = mysqli_fetch_assoc($result)) {
+        if (password_verify($password, $row['password']) && $row['approved'] == 1) {
+            $_SESSION['lid'] = $row['lid'];
+            echo '<script type="text/javascript">
                 window.location = "home.php"
                  </script>';
-            }
-            else{
-                    echo "Wrong password or you are not approved. <a href='login.php'>Click here to try again.</a>";  
-            }
+        } else {
+            $error = "Wrong password or you are not approved";
         }
-        else{
-                echo "Wrong username. <a href='login.php'>Click here to try again.</a>";
-            }
-        }
+    } else {
+        $error = "Wrong username";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -61,9 +59,9 @@
                         professional excellence, client services and expert legal advice.
                     </p>
                     <div class="row mx-auto">
-                    <a href="../admin/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as Admin</button></a>
-                    <a href="../user/index.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as User</button></a>
-                   </div>
+                        <a href="../admin/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as Admin</button></a>
+                        <a href="../user/index.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as User</button></a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -84,10 +82,10 @@
                                         <label>Password</label>
                                         <input type="password" name="password" class="form-control">
                                     </div>
+                                    <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
                                 </div>
                                 <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
-                                     
-                                            <input class="btn btn-success" type="submit" value="SUBMIT">                                </div>
+                                    <input class="btn btn-success" type="submit" value="SUBMIT"> </div>
                             </div>
                     </div>
                     </form>

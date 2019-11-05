@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     window.location = "index.php"
                     </script>';
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $error = "Error: " . $sql . "<br>" . $conn->error;
         }
     }
 }
@@ -83,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <input type="text" name="phone" class="form-control">
                             </div>
                         </div>
+                        <span class="badge badge-pill badge-warning"><?php echo $error;?></span>
                     </div>
                     <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
                         <a href="">

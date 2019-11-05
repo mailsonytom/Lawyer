@@ -9,8 +9,11 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
     $lid = $_SESSION['lid'];
     $sql = "SELECT casetype, cases.active_status, cases.description, case_id FROM cases INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id WHERE lid = '$lid' AND active_status = 1";
     $result = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_assoc($result)) {
-        $data[] = $row;
+    $num_rows = mysqli_num_rows($result);
+    if ($num_rows > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
     }
 }
 ?>
@@ -42,29 +45,34 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
 
         </ul>
     </nav>
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid">
+    <div class="mt-5 mb-5 py-2 border border-primary rounded">
+        <div class="row mx-1">
             <div class="col-md-12">
-                <h3>Current case list</h3>
+                <h4 class=" col-md-4 mx-auto text-center">Current case list</h4>
                 <div class="list-group">
-                    <?php foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-info mt-2">
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <p><?php echo $a['casetype']; ?></p>
-                                        <p><?php echo $a['description']; ?></p>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add Comment</a>
-                                        <a href="history.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add History</a>
-                                    </div>
-                                    </a>
+                <?php if($num_rows==0){
+                            echo '<span class="badge badge-pill badge-light mt-2 mx-1"> No live cases</span>';
+                        }else{
+                     foreach ($data as $a) { ?>
+                        <li class="list-group-item list-group-item-info mt-2">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <p><?php echo $a['casetype']; ?></p>
+                                    <p><?php echo $a['description']; ?></p>
                                 </div>
-                            </li>
-                    <?php } ?>
+                                <div class="col-md-3">
+                                    <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add Comment</a>
+                                    <a href="history.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add History</a>
+                                </div>
+                                </a>
+                            </div>
+                        </li>
+                    <?php } }?>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     </div>
     <footer class="footer px-5 py-5 ">

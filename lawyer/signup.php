@@ -1,6 +1,6 @@
 <?php include 'connect.php' ?>
 <?php
-$name = $username = $password = $spec = $exp = $fees = $contact = $gender = $birthdate = "";
+$name = $username = $password = $spec = $exp = $fees = $contact = $gender = $birthdate = $error = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $flag = 0;
     $name = $_POST['name'];
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     window.location = "login.php"
                     </script>';
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $error = "Error: ". $sql . "<br>" . $conn->error;
         }
     }
 }
@@ -93,15 +93,15 @@ while ($row = mysqli_fetch_assoc($casetype_result)) {
                                 <input type="password" name="password" class="form-control">
                             </div>
                             <div class="form-group">
-                            <label>Speciality</label>
-                            <select class="form-control" name="speciality">
-                                <?php foreach ($casetype_data as $a) { ?>
-                                    <option value="<?php echo $a['casetype_id']; ?>">
-                                        <?php echo $a['casetype']; ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                        </div>
+                                <label>Speciality</label>
+                                <select class="form-control" name="speciality">
+                                    <?php foreach ($casetype_data as $a) { ?>
+                                        <option value="<?php echo $a['casetype_id']; ?>">
+                                            <?php echo $a['casetype']; ?>
+                                        </option>
+                                    <?php } ?>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label>Experience [in yrs]</label>
                                 <input type="text" class="form-control" name="exp">
@@ -127,6 +127,7 @@ while ($row = mysqli_fetch_assoc($casetype_result)) {
                                 <input type="date" class="form-control" name="dob">
                             </div>
                         </div>
+                        <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
                     </div>
                     <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
                         <a href="">

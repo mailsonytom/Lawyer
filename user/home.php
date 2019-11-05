@@ -35,7 +35,7 @@ $court_result = mysqli_query($conn, $court_sql);
 while ($row = mysqli_fetch_assoc($court_result)) {
     $court_data[] = $row;
 }
-$casetype = $lawyer = $court = $date = $desc = "";
+$casetype = $lawyer = $court = $date = $desc = $error = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uid = $_SESSION['uid'];
     $casetype = $_POST['casetype'];
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     window.location = "cases.php"
                     </script>';
     } else {
-        echo "Error: Please enter all case details  <a href='home.php'>Click here to try again.</a>";
+       $error = "Error: Please enter all case details";
     }
 }
 
@@ -151,6 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </textarea>
                         </div>
                     </div>
+                    <span class="badge badge-pill badge-warning"><?php echo $error;?></span>
                 </div>
                 <div class="col-md-3 mt-2 text-center mx-auto">
                     <div class="form-check">

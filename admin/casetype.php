@@ -7,7 +7,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
      </script>';
 } else {
     $id = $_SESSION['id'];
-    $casetype = $description = "";
+    $casetype = $description = $error = "";
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $casetype = $_POST['casetype'];
         $description = $_POST['desc'];
@@ -17,7 +17,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
         window.location = ""
     </script>';
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $error = "Error: " . $sql . "<br>" . $conn->error;
         }
     }
 }
@@ -70,6 +70,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
                                 <label>Description</label>
                                 <textarea class="form-control" rows="5" id="desc" name="desc">
                                 </textarea>
+                                <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
                                 <div class="col-md-3 mt-2 mx-auto text-center">
                                     <a href="">
                                         <button class="btn btn-success " type="submit">SUBMIT</button>

@@ -1,7 +1,7 @@
 <?php include 'connect.php' ?>
 <?php
     session_start();
-    $username = $password = "";
+    $username = $password = $error = "";
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $username = $_POST['email'];
         $password = $_POST['password'];
@@ -15,11 +15,11 @@
                  </script>';
             }
             else{
-                    echo "Wrong password. <a href='index.php'>Click here to try again.</a>";  
+                   $error =" Wrong password";  
             }
         }
         else{
-                echo "Wrong username. <a href='index.php'>Click here to try again.</a>";
+               $error = "Wrong username";
             }
         }
 ?> 
@@ -84,6 +84,7 @@
                                         <label>Password</label>
                                         <input type="password" name="password" class="form-control">
                                     </div>
+                                    <span class="badge badge-pill badge-warning"><?php echo $error;?></span>
                                 </div>
                                 <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
                                             <input class="btn btn-success" type="submit" value="SUBMIT">
