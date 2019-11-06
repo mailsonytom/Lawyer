@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     window.location = "cases.php"
                     </script>';
     } else {
-       $error = "Error: Please enter all case details";
+       $error = "Please fill all * box";
     }
 }
 
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="row mx-1">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Type of Case</label>
+                            <label>Type of Case *</label>
                             <select class="form-control" name="casetype">
                                 <?php foreach ($casetype_data as $a) { ?>
                                     <option value="<?php echo $a['casetype_id']; ?>">
@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Lawyer</label>
+                            <label>Lawyer *</label>
                             <select class="form-control" name="lawyer">
                                 <?php foreach ($lawyer_data as $b) { ?>
                                     <option value="<?php echo $b['lid']; ?>">
@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="col-md-6 ">
                         <div class="form-group">
-                            <label>Court</label>
+                            <label>Court *</label>
                             <select class="form-control" name="court">
                                 <?php foreach ($court_data as $c) { ?>
                                     <option value="<?php echo $c['cid']; ?>">
@@ -140,14 +140,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Date</label>
+                            <label>Date *</label>
                             <input type="date" class="form-control" name="date">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea class="form-control" rows="5" id="desc" name="desc">
+                            <textarea class="form-control"  id="desc" name="desc">
                                 </textarea>
                         </div>
                     </div>
@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="invalid-feedback">
                             You must agree before submitting.
                         </div>
-                        <a href="">
+                        <a>
                             <button class="btn btn-success " type="submit">Submit</button>
                         </a>
                     </div>

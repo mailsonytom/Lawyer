@@ -60,7 +60,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                         }else{
                         foreach ($data as $a) { ?>
                             <?php if ($a['active_status'] == 0) { ?>
-                                <li class="list-group-item list-group-item-info">
+                                <li class="list-group-item list-group-item-info mt-2">
                                     <div class="row">
                                         <div class="col-md-7">
                                             <p><?php echo $a['casetype']; ?></p>
@@ -81,7 +81,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                         <?php foreach ($data as $a) { ?>
                             <?php if ($a['active_status'] == 1) {
                                     $count = 0; ?>
-                                <li class="list-group-item list-group-item-info">
+                                <li class="list-group-item list-group-item-info mt-2">
                                     <div class="row">
                                         <div class="col-md-8">
                                             <p><?php echo $a['casetype']; ?></p>
