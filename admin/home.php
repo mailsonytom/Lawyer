@@ -49,12 +49,14 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                 <div class="col-md-12">
                     <div class="list-group mx-1">
                         <?php
+                        $datacount = 0;
                         $sql = "SELECT * FROM lawyer_details";
                         $result = mysqli_query($conn, $sql);
                         $num_rows = mysqli_num_rows($result);
                         if ($num_rows > 0) {
                             while ($row = mysqli_fetch_assoc($result)) {
                                 if ($row['approved'] == 0) {
+                                    $datacount = 1;
                                     echo '<li class="list-group-item list-group-item-info mt-2">' . $row['name'] .
                                         "," . $row['email'] .
                                         "," . $row['phone'] .
@@ -62,8 +64,8 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                                 }
                             }
                         }
-                        if ($num_rows == 0) {
-                            echo '<span class="badge badge-pill badge-light mt-2 mx-1"> No recent lawyer requests </span>';
+                        if($datacount == 0){
+                            echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no lawyers currently requested</span>';
                         }
                         ?>
                     </div>

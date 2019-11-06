@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 05, 2019 at 07:41 PM
+-- Generation Time: Nov 06, 2019 at 08:52 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -69,8 +69,10 @@ INSERT INTO `cases` (`case_id`, `description`, `casetype_id`, `uid`, `lid`, `cid
 (4, '                                nlsdhv lsdh lv', 1, 1, 1, 1, '2019-09-04', 1),
 (5, '                                sd;lihabd;lv', 1, 1, 1, 1, '2019-09-18', 1),
 (6, '                                heloo', 1, 1, 3, 1, '2019-09-25', 1),
-(7, '                                something fishy', 1, 10, 1, 1, '2019-11-11', 1),
-(8, 'Case based on criminal offence', 1, 10, 4, 1, '2019-11-05', 1);
+(15, '                                case on criminal background', 1, 10, 4, 1, '2019-11-06', 1),
+(16, '                                sdvzcv', 3, 10, 6, 1, '2019-11-11', 1),
+(17, '                                helluojbjgkkhck', 1, 10, 5, 1, '2019-11-06', 1),
+(18, '                                sogbompsd0vm', 1, 13, 6, 1, '2019-11-06', 0);
 
 -- --------------------------------------------------------
 
@@ -90,7 +92,7 @@ CREATE TABLE `casetype` (
 
 INSERT INTO `casetype` (`casetype_id`, `casetype`, `description`) VALUES
 (1, 'Criminal case', 'lsdhlvlap adlv;ladnv aldivxj o;adv l                                '),
-(2, '', '                                ');
+(3, 'Civil case', 'Cases based on property etc                                ');
 
 -- --------------------------------------------------------
 
@@ -141,9 +143,7 @@ INSERT INTO `courts` (`cid`, `court_name`, `place`) VALUES
 (1, 'District Court', 'Kottayam'),
 (2, 'High Court', 'Eranakulam'),
 (3, 'District Court', 'Eranakulam'),
-(4, 'Supreme Court ', 'NewDelhi'),
-(5, '', ''),
-(6, '', '');
+(4, 'Supreme Court ', 'NewDelhi');
 
 -- --------------------------------------------------------
 
@@ -204,10 +204,9 @@ CREATE TABLE `lawyer_details` (
 INSERT INTO `lawyer_details` (`lid`, `name`, `email`, `password`, `speciality`, `experience`, `fees`, `phone`, `gender`, `dob`, `approved`) VALUES
 (1, 'Sony', 'mailsonytom@gmail.com', '$2y$10$9mhcf7RF2s8fwhMzvmQ9qOsqRDM7H8bPMmMLcULg4VY36bGZS/0Re', 'Criminal Case', 'two years', '10000', '8078518030', 'male', '13/08/1999', 1),
 (3, 'Tony', 'tom@gmail.com', '$2y$10$vmrO5Pyy3zEXQ7xHRyYOh.QMB54MMUOLxPUPHIo698h.kNqNWOF8i', 'Civil case', '4yrs ', '10000', '90987987687', 'Male', '09/90/1990', 1),
-(4, 'Rince philip', 'rince12@gmail.com', '$2y$10$uZzYiXsuBkVA6zAi3f9qouK..swGLwNJeDB0ci8o/RY2FPMUxdLnK', 'Civil case', '4 ', '', '', 'Male', '', 1),
 (5, 'Rince philip', 'rince123@gmail.com', '$2y$10$NGuPxI2HQzlWHcBdC9IUDe7T9wAh3w7.yZHiWbPao1s9ltMbCIeY2', 'Civil case', '4yrs ', '10000', '9293456716', 'Male', '1986-11-11', 1),
 (6, 'Kevin Jose ', 'kevinjose@gmail.com', '$2y$10$LPCMhnt08/8osn.SLrwN0.DqzTTxVxQZkL4JQw2on584yusr6CMFm', '', '5yrs ', '3000', '94939295968', 'Male', '2019-11-28', 1),
-(7, '', '', '$2y$10$nDk6.uQy3m2flTBGlMtADOCNydpxNBJoStKxo.RdKt8BF7qmaKEiy', '', ' ', '', '', 'Male', '', 0);
+(7, '', '', '$2y$10$nDk6.uQy3m2flTBGlMtADOCNydpxNBJoStKxo.RdKt8BF7qmaKEiy', '', ' ', '', '', 'Male', '', 1);
 
 -- --------------------------------------------------------
 
@@ -230,7 +229,8 @@ CREATE TABLE `user_details` (
 INSERT INTO `user_details` (`uid`, `name`, `email`, `password`, `phone`) VALUES
 (1, 'Saran Sasi', 'saransasi@gmail.com', '$2y$10$URGHXgnIg.vOPx.npv91xOOtfJyRDQPdjuU/tAvGPXQu27KoyJdPe', '9009899876'),
 (9, 'Sony', 'sony222@gmail.com', '$2y$10$yavL7D1O.zaSV1Ls32NYh.dqftxxoVMYq6bj9Y7/8HAi5BtwCcIpC', '0987654432'),
-(10, 'Subin', 'subin12@gmail.com', '$2y$10$s5n26ecD9qgl28NRfAIp7O/jrXcQJTzDx0k99p8zbf2K9VhGjTnAK', '9899767691');
+(10, 'Subin', 'subin12@gmail.com', '$2y$10$s5n26ecD9qgl28NRfAIp7O/jrXcQJTzDx0k99p8zbf2K9VhGjTnAK', '9899767691'),
+(13, 'Nirmal MD', 'nirmal12@gmail.com', '$2y$10$lLzWdRlZ.6KelYpdQDXlsuGCQ19AzO3qyKhoC558FmRZl.zPqApFO', '9890989876');
 
 --
 -- Indexes for dumped tables
@@ -298,13 +298,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cases`
 --
 ALTER TABLE `cases`
-  MODIFY `case_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `case_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `casetype`
 --
 ALTER TABLE `casetype`
-  MODIFY `casetype_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `casetype_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -334,7 +334,7 @@ ALTER TABLE `lawyer_details`
 -- AUTO_INCREMENT for table `user_details`
 --
 ALTER TABLE `user_details`
-  MODIFY `uid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `uid` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

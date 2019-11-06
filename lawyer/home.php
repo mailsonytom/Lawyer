@@ -62,13 +62,13 @@ while ($row = mysqli_fetch_assoc($lawyer_name_result)) {
                     <div class="list-group">
                         <?php 
                         if($num_rows==0){
-                            echo '<span class="badge badge-pill badge-light mt-2 mx-1"> No recent case requests </span>';
+                            echo '<span class="badge badge-pill badge-light mt-5 mx-1"> No recent case requests </span>';
                         }else{
                         foreach ($data as $a) { ?>
                             <li class="list-group-item list-group-item-info mt-2"><?php $a['casetype']; ?>
                                 <div class="row">
                                     <div class="col-md-9">
-                                        <?php echo $a['name']; ?>
+                                        <?php echo $a['name'].","; ?>
                                         <?php echo $a['description']; ?>
                                     </div>
                                     <div class="col-md-3">
