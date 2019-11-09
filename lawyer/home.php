@@ -8,7 +8,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
 } else {
     $lid = $_SESSION['lid'];
     $sql = "SELECT * FROM cases INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id INNER JOIN user_details 
-    ON cases.uid = user_details.uid WHERE active_status = 0";
+    ON cases.uid = user_details.uid WHERE active_status = 0 AND lid = $lid";
     $result = mysqli_query($conn, $sql);
     $num_rows = mysqli_num_rows($result);
     if($num_rows >0){
