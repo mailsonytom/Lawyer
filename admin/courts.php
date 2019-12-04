@@ -8,10 +8,43 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                 window.location = "login.php"
                  </script>';
 }
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 $courtname = $location = $error = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $courtname = $_POST['name'];
+        $flag = 0;
+        if (empty($_POST["name"])) {
+            $error = "Courtname is required";
+            $flag = 1;
+        } else {
+            $name = test_input($_POST['name']);
+            // check if name only contains letters and whitespace
+            if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+                $flag = 1;
+                $error = "Only letters and white space allowed";
+            }
+        }
+        $flag = 0;
+        if (empty($_POST["location"])) {
+            $error = "location is required";
+            $flag = 1;
+        } else {
+            $location = test_input($_POST['location']);
+            // check if name only contains letters and whitespace
+            if (!preg_match("/^[a-zA-Z ]*$/", $location)) {
+                $flag = 1;
+                $error = "Only letters and white space allowed";
+            }
+        }
+    if($flag == 0 )
+    {
+        $courtname = $_POST['name'];
     $location = $_POST['location'];
     $sql = "INSERT INTO courts(court_name, place) VALUES ('$courtname', '$location')";
     if ($conn->query($sql) === TRUE) {
@@ -20,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                </script>';
     } else {
         $error = "Error: " . $sql . "<br>" . $conn->error;
+    }
     }
 }
 ?>
@@ -85,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <label>Location</label>
                                     <input type="text" class="form-control" name="location">
                                 </div>
-                                <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
+                                <span class="badge badge-pill badge-warning mx-1"><?php echo $error; ?></span>
                                 <div class="col-md-3 mt-2 text-center mx-auto">
                                     <a href="">
                                         <button class="btn btn-success " type="submit">SUBMIT</button>
