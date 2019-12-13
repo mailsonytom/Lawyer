@@ -16,7 +16,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">

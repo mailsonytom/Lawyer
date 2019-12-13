@@ -8,6 +8,18 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
 } else {
     $data = [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $flag = 0;
+        if (empty($_POST["comment"])) {
+            $error = "Data is required";
+            $flag = 1;
+        } else {
+            $comment = test_input($_POST['comment']);
+            // check if name only contains letters and whitespace
+            if (!preg_match("/^[a-zA-Z ]*$/", $comment)) {
+                $flag = 1;
+                $error = "Only letters and white space allowed";
+            }
+        }
         $case_id = $_POST['id'];
         $comment = $_POST['comment'];
         $csql = "INSERT INTO comments (case_id, user, comment) VALUES ('$case_id', '1', '$comment')";
@@ -40,7 +52,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">

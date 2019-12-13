@@ -33,21 +33,24 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-bg">
-        <a class="navbar-brand" href="#">Find your LAWYER</a>
-        <ul class="navbar-nav ml-auto">
+<header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="../home.html">Find your lawyer</a>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="../lawyers.php">Lawyers</a>
+              <a class="nav-link" href="../admin/login.php">ADMIN <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../court.php">Courts</a>
+              <a class="nav-link" href="../lawyer/login.php">LAWYER</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="signup.php">USER-REGISTRATION</a>
+              <a class="nav-link" href="signup.php">USER-REGISTRATION</a>
             </li>
-
-        </ul>
-    </nav>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <div class="container-fluid content">
         <div class="row px-5 py-5">
             <div class="col-md-6 px-1 mb-5">

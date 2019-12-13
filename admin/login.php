@@ -32,14 +32,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-bg">
-        <a class="navbar-brand" href="#">Find your LAWYER</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="../home.html">Find your LAWYER</a>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="../lawyers.php">Lawyers</a>
+                <a class="nav-link" href="../lawyer/login.php">LAWYER</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../court.php">Courts</a>
+                <a class="nav-link" href="../user/index.php">USER</a>
             </li>
         </ul>
     </nav>
