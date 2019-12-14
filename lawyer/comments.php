@@ -1,32 +1,37 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
     echo '<script type="text/javascript">
     window.location = "login.php"
      </script>';
 } else {
-    $data = [];
+    $error = $comment = "";
+    $flag = 0;
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $flag = 0;
+
         if (empty($_POST["comment"])) {
-            $error = "Data is required";
+            $error = "Comment is required";
             $flag = 1;
         } else {
-            $comment = test_input($_POST['comment']);
-            // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z ]*$/", $comment)) {
-                $flag = 1;
-                $error = "Only letters and white space allowed";
+            $comment = test_input($conn->real_escape_string($_POST['comment']));
+        }
+        $case_id = $_POST['case_id'];
+        if ($flag == 0) {
+            $csql = "INSERT INTO comments (case_id, user, comment) VALUES ('$case_id', '1', '$comment')";
+            if (mysqli_query($conn, $csql)) {
+                echo '<script type="text/javascript">
+                window.location = "comments.php?id=', $case_id, '
+                </script>';
             }
         }
-        $case_id = $_POST['id'];
-        $comment = $_POST['comment'];
-        $csql = "INSERT INTO comments (case_id, user, comment) VALUES ('$case_id', '1', '$comment')";
-        mysqli_query($conn, $csql);
-        echo '<script type="text/javascript">
-        window.location = "comments.php?id=', $case_id, '
-        </script>';
     }
     if (isset($_GET['id'])) {
         $case_id = $_GET['id'];
@@ -49,29 +54,34 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
     <title>Comments</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Find your LAWYER</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="home.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="cases.php">Cases</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="courts.php">Courts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">SIGNOUT</a>
-            </li>
+        <div class="container">
+            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./home.php"><button class="btn btn-outline-warning">Home</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./cases.php"><button class="btn btn-outline-warning">Cases</button></a>
+                    </li>
 
-        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./courts.php"><button class="btn btn-outline-warning">Courts</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./logout.php"><button class="btn btn-danger">Sign out</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <div class="container-fluid">
-        <div class="mt-5 mb-5 py-2 border border-primary rounded">
+    <div class="container">
+        <div class="mt-5 mb-5 py-2 case-form">
             <div class="row mx-1 mt-2 mb-2">
                 <div class="col-md-6">
                     <div class="list-group">
@@ -89,36 +99,23 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h4 class="mx-auto text-center">Add Comment</h4>
+                    <h4 class="">Add Comment</h4>
                     <div class="list-group mt-2">
                         <form action="" method="post">
                             <div class="form-group">
-                                <label>Comment</label>
-                                <textarea class="form-control" rows="5" id="comment" name="comment">
-                                </textarea>
+                                <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
                                 <input type="text" hidden name="case_id" value=<?php echo $case_id; ?> />
-                                <div class="col-md-3 mt-2 text-center mx-auto">
-                                    <a href="">
-                                        <button class="btn btn-success " type="submit">Submit</button>
-                                    </a>
-                                </div>
+                                <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
+                                <br>
+                                <input class="btn btn-success form-control" value="Submit" type="submit" />
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="footer px-5 py-5 ">
-            <p class="float-right">
-                <a href="">
-                    Back to top
-                </a>
-            </p>
-            <p>
-                2019-2020 Company.<br>
-                copyright @<i>findyourlawyer</i>
-            </p>
-        </footer>
+    </div>
+    <?php include '../footer.php'; ?>
 </body>
 
 </html>

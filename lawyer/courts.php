@@ -1,10 +1,14 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
-if(isset($_SESSION['lid']) && !empty($_SESSION['lid'])){
+if (isset($_SESSION['lid']) && !empty($_SESSION['lid'])) {
     $lid = $_SESSION['lid'];
-}
-else{
+    $sql = "SELECT * FROM courts";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+} else {
     echo '<script type="text/javascript">
                 window.location = "login.php"
                  </script>';
@@ -17,60 +21,62 @@ else{
     <title>Courts</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Find your LAWYER</a>
-        <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                        <a class="nav-link" href="home.php">Home</a>
+        <div class="container">
+            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./home.php"><button class="btn btn-outline-warning">Home</button></a>
                     </li>
-                <li class="nav-item">
-                        <a class="nav-link" href="cases.php">Cases</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./cases.php"><button class="btn btn-outline-warning">My cases</button></a>
                     </li>
-            <li class="nav-item">
-                <a class="nav-link active">Courts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">SIGNOUT</a>
-            </li>
-        </ul>
-    </nav>
-    <div class="container-fluid">
-        <div class="mt-5 mb-5 py-2 border border-primary rounded">
-            <div class="row">
-                <h4 class=" col-md-4 mx-auto mt-2 text-center">
-                    Courts Available
-                </h4>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./logout.php"><button class="btn btn-danger">Sign out</button></a>
+                    </li>
+                </ul>
             </div>
-            <div class="row mx-1 mt-3 mb-3">
+        </div>
+    </nav>
+    <div class="container">
+        <h2 class="mt-5">
+            Courts Available
+        </h2>
+        <div class="mt-5 mb-5 py-2 case-form">
+            <div class="row">
+
+            </div>
+            <div class="row mx-1">
                 <div class="col-md-12">
                     <div class="list-group">
-                    <?php
-                            $sql = "SELECT * FROM courts";
-                            $result = mysqli_query($conn, $sql);
-                            while($row=mysqli_fetch_assoc($result)){
-                                    echo '<li class="list-group-item list-group-item-info mt-2">' .$row['court_name']. "," .$row['place']. '</li>';
-                            }
-                        ?>
+                        <table class="table table-striped">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Name of the court</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($data as $a) { ?>
+                                    <tr>
+                                        <td><?php echo $a['court_name']; ?></td>
+                                        <td><?php echo $a['place']; ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="footer px-5 py-5 ">
-            <p class="float-right">
-                <a href="">
-                    Back to top
-                </a>
-            </p>
-            <p>
-                2018-2019 Company, Inc.
-                <a href="">Privacy</a>
-                <a href="">Terms</a>
-            </p>
-        </footer>
+    </div>
+    <?php include '../footer.php'; ?>
 </body>
 
-</html>
+</html>Î

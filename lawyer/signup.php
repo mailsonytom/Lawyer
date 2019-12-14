@@ -70,7 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     $gender = $_POST['gender'];
-    $birthdate = $_POST['dob'];
+    if (empty($_POST["dob"])) {
+        $error = "Date of birth is required";
+        $flag = 1;
+    } else {
+        $birthdate = test_input($_POST['dob']);
+    }
     $select_query = "SELECT * FROM lawyer_details";
     $result = mysqli_query($conn, $select_query);
     while ($row = mysqli_fetch_assoc($result)) {
@@ -86,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     window.location = "login.php"
                     </script>';
         } else {
-            $error = "Error: ". $sql . "<br>" . $conn->error;
+            $error = "Error: " . $sql . "<br>" . $conn->error;
         }
     }
 }
@@ -105,102 +110,91 @@ while ($row = mysqli_fetch_assoc($casetype_result)) {
     <title>Lawyer Register</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="../home.html">Find your LAWYER</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link mt-1" href="login.php">LOGIN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../user/signup.php">
-                    <button class="btn btn-success" type="submit">I am a USER</button>
-                </a>
-            </li>
-        </ul>
+        <div class="container">
+            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./login.php"><button class="btn btn-outline-warning">Sign in</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../user/"><button class="btn btn-outline-warning">Client portal</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../admin/"><button class="btn btn-outline-warning">Admin portal</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 mx-auto mt-5 mb-5 border border-primary rounded">
+            <div class="col-md-4 pt-5">
+                <img class="featurette-image img-fluid mx-auto" src="../assets/images/lawyersignup1.png" alt="Generic placeholder image">
+                <img class="featurette-image img-fluid mx-auto mt-5" src="../assets/images/lawyersignup.png" alt="Generic placeholder image">
+            </div>
+            <div class="col-md-8 mt-5 mb-5">
+                <h2 class="mt-2">Sign up as lawyer</h2>
                 <form action="" method="POST">
-                    <div class="row">
-                        <h4 class=" col-md-5 mt-2 mx-auto text-center">REGISTER</h4>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Speciality</label>
+                        <select class="form-control" name="speciality">
+                            <?php foreach ($casetype_data as $a) { ?>
+                                <option value="<?php echo $a['casetype_id']; ?>">
+                                    <?php echo $a['casetype']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Experience [in yrs]</label>
+                        <input type="text" class="form-control" name="exp">
+                    </div>
+                    <div class="form-group">
+                        <label> Fees [per sitting]</label>
+                        <input type="text" class="form-control" name="fees">
 
                     </div>
-                    <div class="row mx-1 mb-3">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" name="email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" name="password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Speciality</label>
-                                <select class="form-control" name="speciality">
-                                    <?php foreach ($casetype_data as $a) { ?>
-                                        <option value="<?php echo $a['casetype_id']; ?>">
-                                            <?php echo $a['casetype']; ?>
-                                        </option>
-                                    <?php } ?>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Experience [in yrs]</label>
-                                <input type="text" class="form-control" name="exp">
-                            </div>
-                            <div class="form-group">
-                                <label> Fees [per sitting]</label>
-                                <input type="text" class="form-control" name="fees">
-
-                            </div>
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="text" name="phone" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Gender:</label>
-                                <select name="gender" id="gender" class="form-control">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Date of birth</label>
-                                <input type="date" class="form-control" name="dob">
-                            </div>
-                        </div>
-                        <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" name="phone" class="form-control">
                     </div>
-                    <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
-                        <a href="">
-                            <button class="btn btn-success mt-2" type="submit">SIGNUP</button>
-                        </a>
+                    <div class="form-group">
+                        <label>Gender:</label>
+                        <select name="gender" id="gender" class="form-control">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
                     </div>
+                    <div class="form-group">
+                        <label>Date of birth</label>
+                        <input type="date" class="form-control" name="dob">
+                    </div>
+                    <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
+                    <br>
+                    <input class="btn btn-success form-control" type="submit" value="Sign up" />
                 </form>
             </div>
         </div>
     </div>
-    <footer class="footer px-5 py-5 ">
-        <p class="float-right">
-            <a href="">
-                Back to top
-            </a>
-        </p>
-        <p>
-            2018-2019 Company, Inc.
-            <a href="">Privacy</a>
-            <a href="">Terms</a>
-        </p>
-    </footer>
+    <?php include '../footer.php'; ?>
 </body>
 
 </html>

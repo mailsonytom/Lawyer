@@ -21,6 +21,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     <title>Courts</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
 </head>
 
 <body>
@@ -46,39 +47,40 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
-        <div class="mt-5 mb-5 py-2 border border-primary rounded">
+    <div class="container">
+        <h2 class="mt-5">
+            Courts Available
+        </h2>
+        <div class="mt-5 mb-5 py-2 case-form">
             <div class="row">
-                <h4 class=" col-md-4 mx-auto text-center">
-                    Courts Available
-                </h4>
+
             </div>
             <div class="row mx-1">
                 <div class="col-md-12">
                     <div class="list-group">
-                        <?php foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-info mt-2">
-                                <?php echo "Court Name: " . $a['court_name'] . ", Location: " . $a['place']; ?>
-                            </li>
-                        <?php } ?>
+                        <table class="table table-striped">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Name of the court</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($data as $a) { ?>
+                                    <tr>
+                                        <td><?php echo $a['court_name']; ?></td>
+                                        <td><?php echo $a['place']; ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     </div>
-    <footer class="footer px-5 py-5 ">
-        <p class="float-right">
-            <a href="">
-                Back to top
-            </a>
-        </p>
-        <p>
-            2018-2019 Company, Inc.
-            <a href="">Privacy</a>
-            <a href="">Terms</a>
-        </p>
-    </footer>
+    <?php include '../footer.php'; ?>
 </body>
 
 </html>

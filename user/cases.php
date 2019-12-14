@@ -98,8 +98,8 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                                             <p><?php echo $a['description']; ?></p>
                                         </div>
                                         <div class="col-md-4">
-                                            <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add Comment</a>
-                                            <a href="history.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add History</a>
+                                            <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">Comment</a>
+                                            <a href="history.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">History</a>
                                         </div>
                                         </a>
                                     </div>
