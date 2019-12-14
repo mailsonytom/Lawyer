@@ -76,7 +76,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                                     </tr>
                                 <?php } }
                                 else{
-                                    echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no courts to display</span>';
+                                    echo '<tr><span class="badge badge-pill badge-danger mt-5 mx-1">There are no courts to display</span></tr>';
                                 } ?>
                             </tbody>
                         </table>
