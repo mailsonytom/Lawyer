@@ -16,35 +16,39 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Find your LAWYER</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link active">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="lawyer.php">Lawyers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="user.php">Users</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="courts.php">Courts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="casetype.php">Casetypes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">SIGNOUT</a>
-            </li>
-        </ul>
+        <div class="container">
+            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./lawyer.php"><button class="btn btn-outline-warning">Lawyer</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./user.php"><button class="btn btn-outline-warning">User</button></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="./courts.php"><button class="btn btn-outline-warning">Courts</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./casetype.php"><button class="btn btn-outline-warning">Casetype</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./logout.php"><button class="btn btn-danger">Sign out</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <div class="container-fluid">
-        <h3 class="text-center mt-5 mb-5">Admin Homepage!!</h3>
-        <div class="mt-5 mb-5 py-2 border border-primary rounded">
+    <div class="container">
+        <h1 class="mt-2">Admin Homepage!!</h1>
+        <p>Welcome to admin homepage. You have full authority over the system here !! </p>
+        <div class="mt-2 mb-5 p-3 case-form">
             <div class="row">
                 <div class="col-md-12">
                     <div class="list-group mx-1">
@@ -64,7 +68,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                                 }
                             }
                         }
-                        if($datacount == 0){
+                        if ($datacount == 0) {
                             echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no lawyers currently requested</span>';
                         }
                         ?>
@@ -79,18 +83,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
             </div>
         </div>
     </div>
-    <footer class="footer px-5 py-5 ">
-        <p class="float-right">
-            <a href="">
-                Back to top
-            </a>
-        </p>
-        <p>
-            2018-2019 Company, Inc.
-            <a href="">Privacy</a>
-            <a href="">Terms</a>
-        </p>
-    </footer>
+    <?php include '../footer.php'; ?>
 </body>
 
 </html>

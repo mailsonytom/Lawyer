@@ -7,16 +7,16 @@ if (!isset($_SESSION['id'])) {
                      </script>';
 } else {
     if (isset($_GET['id'])) {
-        $lawyer_id = $_GET['id'];
-        $sql = "UPDATE lawyer_details SET approved = 0 WHERE lid='$lawyer_id'";
+        $casetype_id = $_GET['id'];
+        $sql = "DELETE FROM casetype WHERE casetype_id='$casetype_id'";
         if (mysqli_query($conn, $sql)) {
             echo '<script type="text/javascript">
-            window.location = "lawyer.php"
+            window.location = "casetype.php"
              </script>';
         }
     } else {
         echo '<script type="text/javascript">
-        window.location = "lawyer.php"
+        window.location = "casetype.php"
          </script>';
     }
 }

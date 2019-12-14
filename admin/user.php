@@ -3,6 +3,11 @@
 session_start();
 if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     $id = $_SESSION['id'];
+    $sql = "SELECT * FROM user_details";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
 } else {
     echo '<script type="text/javascript">
                 window.location = "login.php"
@@ -16,67 +21,63 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     <title>Users</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Find your LAWYER</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="home.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="lawyer.php">Lawyers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active">Users</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="courts.php">Courts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="casetype.php">Casetypes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">SIGNOUT</a>
-            </li>
-        </ul>
-    </nav>
-    <div class="container-fluid">
-        <div class="mt-5 mb-5 py-2 border border-primary rounded">
-            <div class="row">
-                <h4 class=" col-md-4 mx-auto text-center">
-                </h4>
+        <div class="container">
+            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./lawyer.php"><button class="btn btn-outline-warning">Lawyer</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./user.php"><button class="btn btn-outline-warning">User</button></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="./courts.php"><button class="btn btn-outline-warning">Courts</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./casetype.php"><button class="btn btn-outline-warning">Casetype</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./logout.php"><button class="btn btn-danger">Sign out</button></a>
+                    </li>
+                </ul>
             </div>
-            <div class="row mx-1">
-                <div class="col-md-12">
-                    <div class="list-group">
-                        <?php
-                        $sql = "SELECT * FROM user_details";
-                        $result = mysqli_query($conn, $sql);
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<li class="list-group-item list-group-item-info mt-2">' . $row['name'] .
-                                "," . $row['email'] .
-                                "," . $row['phone'] . '</li>';
-                        }
-                        ?>
-                    </div>
+        </div>
+    </nav>
+    <div class="container ">
+        <h2 class="mt-3">Users in the system</h2>
+        <div class="row py-4 mb-4 case-form">
+            <div class="col-md-12">
+                <div class="list-group">
+                    <table class="table table-striped">
+                        <thead class="text-center">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($data as $a) { ?>
+                                <tr>
+                                    <td><?php echo $a['name']; ?></td>
+                                    <td class="text-center"><?php echo $a['email']; ?></td>
+                                    <td class="text-center"><?php echo $a['phone']; ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="footer px-5 py-5 ">
-        <p class="float-right">
-            <a href="">
-                Back to top
-            </a>
-        </p>
-        <p>
-            2018-2019 Company, Inc.
-            <a href="">Privacy</a>
-            <a href="">Terms</a>
-        </p>
-    </footer>
+    <?php include '../footer.php'; ?>
 </body>
 
 </html>

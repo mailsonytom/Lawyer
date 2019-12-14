@@ -68,9 +68,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <input type="password" name="password" class="form-control" placeholder="Enter your password">
                     </div>
                     <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
+                    <br>
                     <input class="btn btn-success" type="submit" value="SUBMIT">
+                </form>
             </div>
-            </form>
+
         </div>
     </div>
     </div>
