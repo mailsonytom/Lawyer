@@ -60,7 +60,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                                     echo '<li class="list-group-item list-group-item-info mt-2">' . $row['name'] .
                                         "," . $row['email'] .
                                         "," . $row['phone'] .
-                                        '<a href="approve.php?lid=' . $row['lid'] . '"><button class="btn btn-primary" role="button">Approve</button></a></li>';
+                                        '<a href="approve.php?lid=' . $row['lid'] . '"><button class="btn btn-primary float-right" role="button">Approve</button></a></li>';
                                 }
                             }
                         }

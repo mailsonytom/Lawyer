@@ -57,7 +57,8 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                         $result = mysqli_query($conn, $sql);
                         while ($row = mysqli_fetch_assoc($result)) {
                             echo '<li class="list-group-item list-group-item-info mt-2">' . $row['name'] .
-                                "," . $row['speciality'] . '</li>';
+                                "," . $row['speciality'] .
+                                '<a href="remove.php?lid=' . $row['lid'] . '"><button class="btn btn-primary float-right" role="button">REMOVE LAWYER</button></a> </li>';
                         }
                         ?>
                     </div>

@@ -54,20 +54,7 @@
     <div class="container-fluid content">
         <div class="row px-5 py-5">
             <div class="col-md-6 px-1 mb-5">
-                <h2 class="mt-5 mx-4 mb-3 heading">LAWYER MANAGEMENT PORTAL</h2>
-                <div class="row ">
-                    <p class="col-md-12 mx-auto text-center mt-5 mb-5 px-5">
-                        Our
-                        lawyers have a combined background of impressive achievements and qualifications as well as a
-                        commitment
-                        to
-                        professional excellence, client services and expert legal advice.
-                    </p>
-                    <div class="row mx-auto">
-                    <a href="../admin/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as  Admin</button></a>
-                    <a href="../lawyer/login.php"><button type="submit" class="btn btn-info mx-2 px-4">SIGNIN as Lawyer</button></a>
-                   </div>
-                </div>
+            <img class="featurette-image img-fluid mx-auto" src="../assets/images/card1.jpg" alt="Generic placeholder image">
             </div>
             <div class="col-md-6">
                 <div class="row mx-5">
