@@ -11,11 +11,18 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id INNER JOIN lawyer_details on cases.lid = lawyer_details.lid WHERE uid = '$uid'";
     $result = mysqli_query($conn, $sql);
     $num_rows = mysqli_num_rows($result);
-        while ($row = mysqli_fetch_assoc($result)) {
-            $data[] = $row;
-        }
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
     }
-    $count = 0;
+}
+$approved_flag = $unapproved_flag = 0;
+foreach ($data as $a) {
+    if ($a['active_status'] == 1) {
+        $approved_flag = 1;
+    } else {
+        $unapproved_flag = 1;
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,9 +65,9 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                     <div class="list-group">
                         <h5>Requested</h5>
                         <?php
-                        if($num_rows > 0){
-                        foreach ($data as $a) { ?>
-                            <?php if ($a['active_status'] == 0) {?>
+                        if ($unapproved_flag)
+                            foreach ($data as $a) { ?>
+                            <?php if ($a['active_status'] == 0) { ?>
                                 <li class="list-group-item list-group-item-info mt-2">
                                     <div class="row">
                                         <div class="col-md-7">
@@ -74,19 +81,21 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                                         </a>
                                     </div>
                                 </li>
-                        <?php } } }
-                        else{
-                            echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no requested cases</span>';
-                        }
-                        ?>
+                        <?php }
+                        } else {
+                        echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no requested cases</span>';
+                    }
+                    ?>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="list-group">
                         <h5>Approved</h5>
-                        <?php foreach ($data as $a) { ?>
+                        <?php
+                        if ($approved_flag)
+                            foreach ($data as $a) { ?>
                             <?php if ($a['active_status'] == 1) {
-                                    $count = 1; ?>
+                                    ?>
                                 <li class="list-group-item list-group-item-info mt-2">
                                     <div class="row">
                                         <div class="col-md-8">
@@ -101,11 +110,10 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                                     </div>
                                 </li>
                         <?php }
-                        }
-                        if ($count == 0) {
-                            echo '<span class="badge badge-pill badge-light mt-5 mx-1"> There are no cases currently approved </span>';
-                        }
-                        ?>
+                        } else {
+                        echo '<span class="badge badge-pill badge-light mt-5 mx-1"> There are no cases currently approved </span>';
+                    }
+                    ?>
                     </div>
                 </div>
             </div>
