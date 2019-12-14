@@ -19,7 +19,7 @@ function test_input($data)
 $courtname = $location = $error = "";
 $flag = 0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
     $sql = "SELECT * FROM courts";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
@@ -105,39 +105,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </nav>
     <div class="container">
         <div class="mt-5 mb-5 py-2">
-            <div class="row mx-1 mt-3 mb-3">
-                    <div class="col-md-6">
-                        <div class="list-group">
-                            <table class="table table-striped">
-                                <thead class="text-center">
-                                    <tr>
-                                        <th>Name of the court</th>
-                                        <th>Location</th>
-                                        <th>Remove court</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php 
-                                    if($num_rows > 0){
+            <div class="row mx-1 mt-3 mb-3 case-form">
+                <div class="col-md-6">
+                    <div class="list-group">
+                        <table class="table table-striped">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Name of the court</th>
+                                    <th>Location</th>
+                                    <th>Remove court</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if ($num_rows > 0) {
                                     foreach ($data as $a) { ?>
                                         <tr>
                                             <td><?php echo $a['court_name']; ?></td>
                                             <td class="text-center "><?php echo $a['place']; ?></td>
                                             <td class="text-center "><a class="text-danger" href="deletecourt.php?id=<?php echo $a['cid']; ?>"><b>X</b></a></td>
                                         </tr>
-                                    <?php } }
-                                    else{
-                                        echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no courts to display</span>';
-                                    }?>
-                                </tbody>
-                            </table>
-                        </div>
+                                <?php }
+                                } else {
+                                    echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no courts to display</span>';
+                                } ?>
+                            </tbody>
+                        </table>
                     </div>
+                </div>
                 <div class="col-md-6">
                     <h2 class="">Add Court</h2>
                     <div class="list-group mt-2">
                         <form action="" method="post">
-                            <div class="mx-auto mt-2 mb-2 py-2 border border-secondary rounded">
+                            <div class="mx-auto mt-2 mb-2 py-2">
                                 <div class="form-group mx-2">
                                     <label>Court name</label>
                                     <input type="text" class="form-control" name="name">
@@ -147,15 +147,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <input type="text" class="form-control" name="location">
                                 </div>
                                 <span class="badge badge-pill badge-warning mx-1"><?php echo $error; ?></span>
-                                <div class="col-md-3 mt-2 text-center mx-auto">
-                                    <a href="">
-                                        <button class="btn btn-success " type="submit">SUBMIT</button>
-                                    </a>
-
-                                </div>
+                                <button class="btn btn-success form-control" type="submit">SUBMIT</button>
                             </div>
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
