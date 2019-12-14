@@ -16,11 +16,13 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     }
 }
 $approved_flag = $unapproved_flag = 0;
-foreach ($data as $a) {
-    if ($a['active_status'] == 1) {
-        $approved_flag = 1;
-    } else {
-        $unapproved_flag = 1;
+if ($num_rows > 0) {
+    foreach ($data as $a) {
+        if ($a['active_status'] == 1) {
+            $approved_flag = 1;
+        } else {
+            $unapproved_flag = 1;
+        }
     }
 }
 ?>
