@@ -1,5 +1,12 @@
 <?php include 'connect.php' ?>
 <?php
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 session_start();
 if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
     $uid = $_SESSION['uid'];
@@ -36,20 +43,31 @@ while ($row = mysqli_fetch_assoc($court_result)) {
     $court_data[] = $row;
 }
 $casetype = $lawyer = $court = $date = $desc = $error = "";
+$flag = 0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uid = $_SESSION['uid'];
     $casetype = $_POST['casetype'];
     $lawyer = $_POST['lawyer'];
     $court = $_POST['court'];
-    $date = $_POST['date'];
-    $desc = $_POST['desc'];
-    $sql = "INSERT INTO cases (uid, casetype_id, lid, cid, date, description, active_status) VALUES ('$uid', '$casetype', '$lawyer', '$court', '$date', '$desc', '0')";
-    if ($conn->query($sql) === TRUE) {
-        echo '<script type="text/javascript">
+    if (empty($_POST["date"])) {
+        $error = "Date is required";
+        $flag = 1;
+    } else {
+        $date = test_input($_POST['date']);
+    }
+    if (empty($_POST["desc"])) {
+        $error = "Description is required";
+        $flag = 1;
+    } else {
+        $desc = test_input($conn->real_escape_string($_POST['desc']));
+    }
+    if ($flag == 0) {
+        $sql = "INSERT INTO cases (uid, casetype_id, lid, cid, date, description, active_status) VALUES ('$uid', '$casetype', '$lawyer', '$court', '$date', '$desc', '0')";
+        if ($conn->query($sql) === TRUE) {
+            echo '<script type="text/javascript">
                     window.location = "cases.php"
                     </script>';
-    } else {
-       $error = "Please fill all * box";
+        }
     }
 }
 
@@ -61,33 +79,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Find your LAWYER</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link active">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="lawyer.php">Lawyers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="courts.php">Courts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="cases.php">Cases</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">SIGNOUT</a>
-            </li>
-        </ul>
+        <div class="container">
+            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./lawyer.php"><button class="btn btn-outline-warning">Lawyers</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./courts.php"><button class="btn btn-outline-warning">Courts</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./cases.php"><button class="btn btn-outline-warning">My cases</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./logout.php"><button class="btn btn-danger">Sign out</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
     <div class="container-fluid">
-        <div class="row">
-            <h2 class=" col-md-4 mx-auto text-center mt-5 mb-5 ">Hello <?php foreach ($user_name_data as $u) { echo $u['name'];}?> !!</h2>
-            <p class="col-md-10 mx-auto text-center mt-5 mb-5">
+        <div class="row home-cover text-light">
+            <h2 class=" col-md-4 mx-auto text-center mt-5 mb-5 ">Hello <?php foreach ($user_name_data as $u) {
+                                                                            echo $u['name'];
+                                                                        } ?> !!</h2>
+            <p class="col-md-10 offset-1 text-center mt-3 mb-5">
                 This is a team of skilled lawyers dedicated to smart, aggressive and
                 strategic advocacy. Our practice areas include all criminal offences including drug offences, sexual
                 offences, driving offences, violent offences and white collar crime. Recognized for defending some of
@@ -99,11 +121,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 professional excellence, client services and expert legal advice.
             </p>
         </div>
-        <div class="mt-5 m-md-3 border border-primary rounded">
-            <form action="" method="POST" class="mt-5 m-md-3 mr-1 ml-1">
+    </div>
+    <div class="container">
+        <div class="mt-5 py-5 m-md-3">
+            <form action="" method="POST" class="mt-5 m-md-3 mr-1 ml-1 case-form p-5">
                 <div class="row">
-                    <h4 class=" col-md-5 mx-auto text-center">NEW CASE REGISTRATION</h4>
-
+                    <h4 class=" col-md-5 mx-auto text-center">New Case Registration</h4>
                 </div>
                 <div class="row mx-1">
                     <div class="col-md-6">
@@ -146,14 +169,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label>Description</label>
-                            <textarea class="form-control"  id="desc" name="desc">
+                            <label>Description*</label>
+                            <textarea class="form-control" id="desc" name="desc">
                                 </textarea>
                         </div>
                     </div>
-                    <span class="badge badge-pill badge-warning"><?php echo $error;?></span>
+                    <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
                 </div>
-                <div class="col-md-3 mt-2 text-center mx-auto">
+                <div class="col-md-12 mt-2 text-center">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="invalidCheck" name="agree" required>
                         <label class="form-check-label" for="invalidCheck">
@@ -162,27 +185,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="invalid-feedback">
                             You must agree before submitting.
                         </div>
-                        <a>
-                            <button class="btn btn-success " type="submit">Submit</button>
-                        </a>
+                        <br><br>
+                        <input type="submit" value="Submit" class="btn btn-success form-control" />
                     </div>
                 </div>
             </form>
         </div>
-
     </div>
-    <footer class="footer px-5 py-5 ">
-        <p class="float-right">
-            <a href="">
-                Back to top
-            </a>
-        </p>
-        <p>
-            2018-2019 Company, Inc.
-            <a href="">Privacy</a>
-            <a href="">Terms</a>
-        </p>
-    </footer>
+    <?php include '../footer.php'; ?>
 </body>
 
 </html>

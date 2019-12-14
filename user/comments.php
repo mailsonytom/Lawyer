@@ -39,32 +39,38 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     <title>Comments</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Find your LAWYER</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="home.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="lawyer.php">Lawyers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="courts.php">Courts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="cases.php">Cases</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">SIGNOUT</a>
-            </li>
-        </ul>
+        <div class="container">
+            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./home.php"><button class="btn btn-outline-warning">Home</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./lawyer.php"><button class="btn btn-outline-warning">Lawyers</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./courts.php"><button class="btn btn-outline-warning">Courts</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./cases.php"><button class="btn btn-outline-warning">My cases</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./logout.php"><button class="btn btn-danger">Sign out</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    <div class="container-fluid">
-        <div class="mt-5 mb-5 py-2 border border-primary rounded">
-            <h4 class=" col-md-4 mx-auto text-center">Comments</h4>
+    <div class="container">
+        <h2 class="mt-5">Comments</h2>
+        <div class="mt-5 mb-5 py-2 case-form">
+
             <div class="row mx-1 mt-2 mb-2">
                 <div class="col-md-6">
                     <div class="list-group">
@@ -100,18 +106,9 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                 </div>
             </div>
         </div>
-        <footer class="footer px-5 py-5 ">
-            <p class="float-right">
-                <a href="">
-                    Back to top
-                </a>
-            </p>
-            <p>
-                2018-2019 Company, Inc.
-                <a href="">Privacy</a>
-                <a href="">Terms</a>
-            </p>
-        </footer>
+    </div>
+    <?php include '../footer.php'; ?>
 </body>
+
 
 </html>

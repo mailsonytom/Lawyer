@@ -1,15 +1,74 @@
 <?php include 'connect.php' ?>
 <?php
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 $name = $username = $password = $spec = $exp = $fees = $contact = $gender = $birthdate = $error = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $flag = 0;
-    $name = $_POST['name'];
-    $username = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    if (empty($_POST["name"])) {
+        $error = "Name is required";
+        $flag = 1;
+    } else {
+        $name = test_input($_POST['name']);
+        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+            $flag = 1;
+            $error = "Only letters and white space allowed";
+        }
+    }
+    if (empty($_POST["email"])) {
+        $error = "Email is required";
+        $flag = 1;
+    } else {
+        $username = test_input($_POST['email']);
+        // check if name only contains letters and whitespace
+        if (!filter_var($username, FILTER_VALIDATE_EMAIL, $username)) {
+            $flag = 1;
+            $error = "Wrong email format";
+        }
+    }
+    if (empty($_POST["password"])) {
+        $error = "Password is required";
+        $flag = 1;
+    } else {
+        $password = password_hash(test_input($_POST['password']), PASSWORD_DEFAULT);
+    }
     $speciality = $_POST['specs'];
-    $experience = $_POST['exp'];
+    if (empty($_POST["exp"])) {
+        $error = "Experience years is required";
+        $flag = 1;
+    } else {
+        $experience = test_input($_POST['exp']);
+        if (!preg_match("/^[0-9]{2}$/", $experience)) {
+            $flag = 1;
+            $error = "Wrong exp number format";
+        }
+    }
     $fees = $_POST['fees'];
-    $contact = $_POST['phone'];
+    if (empty($_POST["fees"])) {
+        $error = "Fees is required";
+        $flag = 1;
+    } else {
+        $fees = test_input($_POST['fees']);
+        if (!preg_match("/^[0-9]*$/", $fees)) {
+            $flag = 1;
+            $error = "Wrong fees number format";
+        }
+    }
+    if (empty($_POST["phone"])) {
+        $error = "Phone number is required";
+        $flag = 1;
+    } else {
+        $contact = test_input($_POST['phone']);
+        if (!preg_match("/^[1-9][0-9]{9}$/", $contact)) {
+            $flag = 1;
+            $error = "Wrong phone number format";
+        }
+    }
     $gender = $_POST['gender'];
     $birthdate = $_POST['dob'];
     $select_query = "SELECT * FROM lawyer_details";
@@ -17,9 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     while ($row = mysqli_fetch_assoc($result)) {
         if ($row['email'] == $username) {
             $flag = 1;
-            echo '<script type="text/javascript">
-                    window.location = "user_duplicate_error.php"
-                    </script>';
+            $error = "User already exist";
         }
     }
     if ($flag == 0) {

@@ -25,24 +25,26 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Find your LAWYER</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="home.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="lawyer.php">Lawyers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active">Courts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="cases.php">Cases</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="logout.php">SIGNOUT</a>
-            </li>
-        </ul>
+        <div class="container">
+            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./home.php"><button class="btn btn-outline-warning">Home</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./lawyer.php"><button class="btn btn-outline-warning">Lawyers</button></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="./cases.php"><button class="btn btn-outline-warning">My cases</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./logout.php"><button class="btn btn-danger">Sign out</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
     <div class="container-fluid">
         <div class="mt-5 mb-5 py-2 border border-primary rounded">

@@ -1,19 +1,58 @@
 <?php include 'connect.php' ?>
 <?php
-
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 $firstname = $lastname = $username = $password = $address = $phone = $error = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $flag = 0;
-    $name = $_POST['name'];
-    $username = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    $phone = $_POST['phone'];
+    if (empty($_POST["name"])) {
+        $error = "Name is required";
+        $flag = 1;
+    } else {
+        $name = test_input($_POST['name']);
+        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+            $flag = 1;
+            $error = "Only letters and white space allowed";
+        }
+    }
+    if (empty($_POST["email"])) {
+        $error = "Email is required";
+        $flag = 1;
+    } else {
+        $username = test_input($_POST['email']);
+        // check if name only contains letters and whitespace
+        if (!filter_var($username, FILTER_VALIDATE_EMAIL, $username)) {
+            $flag = 1;
+            $error = "Wrong email format";
+        }
+    }
+    if (empty($_POST["password"])) {
+        $error = "Password is required";
+        $flag = 1;
+    } else {
+        $password = password_hash(test_input($_POST['password']), PASSWORD_DEFAULT);
+    }
+    if (empty($_POST["phone"])) {
+        $error = "Phone number is required";
+        $flag = 1;
+    } else {
+        $contact = test_input($_POST['phone']);
+        if (!preg_match("/^[1-9][0-9]{9}$/", $contact)) {
+            $flag = 1;
+            $error = "Wrong phone number format";
+        }
+    }
     $select_query = "SELECT * FROM user_details";
     $result = mysqli_query($conn, $select_query);
     while ($row = mysqli_fetch_assoc($result)) {
         if ($row['email'] == $username) {
             $flag = 1;
-            $error = "The user email already exists";
+            $error = "The user with this email already exists";
         }
     }
     if ($flag == 0) {
@@ -36,70 +75,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>User Register</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/footer.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="../home.html">Find your LAWYER</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link mt-1" href="index.php">LOGIN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../lawyer/signup.php">
-                    <button class="btn btn-success" type="submit">I am a LAWYER</button>
-                </a>
-            </li>
-        </ul>
+        <div class="container">
+            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.php"><button class="btn btn-outline-warning">Sign in</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../lawyer/"><button class="btn btn-outline-warning">Lawyer portal</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../admin/"><button class="btn btn-outline-warning">Admin portal</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 mx-auto mt-5 mb-5 border border-primary rounded">
-                <h4 class=" col-md-8 mt-2 mx-auto text-center">USER REGISTRATION</h4>
+        <div class="row my-5 py-5">
+            <div class="col-md-6">
+                <h2>Client sign up</h2>
+                <p>Signing up will give you all access to the FYLAW features</p>
                 <form action="" method="POST">
-                    <?php echo $error; ?>
-                    <div class="row mx-1 mb-3">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" name="email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" name="password" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="text" name="phone" class="form-control">
-                            </div>
-                        </div>
-                        <span class="badge badge-pill badge-warning"><?php echo $error;?></span>
-                    </div>
-                    <div class="col-md-5 mt-2 mb-2 text-center mx-auto">
-                        <a href="">
-                            <button class="btn btn-success mt-2" type="submit">SIGNUP</button>
-                        </a>
-                    </div>
+
+                    <label>Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Eg: John Wick">
+
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="Eg: john@fylaw.com">
+
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="***********">
+
+                    <label>Phone</label>
+                    <input type="text" name="phone" class="form-control" placeholder="Eg: +91 918475996">
+                    <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
+                    <br>
+                    <input type="submit" class="btn btn-success" value="Sign up">
                 </form>
+            </div>
+            <div class="col-md-6">
+                <img class="featurette-image img-fluid mx-auto" src="../assets/images/usersignup.png" alt="Generic placeholder image">
             </div>
         </div>
     </div>
-    <footer class="footer px-5 py-5 ">
-        <p class="float-right">
-            <a href="">
-                Back to top
-            </a>
-        </p>
-        <p>
-            2018-2019 Company, Inc.
-            <a href="">Privacy</a>
-            <a href="">Terms</a>
-        </p>
-    </footer>
+    <?php include '../footer.php'; ?>
 </body>
 
 </html>
