@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="password" name="password" class="form-control" placeholder="***********">
 
                     <label>Phone</label>
-                    <input type="text" name="phone" class="form-control" placeholder="Eg: +91 918475996">
+                    <input type="text" name="phone" class="form-control" placeholder="Eg: +91 9184759960">
                     <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
                     <br>
                     <input type="submit" class="btn btn-success" value="Sign up">

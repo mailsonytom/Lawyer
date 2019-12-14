@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $sql = "SELECT * FROM courts";
     $result = mysqli_query($conn, $sql);
+    $num_rows = mysqli_num_rows($result);
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
     }

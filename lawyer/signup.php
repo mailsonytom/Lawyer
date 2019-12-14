@@ -7,7 +7,7 @@ function test_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
-$name = $username = $password = $spec = $exp = $fees = $contact = $gender = $birthdate = $error = "";
+$name = $username = $password = $speciality = $exp = $fees = $contact = $gender = $birthdate = $error = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $flag = 0;
     if (empty($_POST["name"])) {
@@ -37,13 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $password = password_hash(test_input($_POST['password']), PASSWORD_DEFAULT);
     }
-    $speciality = $_POST['specs'];
+    $experience = $_POST['exp'];
     if (empty($_POST["exp"])) {
         $error = "Experience years is required";
         $flag = 1;
     } else {
         $experience = test_input($_POST['exp']);
-        if (!preg_match("/^[0-9]{2}$/", $experience)) {
+        if (!preg_match("/^[0-9]*$/", $experience)) {
             $flag = 1;
             $error = "Wrong exp number format";
         }
