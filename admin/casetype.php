@@ -55,6 +55,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
     } else {
         $sql = "SELECT * FROM casetype";
         $result = mysqli_query($conn, $sql);
+        $num_rows = mysqli_num_rows($result);
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
         }
@@ -78,7 +79,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="./lawyer.php"><button class="btn btn-outline-warning">Lawyer</button></a>
+                        <a class="nav-link" href="./home.php"><button class="btn btn-outline-warning">Home</button></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./user.php"><button class="btn btn-outline-warning">User</button></a>
@@ -88,7 +89,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
                         <a class="nav-link" href="./courts.php"><button class="btn btn-outline-warning">Courts</button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./casetype.php"><button class="btn btn-outline-warning">Casetype</button></a>
+                        <a class="nav-link" href="./lawyer.php"><button class="btn btn-outline-warning">Lawyers</button></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./logout.php"><button class="btn btn-danger">Sign out</button></a>
@@ -110,13 +111,19 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data as $a) { ?>
+                            <?php 
+                            if($num_rows > 0){
+                            foreach ($data as $a) { ?>
                                 <tr>
                                     <td><?php echo $a['casetype']; ?></td>
                                     <td><?php echo $a['description']; ?></td>
                                     <td class="text-center "><a class="text-danger" href="removecastype.php?id=<?php echo $a['casetype_id']; ?>"><b>X</b></a></td>
                                 </tr>
-                            <?php } ?>
+                            <?php } }
+                            else{
+                                echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no casetypes </span>';
+
+                            }?>
                         </tbody>
                     </table>
                 </div>

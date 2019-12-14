@@ -60,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     $sql = "SELECT * FROM courts";
     $result = mysqli_query($conn, $sql);
+    $num_rows = mysqli_num_rows($result);
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
     }
@@ -83,14 +84,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="./lawyer.php"><button class="btn btn-outline-warning">Lawyer</button></a>
+                        <a class="nav-link" href="./home.php"><button class="btn btn-outline-warning">Home</button></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./user.php"><button class="btn btn-outline-warning">User</button></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="./courts.php"><button class="btn btn-outline-warning">Courts</button></a>
+                        <a class="nav-link" href="./lawyer.php"><button class="btn btn-outline-warning">Lawyers</button></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./casetype.php"><button class="btn btn-outline-warning">Casetype</button></a>
@@ -116,13 +117,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($data as $a) { ?>
+                                    <?php 
+                                    if($num_rows > 0){
+                                    foreach ($data as $a) { ?>
                                         <tr>
                                             <td><?php echo $a['court_name']; ?></td>
-                                            <td><?php echo $a['place']; ?></td>
+                                            <td class="text-center "><?php echo $a['place']; ?></td>
                                             <td class="text-center "><a class="text-danger" href="deletecourt.php?id=<?php echo $a['cid']; ?>"><b>X</b></a></td>
                                         </tr>
-                                    <?php } ?>
+                                    <?php } }
+                                    else{
+                                        echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no courts to display</span>';
+                                    }?>
                                 </tbody>
                             </table>
                         </div>

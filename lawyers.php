@@ -1,9 +1,9 @@
 <?php include 'connect.php' ?>
 <?php
-$sql = "SELECT * FROM lawyer_details";
-$result = mysqli_query($conn, $sql);
-while ($row = mysqli_fetch_assoc($result)) {
-    $data[] = $row;
+    $sql = "SELECT * FROM lawyer_details WHERE approved = 1";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
 }
 ?>
 <!DOCTYPE html>
@@ -11,59 +11,70 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 <head>
     <title>Lawyers</title>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/footer.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Find your LAWYER</a>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link active">Lawyers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="court.php">Courts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="user/index.php">LOGIN</a>
-            </li>
-        </ul>
+        <div class="container">
+            <a class="navbar-brand" href="./index.php"><b>FYLAW</b></a>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./user/"><button class="btn btn-outline-warning">Client portal</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./lawyer/"><button class="btn btn-outline-warning">Lawyer portal</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./admin/"><button class="btn btn-outline-warning">Admin portal</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./courts.php"><button class="btn btn-outline-warning">Courts</button></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
     </nav>
-    <div class="container-fluid">
-        <div class="mt-5 mb-5 py-2 border border-primary rounded">
+    <div class="container">
+        <h2 class="mt-5">
+            Lawyers & their Specialities
+        </h2>
+        <div class="mt-5 mb-5 py-2 case-form">
             <div class="row">
-                <h4 class=" col-md-4 mx-auto text-center">
-                    Lawyers & their Specialities
-                </h4>
+
             </div>
             <div class="row mx-1">
                 <div class="col-md-12">
                     <div class="list-group">
-                        <?php foreach ($data as $a) { ?>
-                            <?php if ($a['approved'] == 1) { ?>
-                            <li class="list-group-item list-group-item-info mt-2">
-                                <?php echo $a['name'].": ". $a['speciality'];?>
-                            </li>
-                            <?php } ?>
-                        <?php } ?>
+                        <table class="table table-striped">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>Name of the lawyer</th>
+                                    <th>Speciality</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($data as $a) { ?>
+                                    <?php if ($a['approved'] == 1) { ?>
+                                        <tr>
+                                            <td><?php echo $a['name']; ?></td>
+                                            <td><?php echo $a['speciality']; ?></td>
+                                        </tr>
+
+                                    <?php } ?>
+                                <?php } ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <footer class="footer px-5 py-5 ">
-        <p class="float-right">
-            <a href="">
-                Back to top
-            </a>
-        </p>
-        <p>
-            2018-2019 Company, Inc.
-            <a href="">Privacy</a>
-            <a href="">Terms</a>
-        </p>
-    </footer>
+    <?php include 'footer.php'; ?>
 </body>
 
 </html>

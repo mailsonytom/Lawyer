@@ -15,19 +15,19 @@
                 <h5 class="widget-title">Quick Links<span></span></h5>
                 <ul class="thumbnail-widget">
                   <li>
-                    <div class="thumb-content"><a href="lawyers.php">Find lawyers</a></div>
+                    <div class="thumb-content"><a href="/lawyer/lawyers.php">Find lawyers</a></div>
                   </li>
                   <li>
-                    <div class="thumb-content"><a href="court.php">Find courts</a></div>
+                    <div class="thumb-content"><a href="/lawyer/court.php">Find courts</a></div>
                   </li>
                   <li>
-                    <div class="thumb-content"><a href="court.php">Login as admin</a></div>
+                    <div class="thumb-content"><a href="/lawyer/admin/login.php">Login as admin</a></div>
                   </li>
                   <li>
-                    <div class="thumb-content"><a href="court.php">Login as user</a></div>
+                    <div class="thumb-content"><a href="/lawyer/user/index.php">Login as user</a></div>
                   </li>
                   <li>
-                    <div class="thumb-content"><a href="court.php">Login as lawyer</a></div>
+                    <div class="thumb-content"><a href="/lawyer/lawyer/login.php">Login as lawyer</a></div>
                   </li>
 
                 </ul>

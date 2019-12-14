@@ -5,6 +5,7 @@ if (isset($_SESSION['lid']) && !empty($_SESSION['lid'])) {
     $lid = $_SESSION['lid'];
     $sql = "SELECT * FROM courts";
     $result = mysqli_query($conn, $sql);
+    $num_rows = mysqli_num_rows($result);
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
     }
@@ -62,12 +63,17 @@ if (isset($_SESSION['lid']) && !empty($_SESSION['lid'])) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data as $a) { ?>
+                                <?php 
+                                if($num_rows > 0){
+                                foreach ($data as $a) { ?>
                                     <tr>
                                         <td><?php echo $a['court_name']; ?></td>
                                         <td><?php echo $a['place']; ?></td>
                                     </tr>
-                                <?php } ?>
+                                <?php }}
+                                else{
+                                    echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no courts to display</span>';
+                                } ?>
                             </tbody>
                         </table>
                     </div>

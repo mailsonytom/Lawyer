@@ -22,6 +22,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
         $case_id = $_GET['id'];
         $sql = "SELECT * FROM comments WHERE case_id=" . $case_id;
         $result = mysqli_query($conn, $sql);
+        $num_rows = mysqli_num_rows($result);
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
         }
@@ -45,7 +46,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <a class="navbar-brand" href=""><b>FYLAW</b></a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -74,7 +75,9 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
             <div class="row mx-1 mt-2 mb-2">
                 <div class="col-md-6">
                     <div class="list-group">
-                        <?php foreach ($data as $a) { ?>
+                        <?php 
+                        if ($num_rows > 0) {
+                            foreach ($data as $a) { ?>
                             <li class="list-group-item list-group-item-info mt-2">
                                 <?php if ($a['user'] == 0) {
                                         echo "You";
@@ -84,7 +87,10 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                                 <p><?php echo $a['comment']; ?></p>
 
                             </li>
-                        <?php } ?>
+                        <?php } }
+                        else{
+                            echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no comments</span>';
+                        } ?>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -92,8 +98,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                     <div class="list-group mt-2">
                         <form action="" method="post">
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" id="comment" name="comment">
-                                </textarea>
+                                <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
                                 <input type="text" hidden name="case_id" value=<?php echo $case_id; ?> />
                                 <div class="col-md-3 mt-2 text-center mx-auto">
                                     <a href="">

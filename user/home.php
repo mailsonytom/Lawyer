@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <a class="navbar-brand" href=""><b>FYLAW</b></a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -170,8 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Description*</label>
-                            <textarea class="form-control" id="desc" name="desc">
-                                </textarea>
+                            <textarea class="form-control" id="desc" name="desc"></textarea>
                         </div>
                     </div>
                     <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>

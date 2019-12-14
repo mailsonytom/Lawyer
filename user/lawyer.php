@@ -9,6 +9,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     $uid = $_SESSION['uid'];
     $sql = "SELECT * FROM lawyer_details WHERE approved = 1";
     $result = mysqli_query($conn, $sql);
+    $num_rows = mysqli_num_rows($result);
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
     }
@@ -27,7 +28,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <a class="navbar-brand" href=""><b>FYLAW</b></a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -66,15 +67,20 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data as $a) { ?>
+                                <?php
+                                if($num_rows > 0){
+                                foreach ($data as $a) { ?>
                                     <?php if ($a['approved'] == 1) { ?>
                                         <tr>
                                             <td><?php echo $a['name']; ?></td>
-                                            <td><?php echo $a['speciality']; ?></td>
+                                            <td class="text-center "><?php echo $a['speciality']; ?></td>
                                         </tr>
 
                                     <?php } ?>
-                                <?php } ?>
+                                <?php } }
+                                else{
+                                    echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no lawyers to display</span>';
+                                }?>
                             </tbody>
                         </table>
                     </div>

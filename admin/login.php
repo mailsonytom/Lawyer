@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <a class="navbar-brand" href="../index.php"><b>FYLAW</b></a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <img class="featurette-image img-fluid mx-auto" src="../assets/images/user.jpg" alt="Generic placeholder image">
             </div>
             <div class="col-md-6 pt-5">
-                <h4 class="">SIGNIN AS ADMIN</h4>
+                <h2 class="">Admin sign in</h2>
                 <p class="">Our lawyers have a combined background of impressive achievements and qualifications !!</p>
                 <form action="" method="POST">
                     <div class="form-group">

@@ -11,14 +11,11 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id INNER JOIN lawyer_details on cases.lid = lawyer_details.lid WHERE uid = '$uid'";
     $result = mysqli_query($conn, $sql);
     $num_rows = mysqli_num_rows($result);
-    if ($num_rows > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
         }
     }
-    $datacount = 0;
     $count = 0;
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +30,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <a class="navbar-brand" href=""><b>FYLAW</b></a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -61,9 +58,9 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                     <div class="list-group">
                         <h5>Requested</h5>
                         <?php
+                        if($num_rows > 0){
                         foreach ($data as $a) { ?>
-                            <?php if ($a['active_status'] == 0) {
-                                    $datacount = 1 ?>
+                            <?php if ($a['active_status'] == 0) {?>
                                 <li class="list-group-item list-group-item-info mt-2">
                                     <div class="row">
                                         <div class="col-md-7">
@@ -77,10 +74,9 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                                         </a>
                                     </div>
                                 </li>
-                        <?php }
-                        }
-                        if ($datacount == 0) {
-                            echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no cases currently requested</span>';
+                        <?php } } }
+                        else{
+                            echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no requested cases</span>';
                         }
                         ?>
                     </div>

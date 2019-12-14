@@ -5,6 +5,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     $id = $_SESSION['id'];
     $sql = "SELECT * FROM user_details";
     $result = mysqli_query($conn, $sql);
+    $num_rows = mysqli_num_rows($result);
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
     }
@@ -31,10 +32,10 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="./lawyer.php"><button class="btn btn-outline-warning">Lawyer</button></a>
+                        <a class="nav-link" href="./home.php"><button class="btn btn-outline-warning">Home</button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./user.php"><button class="btn btn-outline-warning">User</button></a>
+                        <a class="nav-link" href="./lawyer.php"><button class="btn btn-outline-warning">Lawyers</button></a>
                     </li>
 
                     <li class="nav-item">
@@ -64,13 +65,19 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($data as $a) { ?>
+                            <?php
+                            if($num_rows > 0){
+                            foreach ($data as $a) { ?>
                                 <tr>
-                                    <td><?php echo $a['name']; ?></td>
+                                    <td ><?php echo $a['name']; ?></td>
                                     <td class="text-center"><?php echo $a['email']; ?></td>
                                     <td class="text-center"><?php echo $a['phone']; ?></td>
                                 </tr>
-                            <?php } ?>
+                            <?php } }
+                            else{
+                                echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no users</span>';
+
+                            } ?>
                         </tbody>
                     </table>
                 </div>

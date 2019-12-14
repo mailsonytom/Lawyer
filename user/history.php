@@ -12,6 +12,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
         $case_id = $_GET['id'];
         $sql = "SELECT * FROM history INNER JOIN lawyer_details ON history.lid = lawyer_details.lid WHERE case_id=" . $case_id;
         $result = mysqli_query($conn, $sql);
+        $num_rows = mysqli_num_rows($result);
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
         }
@@ -36,7 +37,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="../home.html"><b>FYLAW</b></a>
+            <a class="navbar-brand" href=""><b>FYLAW</b></a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -47,6 +48,9 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./courts.php"><button class="btn btn-outline-warning">Courts</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./cases.php"><button class="btn btn-outline-warning">My cases</button></a>
                     </li>
 
                     <li class="nav-item">
@@ -63,12 +67,18 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
             <div class="row mx-1 mt-2 mb-2">
                 <div class="col-md-12">
                     <div class="list-group">
-                        <?php foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-dark text-light mt-2">
+                        <?php 
+                         if ($num_rows > 0) {
+                             foreach ($data as $a) { ?>
+                            <li class="list-group-item list-group-item-dark  mt-2">
                                 <?php echo $a['name'] . "Updated"; ?><br>
-                                <p><?php echo $a['history'] . '<br>' . $a['date']; ?></p>
+                                <p><?php echo $a['history']; ?></p>
+                                    <span class="badge badge-pill badge-info">Date:<?php echo $a['date']; ?></span>
                             </li>
-                        <?php } ?>
+                        <?php } }
+                        else{
+                            echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no history</span>';
+                        } ?>
                     </div>
                 </div>
             </div>

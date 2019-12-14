@@ -20,7 +20,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
-        <a class="navbar-brand" href="#"><b>FYLAW</b></a>
+        <a class="navbar-brand" href="./index.php"><b>FYLAW</b></a>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -30,7 +30,7 @@
               <a class="nav-link" href="lawyer/login.php"><button class="btn btn-outline-primary">Lawyer Portal</button></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="user/index.php"><button class="btn btn-outline-primary">User</button></a>
+              <a class="nav-link" href="user/index.php"><button class="btn btn-outline-primary">Client portal</button></a>
             </li>
           </ul>
         </div>

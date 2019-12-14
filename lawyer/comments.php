@@ -37,6 +37,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
         $case_id = $_GET['id'];
         $sql = "SELECT * FROM comments WHERE case_id=" . $case_id;
         $result = mysqli_query($conn, $sql);
+        $num_rows = mysqli_num_rows($result);
         while ($row = mysqli_fetch_assoc($result)) {
             $data[] = $row;
         }
@@ -85,17 +86,24 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
             <div class="row mx-1 mt-2 mb-2">
                 <div class="col-md-6">
                     <div class="list-group">
-                        <?php foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-info mt-2">
-                                <?php if ($a['user'] == 1) {
-                                        echo "You";
-                                    } else {
-                                        echo "Client";
-                                    } ?> Commented: <br>
-                                <p><?php echo $a['comment']; ?></p>
+                        <?php
+                        if ($num_rows > 0) {
+                            foreach ($data as $a) {
+                                ?>
+                                <li class="list-group-item list-group-item-info mt-2">
+                                    <?php if ($a['user'] == 1) {
+                                                echo "You";
+                                            } else {
+                                                echo "Client";
+                                            } ?> Commented: <br>
+                                    <p><?php echo $a['comment']; ?></p>
 
-                            </li>
-                        <?php } ?>
+                                </li>
+                        <?php }
+                        } else {
+                            echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no comments</span>';
+                        }
+                        ?>
                     </div>
                 </div>
                 <div class="col-md-6">
