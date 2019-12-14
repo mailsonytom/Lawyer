@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <select class="form-control" name="court">
                                 <?php foreach ($court_data as $c) { ?>
                                     <option value="<?php echo $c['cid']; ?>">
-                                        <?php echo $c['court_name']; ?>
+                                        <?php echo $c['court_name']; ?>, <?php echo $c['place']; ?>
                                     </option>
                                 <?php } ?>
                             </select>

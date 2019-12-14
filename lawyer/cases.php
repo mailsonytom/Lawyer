@@ -7,7 +7,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                  </script>';
 } else {
     $lid = $_SESSION['lid'];
-    $sql = "SELECT casetype, cases.active_status, cases.description, case_id FROM cases INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id WHERE lid = '$lid' AND active_status = 1";
+    $sql = "SELECT casetype, cases.active_status, cases.description, case_id, user_details.name FROM cases INNER JOIN casetype ON cases.casetype_id = casetype.casetype_id INNER JOIN user_details ON cases.uid = user_details.uid WHERE lid = '$lid' AND active_status = 1";
     $result = mysqli_query($conn, $sql);
     $num_rows = mysqli_num_rows($result);
     if ($num_rows > 0) {
@@ -62,6 +62,7 @@ if (!isset($_SESSION['lid']) || empty($_SESSION['lid'])) {
                                         <div class="col-md-9">
                                             <p><?php echo $a['casetype']; ?></p>
                                             <p><?php echo $a['description']; ?></p>
+                                            <p>Client name: <?php echo $a['name']; ?></p>
                                         </div>
                                         <div class="col-md-3">
                                             <a href="comments.php?id=<?php echo $a['case_id']; ?>" class="mt-2 btn btn-primary btn-block">View/Add Comment</a>

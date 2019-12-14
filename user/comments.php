@@ -1,6 +1,13 @@
 <?php include 'connect.php' ?>
 <?php
 session_start();
+function test_input($data)
+{
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
 
     echo '<script type="text/javascript">
@@ -10,12 +17,20 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     $data = [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $case_id = $_POST['case_id'];
-        $comment = $_POST['comment'];
-        $csql = "INSERT INTO comments (case_id, user, comment) VALUES ('$case_id', '0', '$comment')";
-        mysqli_query($conn, $csql);
-        echo '<script type="text/javascript">
-        window.location = "comments.php?id=', $case_id, '
-        </script>';
+        if (empty($_POST["comment"])) {
+            $error = "Comment is required";
+            $flag = 1;
+        } else {
+            $comment = test_input($_POST['comment']);
+        }
+        if ($flag == 0) {
+            $csql = "INSERT INTO comments (case_id, user, comment) VALUES ('$case_id', '0', '$comment')";
+            if (mysqli_query($conn, $csql)) {
+                echo '<script type="text/javascript">
+            window.location = "comments.php?id=', $case_id, '
+            </script>';
+            }
+        }
     }
     $uid = $_SESSION['uid'];
     if (isset($_GET['id'])) {
@@ -75,20 +90,20 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
             <div class="row mx-1 mt-2 mb-2">
                 <div class="col-md-6">
                     <div class="list-group">
-                        <?php 
+                        <?php
                         if ($num_rows > 0) {
                             foreach ($data as $a) { ?>
-                            <li class="list-group-item list-group-item-info mt-2">
-                                <?php if ($a['user'] == 0) {
-                                        echo "You";
-                                    } else {
-                                        echo "Lawyer";
-                                    } ?> Commented: <br>
-                                <p><?php echo $a['comment']; ?></p>
+                                <li class="list-group-item list-group-item-info mt-2">
+                                    <?php if ($a['user'] == 0) {
+                                                echo "You";
+                                            } else {
+                                                echo "Lawyer";
+                                            } ?> Commented: <br>
+                                    <p><?php echo $a['comment']; ?></p>
 
-                            </li>
-                        <?php } }
-                        else{
+                                </li>
+                        <?php }
+                        } else {
                             echo '<span class="badge badge-pill badge-light mt-5 mx-1">There are no comments</span>';
                         } ?>
                     </div>
@@ -100,17 +115,16 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                             <div class="form-group">
                                 <textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
                                 <input type="text" hidden name="case_id" value=<?php echo $case_id; ?> />
-                                <div class="col-md-3 mt-2 text-center mx-auto">
-                                    <a href="">
-                                        <button class="btn btn-success " type="submit">Submit</button>
-                                    </a>
-                                </div>
+                                <span class="badge badge-pill badge-warning"><?php echo $error; ?></span>
+                                <br>
+                                <input class="btn btn-success form-control" value="Submit" type="submit" />
                             </div>
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <?php include '../footer.php'; ?>
 </body>

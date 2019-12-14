@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password = password_hash(test_input($_POST['password']), PASSWORD_DEFAULT);
     }
     $experience = $_POST['exp'];
+    $speciality = $_POST['speciality'];
     if (empty($_POST["exp"])) {
         $error = "Experience years is required";
         $flag = 1;
