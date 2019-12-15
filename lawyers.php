@@ -32,7 +32,7 @@
                         <a class="nav-link" href="./admin/"><button class="btn btn-outline-warning">Admin portal</button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./courts.php"><button class="btn btn-outline-warning">Courts</button></a>
+                        <a class="nav-link" href="./court.php"><button class="btn btn-outline-warning">Courts</button></a>
                     </li>
 
                 </ul>
