@@ -2,6 +2,7 @@
 <?php
     $sql = "SELECT * FROM courts";
     $result = mysqli_query($conn, $sql);
+    $num_rows = mysqli_num_rows($result);
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
 }
@@ -58,12 +59,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data as $a) { ?>
+                                <?php
+                                if($num_rows > 0){
+                                foreach ($data as $a) { ?>
                                     <tr>
                                         <td><?php echo $a['court_name']; ?></td>
                                         <td><?php echo $a['place']; ?></td>
                                     </tr>
-                                <?php } ?>
+                                <?php } }
+                                else{
+                                    echo '<tr><span class="badge badge-pill badge-danger mt-5 mx-1">There are no courts</span></tr>';
+
+                                } ?>
                             </tbody>
                         </table>
                     </div>
