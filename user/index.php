@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </nav>
     </header>
-    <div class="container-fluid content">
+    <div class="container content">
         <div class="row">
             <div class="col-md-6">
                 <img class="featurette-image img-fluid mx-auto" src="../assets/images/user.jpg" alt="Generic placeholder image">

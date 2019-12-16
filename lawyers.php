@@ -1,9 +1,10 @@
 <?php include 'connect.php' ?>
 <?php
-    $sql = "SELECT * FROM lawyer_details WHERE approved = 1";
-    $result = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_assoc($result)) {
-        $data[] = $row;
+$sql = "SELECT * FROM lawyer_details WHERE approved = 1";
+$result = mysqli_query($conn, $sql);
+$num_rows = mysqli_num_rows($result);
+while ($row = mysqli_fetch_assoc($result)) {
+    $data[] = $row;
 }
 ?>
 <!DOCTYPE html>
@@ -32,7 +33,7 @@
                         <a class="nav-link" href="./admin/"><button class="btn btn-outline-warning">Admin portal</button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./courts.php"><button class="btn btn-outline-warning">Courts</button></a>
+                        <a class="nav-link" href="./court.php"><button class="btn btn-outline-warning">Courts</button></a>
                     </li>
 
                 </ul>
@@ -58,15 +59,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($data as $a) { ?>
-                                    <?php if ($a['approved'] == 1) { ?>
+                                <?php
+                                if ($num_rows > 0) {
+                                    foreach ($data as $a) { ?>
                                         <tr>
                                             <td><?php echo $a['name']; ?></td>
                                             <td><?php echo $a['speciality']; ?></td>
                                         </tr>
-
-                                    <?php } ?>
-                                <?php } ?>
+                                <?php }
+                                } else {
+                                    echo '<tr><span class="badge badge-pill badge-danger mt-5 mx-1">There are no lawyers</span></tr>';
+                                } ?>
                             </tbody>
                         </table>
                     </div>

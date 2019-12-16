@@ -68,19 +68,16 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                             </thead>
                             <tbody>
                                 <?php
-                                if($num_rows > 0){
-                                foreach ($data as $a) { ?>
-                                    <?php if ($a['approved'] == 1) { ?>
+                                if ($num_rows > 0) {
+                                    foreach ($data as $a) { ?>
                                         <tr>
                                             <td><?php echo $a['name']; ?></td>
                                             <td class="text-center "><?php echo $a['speciality']; ?></td>
                                         </tr>
-
-                                    <?php } ?>
-                                <?php } }
-                                else{
+                                <?php }
+                                } else {
                                     echo '<tr><span class="badge badge-pill badge-danger mt-5 mx-1">There are no lawyers to display</span></tr>';
-                                }?>
+                                } ?>
                             </tbody>
                         </table>
                     </div>

@@ -71,7 +71,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
                          if ($num_rows > 0) {
                              foreach ($data as $a) { ?>
                             <li class="list-group-item list-group-item-dark  mt-2">
-                                <?php echo $a['name'] . "Updated"; ?><br>
+                                <?php echo $a['name'] . " Updated "; ?><br>
                                 <p><?php echo $a['history']; ?></p>
                                     <span class="badge badge-pill badge-info">Date:<?php echo $a['date']; ?></span>
                             </li>

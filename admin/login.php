@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
     </nav>
-    <div class="container-fluid">
+    <div class="container">
 
         <div class="row my-5">
             <div class="col-md-6">

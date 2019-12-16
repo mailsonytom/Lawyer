@@ -7,7 +7,7 @@ function test_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
-$firstname = $lastname = $username = $password = $address = $phone = $error = "";
+$firstname = $lastname = $username = $password = $address = $contact = $error = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $flag = 0;
     if (empty($_POST["name"])) {
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     if ($flag == 0) {
-        $sql = "INSERT INTO user_details (name, email, password, phone) VALUES ('$name',  '$username', '$password', '$phone')";
+        $sql = "INSERT INTO user_details (name, email, password, phone) VALUES ('$name',  '$username', '$password', '$contact')";
         if ($conn->query($sql) === TRUE) {
             echo '<script type="text/javascript">
                     window.location = "index.php"

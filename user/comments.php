@@ -14,6 +14,7 @@ if (!isset($_SESSION['uid']) || empty($_SESSION['uid'])) {
     window.location = "index.php"
      </script>';
 } else {
+    $comment = $error = "";
     $data = [];
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $case_id = $_POST['case_id'];
