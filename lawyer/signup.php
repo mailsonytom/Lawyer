@@ -158,7 +158,7 @@ while ($row = mysqli_fetch_assoc($casetype_result)) {
                         <label>Speciality</label>
                         <select class="form-control" name="speciality">
                             <?php foreach ($casetype_data as $a) { ?>
-                                <option value="<?php echo $a['casetype_id']; ?>">
+                                <option value="<?php echo $a['casetype']; ?>">
                                     <?php echo $a['casetype']; ?>
                                 </option>
                             <?php } ?>
